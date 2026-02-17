@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBala - Регистрация</title>
+    <meta name="description" content="Регистрация в EcoBala - платформа для экологического образования">
+    <link rel="icon" href="iconca.jpg" type="image/jpeg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #2ECC71;
+            --secondary-blue: #4AA3DF;
+            --kids-blue: #4AA3DF;
+            --teen-green: #27AE60;
+            --light-bg: #F4F8F6;
+            --dark-text: #1F3F2D;
+            --white: #FFFFFF;
+            --border-radius: 20px;
+            --shadow: 0 10px 30px rgba(46, 204, 113, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background: var(--light-bg);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-btn:hover {
+            color: var(--primary-green);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+            min-height: calc(100vh - 80px);
+        }
+        
+        .choice-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .choice-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .choice-subtitle {
+            font-size: 18px;
+            color: var(--dark-text);
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+        
+        .platform-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .platform-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-card.kids {
+            border: 3px solid var(--kids-blue);
+        }
+        
+        .platform-card.teen {
+            border: 3px solid var(--teen-green);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .platform-card.kids:hover {
+            box-shadow: 0 20px 40px rgba(74, 163, 223, 0.3);
+        }
+        
+        .platform-card.teen:hover {
+            box-shadow: 0 20px 40px rgba(39, 174, 96, 0.3);
+        }
+        
+        .platform-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+        
+        .platform-card.kids .platform-icon {
+            background: var(--kids-blue);
+        }
+        
+        .platform-card.teen .platform-icon {
+            background: var(--teen-green);
+        }
+        
+        .platform-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        .platform-card.kids .platform-title {
+            color: var(--kids-blue);
+        }
+        
+        .platform-card.teen .platform-title {
+            color: var(--teen-green);
+        }
+        
+        .platform-age {
+            font-size: 16px;
+            color: var(--dark-text);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: var(--dark-text);
+        }
+        
+        .feature-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .platform-card.kids .feature-icon {
+            color: var(--kids-blue);
+        }
+        
+        .platform-card.teen .feature-icon {
+            color: var(--teen-green);
+        }
+        
+        .select-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .platform-card.kids .select-btn {
+            background: var(--kids-blue);
+            color: white;
+        }
+        
+        .platform-card.kids .select-btn:hover {
+            background: #3B8FD9;
+        }
+        
+        .platform-card.teen .select-btn {
+            background: var(--teen-green);
+            color: white;
+        }
+        
+        .platform-card.teen .select-btn:hover {
+            background: #229954;
+        }
+        
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 25px;
+            padding: 3px;
+            position: relative;
+            margin: 20px auto;
+            width: fit-content;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            z-index: 2;
+            position: relative;
+            color: var(--dark-text);
+        }
+        
+        .lang-btn.active {
+            color: white;
+        }
+        
+        .lang-indicator {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(50% - 3px);
+            height: calc(100% - 6px);
+            background: var(--primary-green);
+            border-radius: 22px;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+        
+        .lang-indicator.kazakh {
+            transform: translateX(calc(100% - 6px));
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .platform-cards {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .choice-title {
+                font-size: 28px;
+            }
+            
+            .platform-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .choice-title {
+                font-size: 24px;
+            }
+            
+            .platform-card {
+                padding: 25px 15px;
+            }
+            
+            .platform-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index-final.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="iconca.jpg" alt="EcoBala Logo">
+                    </div>
+                    EcoBala
+                </a>
+                
+                <a href="index-final.html" class="back-btn">
+                    ← На главную
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="choice-section">
+                <h1 class="choice-title" data-lang-text="register_title">Выберите вашу платформу</h1>
+                <p class="choice-subtitle" data-lang-text="register_subtitle">Выберите подходящую платформу для вашего возраста</p>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <div class="lang-indicator" id="langIndicator"></div>
+                    <button class="lang-btn active" data-lang="ru">РУС</button>
+                    <button class="lang-btn" data-lang="kz">ҚАЗ</button>
+                </div>
+            </div>
+            
+            <div class="platform-cards">
+                <!-- Kids Platform -->
+                <div class="platform-card kids" onclick="selectPlatform('kids')">
+                    <div class="platform-icon">👶</div>
+                    <h2 class="platform-title" data-lang-text="kids_title">EcoBala Kids</h2>
+                    <p class="platform-age" data-lang-text="kids_age">Для детей 6-10 лет</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🎮</span>
+                            <span data-lang-text="kids_feature1">Выполняй задачи и играй</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📚</span>
+                            <span data-lang-text="kids_feature2">Учись экологии на уроках как в Duolingo</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">⭐</span>
+                            <span data-lang-text="kids_feature3">Зарабатывай баллы и соревнуйся</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎁</span>
+                            <span data-lang-text="kids_feature4">Получай призы от EcoBala за собранные баллы</span>
+                        </div>
+                    </div>
+                    
+                    <button class="select-btn" data-lang-text="kids_select">Выбрать Kids</button>
+                </div>
+                
+                <!-- Teen Platform -->
+                <div class="platform-card teen" onclick="selectPlatform('teen')">
+                    <div class="platform-icon">👦</div>
+                    <h2 class="platform-title" data-lang-text="teen_title">EcoBala Teen</h2>
+                    <p class="platform-age" data-lang-text="teen_age">Для подростков 11-16 лет</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🌍</span>
+                            <span data-lang-text="teen_feature1">Выполняй квесты для экологии города</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏆</span>
+                            <span data-lang-text="teen_feature2">Участвуй в соревнованиях</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💰</span>
+                            <span data-lang-text="teen_feature3">Собирай баллы и достижения</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💳</span>
+                            <span data-lang-text="teen_feature4">Обменивай баллы на реальные деньги</span>
+                        </div>
+                    </div>
+                    
+                    <button class="select-btn" data-lang-text="teen_select">Выбрать Teen</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Translations
+        const translations = {
+            ru: {
+                register_title: 'Выберите вашу платформу',
+                register_subtitle: 'Выберите подходящую платформу для вашего возраста',
+                kids_title: 'EcoBala Kids',
+                kids_age: 'Для детей 6-10 лет',
+                kids_feature1: 'Выполняй задачи и играй',
+                kids_feature2: 'Учись экологии на уроках как в Duolingo',
+                kids_feature3: 'Зарабатывай баллы и соревнуйся',
+                kids_feature4: 'Получай призы от EcoBala за собранные баллы',
+                kids_select: 'Выбрать Kids',
+                teen_title: 'EcoBala Teen',
+                teen_age: 'Для подростков 11-16 лет',
+                teen_feature1: 'Выполняй квесты для экологии города',
+                teen_feature2: 'Участвуй в соревнованиях',
+                teen_feature3: 'Собирай баллы и достижения',
+                teen_feature4: 'Обменивай баллы на реальные деньги',
+                teen_select: 'Выбрать Teen',
+                back_home: 'На главную'
+            },
+            kz: {
+                register_title: 'Платформаңыз таңдаңыз',
+                register_subtitle: 'Жасыңызға сәйкес платформаны таңдаңыз',
+                kids_title: 'EcoBala Kids',
+                kids_age: '6-10 жастағы балалар үшін',
+                kids_feature1: 'Тапсырмаларды орындаңыз және ойнаңыз',
+                kids_feature2: 'Duolingo сияқты экология сабақтарын оқыңыз',
+                kids_feature3: 'Ұпай жинаңыз және жарыстарға қатысыңыз',
+                kids_feature4: 'Жиналған ұпайлар үшін EcoBala-дан сыйлықтар алыңыз',
+                kids_select: 'Kids-ты таңдау',
+                teen_title: 'EcoBala Teen',
+                teen_age: '11-16 жастағы жасөспірімдер үшін',
+                teen_feature1: 'Қаланың экологиясы үшін квесттерді орындаңыз',
+                teen_feature2: 'Жарыстарға қатысыңыз',
+                teen_feature3: 'Ұпайлар мен жетістіктерді жинаңыз',
+                teen_feature4: 'Ұпайларды нақты ақшаға айырбастырыңыз',
+                teen_select: 'Teen-ді таңдау',
+                back_home: 'Басты бет'
+            }
+        };
+
+        function updateLanguage(lang) {
+            const elements = document.querySelectorAll('[data-lang-text]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-lang-text');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Language switcher functionality
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const langIndicator = document.getElementById('langIndicator');
+
+        langButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const selectedLang = this.getAttribute('data-lang');
+                
+                // Update active states
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Move indicator
+                if (selectedLang === 'kz') {
+                    langIndicator.classList.add('kazakh');
+                } else {
+                    langIndicator.classList.remove('kazakh');
+                }
+                
+                // Update language
+                updateLanguage(selectedLang);
+                
+                // Save preference
+                localStorage.setItem('selectedLanguage', selectedLang);
+            });
+        });
+
+        // Platform selection
+        function selectPlatform(platform) {
+            if (platform === 'kids') {
+                window.location.href = 'register-kids.html';
+            } else if (platform === 'teen') {
+                window.location.href = 'register-teen.html';
+            }
+        }
+
+        // Load saved language preference
+        const savedLanguage = localStorage.getItem('selectedLanguage');
+        if (savedLanguage && savedLanguage !== 'ru') {
+            const kazakhBtn = document.querySelector('[data-lang="kz"]');
+            if (kazakhBtn) {
+                kazakhBtn.click();
+            }
+        }
+    </script>
+</body>
+</html>

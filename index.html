@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBala - Экологическая платформа для детей и подростков</title>
+    <meta name="description" content="EcoBala - платформа для экологического образования детей и подростков. Игровые квесты, обучение и забота о природе.">
+    <meta name="keywords" content="экология, дети, подростки, образование, природа, квесты, игры">
+    <meta property="og:title" content="EcoBala - Экологическая платформа">
+    <meta property="og:description" content="Обучаем детей и подростков заботе о природе через игровые квесты">
+    <meta property="og:image" content="images/og-image.jpg">
+    <meta property="og:url" content="https://ecobala.kz">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="iconca.jpg" type="image/jpeg">
+    
+    <style>
+        :root {
+            --primary-green: #2ECC71;
+            --secondary-blue: #4AA3DF;
+            --light-bg: #F4F8F6;
+            --dark-text: #1F3F2D;
+            --white: #FFFFFF;
+            --border-radius: 20px;
+            --shadow: 0 10px 30px rgba(46, 204, 113, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background: var(--light-bg);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Splash Screen */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .splash-content {
+            text-align: center;
+            color: var(--primary-green);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .splash-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .splash-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--primary-green);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .language-switcher {
+            display: flex;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 25px;
+            padding: 3px;
+            position: relative;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            z-index: 2;
+            position: relative;
+            color: var(--dark-text);
+        }
+        
+        .lang-btn.active {
+            color: white;
+        }
+        
+        .lang-indicator {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(50% - 3px);
+            height: calc(100% - 6px);
+            background: var(--primary-green);
+            border-radius: 22px;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+        
+        .lang-indicator.kazakh {
+            transform: translateX(calc(100% - 6px));
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #27AE60;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 600px;
+            background: url('fon1.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(46, 204, 113, 0.3);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Kids/Teen Section */
+        .kids-teen {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--primary-green);
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .card-buttons .btn {
+            flex: 1;
+            min-width: 120px;
+            font-size: 14px;
+            padding: 10px 15px;
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+        }
+        
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        .card p {
+            margin-bottom: 25px;
+            color: var(--dark-text);
+            opacity: 0.8;
+        }
+        
+        /* Statistics */
+        .statistics {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            background: var(--light-bg);
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: var(--dark-text);
+            opacity: 0.8;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+        }
+        
+        .map-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .mini-map {
+            height: 300px;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-text);
+            opacity: 0.6;
+        }
+        
+        /* School Rating */
+        .school-rating {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .schools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .school-card {
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .school-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .school-position {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+        
+        .school-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .school-score {
+            font-size: 18px;
+            color: var(--secondary-blue);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+        }
+        
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .step-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background: rgba(46, 204, 113, 0.1);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 300px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+        
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--primary-green);
+        }
+        
+        .testimonial-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-rating {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-text {
+            color: var(--dark-text);
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        /* Instructions */
+        .instructions {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .instructions-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .instruction-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+        }
+        
+        .instruction-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .instruction-content h4 {
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+        
+        .instruction-content p {
+            color: var(--dark-text);
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-green);
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: var(--shadow);
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .header-actions {
+                display: none;
+            }
+            
+            .hero {
+                min-height: 500px;
+                padding: 40px 0;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+                line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+            
+            .cards-container,
+            .stats-container,
+            .schools-container,
+            .steps-container,
+            .testimonials-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .card-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .card-buttons .btn {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .stat-card {
+                padding: 25px 20px;
+            }
+            
+            .school-card {
+                padding: 25px 20px;
+            }
+            
+            .step-card {
+                padding: 25px 20px;
+            }
+            
+            .testimonial-card {
+                padding: 25px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .hero {
+                min-height: 450px;
+                padding: 30px 0;
+            }
+            
+            .hero h1 {
+                font-size: 24px;
+            }
+            
+            .hero p {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .card {
+                padding: 25px 15px;
+            }
+            
+            .stat-number {
+                font-size: 36px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .footer-section ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 22px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .card {
+                padding: 20px 15px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="iconca.jpg" alt="EcoBala Logo">
+            </div>
+            <h2>EcoBala</h2>
+            <p>Загрузка...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <img src="iconca.jpg" alt="EcoBala Logo">
+                    </div>
+                    EcoBala
+                </a>
+                
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#home" data-lang-text="nav_home">Главная</a></li>
+                        <li><a href="#about" data-lang-text="nav_about">О платформе</a></li>
+                        <li><a href="#schools" data-lang-text="nav_schools">Школы</a></li>
+                        <li><a href="#how" data-lang-text="nav_how">Как работает</a></li>
+                        <li><a href="#faq" data-lang-text="nav_faq">FAQ</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="language-switcher">
+                        <div class="lang-indicator" id="langIndicator"></div>
+                        <button class="lang-btn active" data-lang="ru">РУС</button>
+                        <button class="lang-btn" data-lang="kz">ҚАЗ</button>
+                    </div>
+                    <a href="register.html" class="btn btn-outline" data-lang-text="login">Войти</a>
+                    <a href="register.html" class="btn btn-primary" data-lang-text="register">Регистрация</a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-lang-text="hero_title">EcoBala - Учимся заботиться о природе</h1>
+                <p data-lang-text="hero_subtitle">Интерактивная платформа для экологического образования детей и подростков</p>
+                <div class="hero-buttons">
+                    <a href="login-kids.html" class="btn btn-primary" data-lang-text="hero_start">Начать путешествие</a>
+                    <a href="#about" class="btn btn-outline" data-lang-text="hero_more">Узнать больше</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kids/Teen Section -->
+    <section class="kids-teen" id="about">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="about_title">Для кого наша платформа?</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">👶</div>
+                    <h3 data-lang-text="kids_title">EcoKids</h3>
+                    <p data-lang-text="kids_desc">Для младших школьников (6-10 лет). Игровые квесты, веселые задания и знакомство с природой через игру.</p>
+                    <div class="card-buttons">
+                        <a href="login-kids.html" class="btn btn-outline" data-lang-text="kids_login">Вход Kids</a>
+                        <a href="register-kids.html" class="btn btn-primary" data-lang-text="kids_register">Регистрация Kids</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👦</div>
+                    <h3 data-lang-text="teens_title">EcoTeens</h3>
+                    <p data-lang-text="teens_desc">Для подростков (11-16 лет). Более сложные проекты, исследование экологических проблем и создание собственных решений.</p>
+                    <div class="card-buttons">
+                        <a href="login-teen.html" class="btn btn-outline" data-lang-text="teens_login">Вход Teen</a>
+                        <a href="register-teen.html" class="btn btn-primary" data-lang-text="teens_register">Регистрация Teen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="statistics">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="stats_title">Наши достижения</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="1500">0</div>
+                    <div class="stat-label" data-lang-text="stats_participants">Участников</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="5000">0</div>
+                    <div class="stat-label" data-lang-text="stats_tasks">Заданий выполнено</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="300">0</div>
+                    <div class="stat-label" data-lang-text="stats_trees">Деревьев посажено</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="map_title">Мы в вашем городе</h2>
+            <div class="map-container">
+                <div class="mini-map" data-lang-text="map_text2">
+                    🗺️ Интерактивная карта Хромтау
+                </div>
+                <p data-lang-text="map_text">7 школ города Хромтау уже участвуют в программе EcoBala</p>
+                <a href="#" class="btn btn-primary" data-lang-text="map_btn">Открыть полную карту</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- School Rating -->
+    <section class="school-rating" id="schools">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="schools_title">Топ школы</h2>
+            <div class="schools-container">
+                <div class="school-card">
+                    <div class="school-position">#1</div>
+                    <div class="school-name" data-lang-text="school1_name">Школа №1</div>
+                    <div class="school-score" data-lang-text="school1_score">2,450 баллов</div>
+                </div>
+                <div class="school-card">
+                    <div class="school-position">#2</div>
+                    <div class="school-name" data-lang-text="school2_name">Школа №5</div>
+                    <div class="school-score" data-lang-text="school2_score">2,180 баллов</div>
+                </div>
+                <div class="school-card">
+                    <div class="school-position">#3</div>
+                    <div class="school-name" data-lang-text="school3_name">Гимназия №3</div>
+                    <div class="school-score" data-lang-text="school3_score">1,920 баллов</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" class="btn btn-outline" data-lang-text="schools_btn">Полный рейтинг</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="how_title">Как это работает?</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 data-lang-text="how_step1_title">Регистрация</h3>
+                    <p data-lang-text="how_step1_desc">Создайте аккаунт и выберите возрастную категорию</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 data-lang-text="how_step2_title">Выбор квеста</h3>
+                    <p data-lang-text="how_step2_desc">Выберите интересующий экологический квест</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 data-lang-text="how_step3_title">Выполнение</h3>
+                    <p data-lang-text="how_step3_desc">Выполняйте задания и получайте баллы</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 data-lang-text="how_step4_title">Награды</h3>
+                    <p data-lang-text="how_step4_desc">Получайте сертификаты и участвуйте в конкурсе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="faq_title">Часто задаваемые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-lang-text="faq_q1">Для какого возраста предназначена платформа?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-lang-text="faq_a1">EcoBala предназначена для детей от 6 до 16 лет. У нас есть два раздела: EcoKids (6-10 лет) и EcoTeens (11-16 лет) с соответствующими заданиями.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-lang-text="faq_q2">Как начать пользоваться платформой?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-lang-text="faq_a2">Просто нажмите кнопку "Регистрация", создайте аккаунт, выберите возрастную категорию и начните выполнять первые квесты!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-lang-text="faq_q3">Бесплатно ли пользоваться платформой?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-lang-text="faq_a3">Да, основная функциональность платформы полностью бесплатна для всех участников.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="testimonials_title">Отзывы участников</h2>
+            <div class="testimonials-container" id="testimonialsContainer">
+                <!-- Russian testimonials -->
+                <div class="testimonial-lang" data-lang="ru">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👦</div>
+                        <div class="testimonial-name">Рустембек, 14 лет</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"EcoBala - отличная платформа! Экологические проекты очень интересные, я научился защищать природу."</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👦</div>
+                        <div class="testimonial-name">Сайлау, 15 лет</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"Экологическая грамотность повысилась. Участвовал в акции по очистке города, многому научился."</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👦</div>
+                        <div class="testimonial-name">Ерасыл, 14 лет</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"Платформа отличная! Особенно понравился проект по очистке парка. Наша команда заняла первое место!"</div>
+                    </div>
+                </div>
+                <!-- Kazakh testimonials -->
+                <div class="testimonial-lang" data-lang="kz" style="display: none;">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👦</div>
+                        <div class="testimonial-name">Рустембек, 14 жас</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"EcoBala платформасы өте қызықты! Экологиялық жобаларға қатысып, табиғатты қорғауды үйрендім."</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👦</div>
+                        <div class="testimonial-name">Сайлау, 15 жас</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"Экологиялық сауаттылық арттырды. Қаланы тазалау акциясына қатысып, көп нәрсе үйрендім."</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👦</div>
+                        <div class="testimonial-name">Ерасыл, 14 жас</div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"Платформа өте жақсы! Паркті тазалау жобасы ұнады. Біздің команда бірінші орын алды!"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructions -->
+    <section class="instructions">
+        <div class="container">
+            <h2 class="section-title" data-lang-text="instructions_title">Как начать?</h2>
+            <div class="instructions-container">
+                <div class="instruction-step">
+                    <div class="instruction-number">1</div>
+                    <div class="instruction-content">
+                        <h4 data-lang-text="inst_step1_title">Зарегистрируйтесь</h4>
+                        <p data-lang-text="inst_step1_desc">Создайте аккаунт на платформе, указав свои данные и выбрав возрастную категорию</p>
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="instruction-number">2</div>
+                    <div class="instruction-content">
+                        <h4 data-lang-text="inst_step2_title">Пройдите обучение</h4>
+                        <p data-lang-text="inst_step2_desc">Ознакомьтесь с правилами платформы и основами экологической грамотности</p>
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="instruction-number">3</div>
+                    <div class="instruction-content">
+                        <h4 data-lang-text="inst_step3_title">Выберите квест</h4>
+                        <p data-lang-text="inst_step3_desc">Выберите интересующий вас квест из списка доступных заданий</p>
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="instruction-number">4</div>
+                    <div class="instruction-content">
+                        <h4 data-lang-text="inst_step4_title">Выполняйте задания</h4>
+                        <p data-lang-text="inst_step4_desc">Следуйте инструкциям квеста, выполняйте задания и загружайте отчеты</p>
+                    </div>
+                </div>
+                <div class="instruction-step">
+                    <div class="instruction-number">5</div>
+                    <div class="instruction-content">
+                        <h4 data-lang-text="inst_step5_title">Получайте награды</h4>
+                        <p data-lang-text="inst_step5_desc">За успешное выполнение заданий вы получаете баллы и сертификаты</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-lang-text="footer_about">EcoBala</h3>
+                    <p data-lang-text="footer_desc">Платформа для экологического образования детей и подростков</p>
+                </div>
+                <div class="footer-section">
+                    <h3 data-lang-text="footer_nav">Навигация</h3>
+                    <ul>
+                        <li><a href="#home" data-lang-text="nav_home">Главная</a></li>
+                        <li><a href="#about" data-lang-text="nav_about">О платформе</a></li>
+                        <li><a href="#schools" data-lang-text="nav_schools">Школы</a></li>
+                        <li><a href="#how" data-lang-text="nav_how">Как работает</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-lang-text="footer_contacts">Контакты</h3>
+                    <ul>
+                        <li>📞 +7 771 451 4717</li>
+                        <li>📧 ecobalakz@gmail.com</li>
+                        <li>📷 Instagram: @ecobala.kz</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-lang-text="footer_legal">Правовая информация</h3>
+                    <ul>
+                        <li><a href="#" data-lang-text="footer_privacy">Политика конфиденциальности</a></li>
+                        <li><a href="#" data-lang-text="footer_terms">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-lang-text="footer_copyright">&copy; 2026 EcoBala. Все права защищены.</p>
+                <p>Made by Ermukhanov.M, Amirtay.E, Erasyl</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Splash Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const splashScreen = document.getElementById('splashScreen');
+                splashScreen.style.opacity = '0';
+                setTimeout(function() {
+                    splashScreen.style.display = 'none';
+                }, 500);
+            }, 3000);
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+
+        // Header Scroll Effect
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.padding = '10px 0';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.padding = '15px 0';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animated Counter
+        function animateCounter() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('statistics')) {
+                        animateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe statistics section
+        const statisticsSection = document.querySelector('.statistics');
+        if (statisticsSection) {
+            observer.observe(statisticsSection);
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.card, .step-card, .testimonial-card');
+        
+        const fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fadeObserver.observe(element);
+        });
+
+        // Language Switcher
+        const translations = {
+            ru: {
+                nav_home: 'Главная',
+                nav_about: 'О платформе',
+                nav_schools: 'Школы',
+                nav_how: 'Как работает',
+                nav_faq: 'FAQ',
+                login: 'Войти',
+                register: 'Регистрация',
+                hero_title: 'EcoBala - Учимся заботиться о природе',
+                hero_subtitle: 'Интерактивная платформа для экологического образования детей и подростков',
+                hero_start: 'Начать путешествие',
+                hero_more: 'Узнать больше',
+                about_title: 'Для кого наша платформа?',
+                kids_title: 'EcoKids',
+                kids_desc: 'Для младших школьников (6-10 лет). Игровые квесты, веселые задания и знакомство с природой через игру.',
+                kids_btn: 'Перейти в Kids',
+                kids_login: 'Вход Kids',
+                kids_register: 'Регистрация Kids',
+                teens_title: 'EcoTeens',
+                teens_desc: 'Для подростков (11-16 лет). Более сложные проекты, исследование экологических проблем и создание собственных решений.',
+                teens_btn: 'Перейти в Teens',
+                teens_login: 'Вход Teen',
+                teens_register: 'Регистрация Teen',
+                stats_title: 'Наши достижения',
+                stats_participants: 'Участников',
+                stats_tasks: 'Заданий выполнено',
+                stats_trees: 'Деревьев посажено',
+                map_title: 'Мы в вашем городе',
+                map_text: '7 школ города Хромтау уже участвуют в программе EcoBala',
+                map_text2: '🗺️ Интерактивная карта Хромтау',
+                map_btn: 'Открыть полную карту',
+                schools_title: 'Топ школы',
+                schools_btn: 'Полный рейтинг',
+                school1_name: 'Школа №1',
+                school1_score: '2,450 баллов',
+                school2_name: 'Школа №5',
+                school2_score: '2,180 баллов',
+                school3_name: 'Гимназия №3',
+                school3_score: '1,920 баллов',
+                how_title: 'Как это работает?',
+                how_step1_title: 'Регистрация',
+                how_step1_desc: 'Создайте аккаунт и выберите возрастную категорию',
+                how_step2_title: 'Выбор квеста',
+                how_step2_desc: 'Выберите интересующий экологический квест',
+                how_step3_title: 'Выполнение',
+                how_step3_desc: 'Выполняйте задания и получайте баллы',
+                how_step4_title: 'Награды',
+                how_step4_desc: 'Получайте сертификаты и участвуйте в конкурсе',
+                faq_title: 'Часто задаваемые вопросы',
+                faq_q1: 'Для какого возраста предназначена платформа?',
+                faq_a1: 'EcoBala предназначена для детей от 6 до 16 лет. У нас есть два раздела: EcoKids (6-10 лет) и EcoTeens (11-16 лет) с соответствующими заданиями.',
+                faq_q2: 'Как начать пользоваться платформой?',
+                faq_a2: 'Просто нажмите кнопку "Регистрация", создайте аккаунт, выберите возрастную категорию и начните выполнять первые квесты!',
+                faq_q3: 'Бесплатно ли пользоваться платформой?',
+                faq_a3: 'Да, основная функциональность платформы полностью бесплатна для всех участников.',
+                testimonials_title: 'Отзывы участников',
+                instructions_title: 'Как начать?',
+                inst_step1_title: 'Зарегистрируйтесь',
+                inst_step1_desc: 'Создайте аккаунт на платформе, указав свои данные и выбрав возрастную категорию',
+                inst_step2_title: 'Пройдите обучение',
+                inst_step2_desc: 'Ознакомьтесь с правилами платформы и основами экологической грамотности',
+                inst_step3_title: 'Выберите квест',
+                inst_step3_desc: 'Выберите интересующий вас квест из списка доступных заданий',
+                inst_step4_title: 'Выполняйте задания',
+                inst_step4_desc: 'Следуйте инструкциям квеста, выполняйте задания и загружайте отчеты',
+                inst_step5_title: 'Получайте награды',
+                inst_step5_desc: 'За успешное выполнение заданий вы получаете баллы и сертификаты',
+                footer_about: 'EcoBala',
+                footer_desc: 'Платформа для экологического образования детей и подростков',
+                footer_nav: 'Навигация',
+                footer_contacts: 'Контакты',
+                footer_legal: 'Правовая информация',
+                footer_privacy: 'Политика конфиденциальности',
+                footer_terms: 'Условия использования',
+                footer_copyright: '&copy; 2026 EcoBala. Все права защищены.'
+            },
+            kz: {
+                nav_home: 'Басты бет',
+                nav_about: 'Платформа туралы',
+                nav_schools: 'Мектептер',
+                nav_how: 'Қалай жұмыс істейді',
+                nav_faq: 'Сұрақ-жауап',
+                login: 'Кіру',
+                register: 'Тіркелу',
+                hero_title: 'EcoBala - Табиғатты қорғауды үйренеміз',
+                hero_subtitle: 'Балалар мен жасөспірімдерге арналған экологиялық білім беру интерактивті платформасы',
+                hero_start: 'Саяхатты бастау',
+                hero_more: 'Көбірек білу',
+                about_title: 'Біздің платформа кімдерге арналған?',
+                kids_title: 'EcoKids',
+                kids_desc: 'Кіші мектеп оқушыларына (6-10 жас). Ойын квесттері, қызықты тапсырмалар және табиғатпен ойын арқылы танысу.',
+                kids_btn: 'Kids-қа өту',
+                kids_login: 'Kids кіру',
+                kids_register: 'Kids тіркелу',
+                teens_title: 'EcoTeens',
+                teens_desc: 'Жасөспірімдерге (11-16 жас). Күрделірек жобалар, экологиялық мәселелерді зерттеу және өз шешімдерін жасау.',
+                teens_btn: 'Teens-қа өту',
+                teens_login: 'Teen кіру',
+                teens_register: 'Teen тіркелу',
+                stats_title: 'Біздің жетістіктеріміз',
+                stats_participants: 'Қатысушылар',
+                stats_tasks: 'Тапсырмалар орындалды',
+                stats_trees: 'Ағаштар отырғызылды',
+                map_title: 'Біз сіздің қаладағымыз',
+                map_text: 'Хромтау қаласының 7 мектебі EcoBala бағдарламасына қатысады',
+                map_text2: '🗺️ Хромтау интерактивті картасы',
+                map_btn: 'Толық картаны ашу',
+                schools_title: 'Үздік мектептер',
+                schools_btn: 'Толық рейтинг',
+                school1_name: 'Мектеп №1',
+                school1_score: '2,450 ұпай',
+                school2_name: 'Мектеп №5',
+                school2_score: '2,180 ұпай',
+                school3_name: 'Гимназия №3',
+                school3_score: '1,920 ұпай',
+                how_title: 'Бұл қалай жұмыс істейді?',
+                how_step1_title: 'Тіркелу',
+                how_step1_desc: 'Аккаунт жасаңыз және жас топтамасын таңдаңыз',
+                how_step2_title: 'Квест таңдау',
+                how_step2_desc: 'Қызыққан экологиялық квестті таңдаңыз',
+                how_step3_title: 'Орындау',
+                how_step3_desc: 'Тапсырмаларды орындаңыз және ұпай алыңыз',
+                how_step4_title: 'Сыйлықтар',
+                how_step4_desc: 'Сертификаттар алыңыз және байқауға қатысыңыз',
+                faq_title: 'Жиі қойылатын сұрақтар',
+                faq_q1: 'Платформа қай жасқа арналған?',
+                faq_a1: 'EcoBala 6-дан 16 жасқа дейінгі балаларға арналған. Бізде екі бөлім бар: EcoKids (6-10 жас) және EcoTeens (11-16 жас) сәйкес тапсырмалармен.',
+                faq_q2: 'Платформаны қалай қолдануға болады?',
+                faq_a2: 'Тек "Тіркелу" батырмасын басыңыз, аккаунт жасап, жас топтамасын таңдап, алғашқы квесттерді орындауды бастаңыз!',
+                faq_q3: 'Платформаны тегін пайдалануға бола ма?',
+                faq_a3: 'Иә, платформаның негізгі функционалдығы барлық қатысушылар үшін толығымен тегін.',
+                testimonials_title: 'Қатысушылардың пікірлері',
+                instructions_title: 'Қалай бастау керек?',
+                inst_step1_title: 'Тіркеліңіз',
+                inst_step1_desc: 'Платформада аккаунт жасап, деректеріңізді көрсетіп, жас топтамасын таңдаңыз',
+                inst_step2_title: 'Оқуды өтіңіз',
+                inst_step2_desc: 'Платформа ережелерімен және экологиялық сауаттылық негіздерімен танысыңыз',
+                inst_step3_title: 'Квестті таңдаңыз',
+                inst_step3_desc: 'Қолжетімді тапсырмалар тізімінен қызыққан квестті таңдаңыз',
+                inst_step4_title: 'Тапсырмаларды орындаңыз',
+                inst_step4_desc: 'Квест нұсқауларына еріп, тапсырмаларды орындаңыз және есептерді жүктеңіз',
+                inst_step5_title: 'Сыйлықтарды алыңыз',
+                inst_step5_desc: 'Тапсырмаларды сәтті орындағаны үшін ұпайлар мен сертификаттар аласыз',
+                footer_about: 'EcoBala',
+                footer_desc: 'Балалар мен жасөспірімдерге арналған экологиялық білім беру платформасы',
+                footer_nav: 'Навигация',
+                footer_contacts: 'Байланыс',
+                footer_legal: 'Заңды ақпарат',
+                footer_privacy: 'Құпиялылық саясаты',
+                footer_terms: 'Пайдалану шарттары',
+                footer_copyright: '&copy; 2026 EcoBala. Барлық құқықтар қорғалған.'
+            }
+        };
+
+        function updateLanguage(lang) {
+            const elements = document.querySelectorAll('[data-lang-text]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-lang-text');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Switch testimonials
+            const testimonialContainers = document.querySelectorAll('.testimonial-lang');
+            testimonialContainers.forEach(container => {
+                if (container.getAttribute('data-lang') === lang) {
+                    container.style.display = 'block';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+        }
+
+        // Language switcher functionality
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const langIndicator = document.getElementById('langIndicator');
+
+        langButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const selectedLang = this.getAttribute('data-lang');
+                
+                // Update active states
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Move indicator
+                if (selectedLang === 'kz') {
+                    langIndicator.classList.add('kazakh');
+                } else {
+                    langIndicator.classList.remove('kazakh');
+                }
+                
+                // Update language
+                updateLanguage(selectedLang);
+                
+                // Save preference
+                localStorage.setItem('selectedLanguage', selectedLang);
+            });
+        });
+
+        // Load saved language preference
+        const savedLanguage = localStorage.getItem('selectedLanguage');
+        if (savedLanguage && savedLanguage !== 'ru') {
+            const kazakhBtn = document.querySelector('[data-lang="kz"]');
+            if (kazakhBtn) {
+                kazakhBtn.click();
+            }
+        }
+    </script>
+</body>
+</html>
