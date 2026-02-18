@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoBala Kids - Профиль</title>
+    <link rel="icon" href="iconca.jpg" type="image/jpeg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --kids: #4AA3DF;
+            --kids-dark: #2C5282;
+            --bg1: #E3F2FD;
+            --bg2: #F0F9FF;
+            --text: #0B2540;
+            --muted: rgba(11, 37, 64, 0.72);
+            --card: rgba(255, 255, 255, 0.68);
+            --border: rgba(255, 255, 255, 0.55);
+            --shadow: 0 12px 34px rgba(74, 163, 223, 0.18);
+            --radius: 22px;
+            --transition: all 0.25s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: radial-gradient(900px 400px at 20% 10%, rgba(74,163,223,0.28), transparent 60%),
+                        radial-gradient(900px 500px at 80% 0%, rgba(44,82,130,0.22), transparent 55%),
+                        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 0;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: var(--kids-dark);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 10px 20px rgba(74, 163, 223, 0.25);
+        }
+
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .link {
+            color: var(--kids-dark);
+            text-decoration: none;
+            font-weight: 700;
+            opacity: 0.85;
+            transition: var(--transition);
+        }
+
+        .link:hover { opacity: 1; }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .language-switcher {
+            display: flex;
+            background: rgba(74, 163, 223, 0.12);
+            border-radius: 999px;
+            padding: 3px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .lang-indicator {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(50% - 3px);
+            height: calc(100% - 6px);
+            background: var(--kids);
+            border-radius: 999px;
+            transition: transform 0.25s ease;
+            z-index: 1;
+        }
+
+        .lang-indicator.kazakh { transform: translateX(calc(100% - 6px)); }
+
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 800;
+            color: var(--kids-dark);
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active { color: #fff; }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-weight: 800;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn-outline {
+            background: rgba(255,255,255,0.6);
+            color: var(--kids-dark);
+            border: 2px solid rgba(74, 163, 223, 0.35);
+        }
+
+        .btn-outline:hover { transform: translateY(-1px); border-color: rgba(74, 163, 223, 0.7); }
+
+        .btn-primary {
+            background: var(--kids);
+            color: white;
+            box-shadow: 0 10px 22px rgba(74, 163, 223, 0.28);
+        }
+
+        .btn-primary:hover { transform: translateY(-1px); background: #3c96d4; }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            font-weight: 900;
+            display: none;
+        }
+
+        .feedback.success {
+            display: block;
+            background: rgba(46, 204, 113, 0.14);
+            color: #1f6a3a;
+            border: 1px solid rgba(46, 204, 113, 0.35);
+        }
+
+        .feedback.error {
+            display: block;
+            background: rgba(231, 76, 60, 0.12);
+            color: #7a1f15;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .lesson-note {
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.62);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 10px 22px rgba(74, 163, 223, 0.14);
+        }
+
+        .lesson-note h3 {
+            font-size: 15px;
+            color: var(--kids-dark);
+            margin-bottom: 8px;
+        }
+
+        .lesson-note p { color: var(--muted); font-weight: 700; }
+
+        .dashboard {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .dash-title {
+            font-size: 16px;
+            color: var(--kids-dark);
+            margin-bottom: 10px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .qa {
+            padding: 12px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.62);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 10px 22px rgba(74, 163, 223, 0.14);
+            text-align: left;
+        }
+
+        .qa .top {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .qa .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: rgba(74, 163, 223, 0.14);
+            box-shadow: 0 10px 20px rgba(74, 163, 223, 0.18);
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+
+        .qa .desc {
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            display: grid;
+            gap: 10px;
+        }
+
+        .bar {
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(74, 163, 223, 0.14);
+            border: 1px solid rgba(74, 163, 223, 0.18);
+            overflow: hidden;
+        }
+
+        .bar > div {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #4AA3DF 0%, #2C5282 100%);
+            transition: width 0.35s ease;
+        }
+
+        .progress-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--muted);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        @media (max-width: 980px) {
+            .dashboard { grid-template-columns: 1fr; }
+            .quick-actions { grid-template-columns: 1fr; }
+        }
+
+        .q {
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.65);
+            border-radius: 16px;
+            padding: 12px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .q label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            color: rgba(11, 37, 64, 0.9);
+        }
+
+        .q .q-feedback {
+            font-weight: 900;
+            padding: 8px 10px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .q .q-feedback.success {
+            display: block;
+            background: rgba(46, 204, 113, 0.14);
+            color: #1f6a3a;
+            border: 1px solid rgba(46, 204, 113, 0.35);
+        }
+
+        .q .q-feedback.error {
+            display: block;
+            background: rgba(231, 76, 60, 0.12);
+            color: #7a1f15;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .bot-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .topic-btn {
+            border: 1px solid rgba(74, 163, 223, 0.3);
+            background: rgba(255,255,255,0.6);
+            color: var(--kids-dark);
+            padding: 8px 10px;
+            border-radius: 999px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .topic-btn:hover { transform: translateY(-1px); border-color: rgba(74, 163, 223, 0.6); }
+
+        main { padding: 28px 0 70px; }
+
+        .app {
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .sidebar {
+            padding: 16px;
+        }
+
+        .sidebar h2 {
+            font-size: 16px;
+            color: var(--kids-dark);
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            display: grid;
+            gap: 10px;
+        }
+
+        .menu-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.55);
+            background: rgba(255,255,255,0.55);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 900;
+            color: var(--kids-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(74, 163, 223, 0.7);
+        }
+
+        .menu-btn.active {
+            background: rgba(74, 163, 223, 0.12);
+            border-color: rgba(74, 163, 223, 0.7);
+        }
+
+        .menu-badge {
+            font-size: 12px;
+            font-weight: 900;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(74, 163, 223, 0.14);
+            color: var(--kids-dark);
+        }
+
+        .content {
+            display: grid;
+            gap: 18px;
+        }
+
+        .panel {
+            padding: 18px;
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .panel h2 {
+            font-size: 18px;
+            color: var(--kids-dark);
+            margin-bottom: 12px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .mini-card {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 14px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .mini-card h3 {
+            font-size: 16px;
+            color: var(--kids-dark);
+        }
+
+        .mini-card p {
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .mini-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mini-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hint {
+            color: var(--muted);
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .notice {
+            padding: 12px;
+            border-radius: 18px;
+            background: rgba(74, 163, 223, 0.12);
+            border: 1px solid rgba(74, 163, 223, 0.25);
+            color: var(--kids-dark);
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .quiz {
+            margin-top: 10px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .q {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 12px;
+        }
+
+        .q strong {
+            color: var(--kids-dark);
+        }
+
+        .q label {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .chat {
+            display: grid;
+            gap: 12px;
+        }
+
+        .chat-box {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 12px;
+            min-height: 240px;
+            max-height: 360px;
+            overflow: auto;
+            display: grid;
+            gap: 10px;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 10px 12px;
+            border-radius: 16px;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+
+        .msg.user {
+            justify-self: end;
+            background: rgba(74, 163, 223, 0.16);
+            border: 1px solid rgba(74, 163, 223, 0.3);
+            color: var(--kids-dark);
+        }
+
+        .msg.bot {
+            justify-self: start;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.65);
+            color: var(--kids-dark);
+        }
+
+        .chat-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.72);
+            font-weight: 800;
+            color: var(--kids-dark);
+            outline: none;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            backdrop-filter: blur(14px);
+        }
+
+        .profile {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 84px 1fr;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            border: 2px solid rgba(74, 163, 223, 0.55);
+            pointer-events: none;
+        }
+
+        .avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(74,163,223,0.25), rgba(44,82,130,0.18));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+        }
+
+        .meta h1 {
+            font-size: 24px;
+            line-height: 1.15;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+
+        .meta p {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .meta .row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            font-weight: 800;
+            color: var(--kids-dark);
+        }
+
+        .stats {
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .stats h2 { font-size: 18px; color: var(--kids-dark); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat .num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: var(--kids-dark);
+            font-size: 22px;
+            line-height: 1.1;
+        }
+
+        .stat .label {
+            color: var(--muted);
+            font-weight: 800;
+            margin-top: 6px;
+            font-size: 12px;
+        }
+
+        .sections {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .section {
+            padding: 18px;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            color: var(--kids-dark);
+            margin-bottom: 12px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 10px 12px;
+            font-weight: 900;
+            color: var(--kids-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 140px;
+        }
+
+        .badge span { font-size: 18px; }
+
+        .list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .item {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 12px;
+        }
+
+        .item .top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .item .top strong { color: var(--kids-dark); }
+        .item .top small { color: var(--muted); font-weight: 800; }
+        .item p { margin-top: 8px; color: var(--muted); font-weight: 700; }
+
+        @media (max-width: 980px) {
+            .hero { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: repeat(3, 1fr); }
+            .sections { grid-template-columns: 1fr; }
+            .app { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 560px) {
+            .container { padding: 0 14px; }
+            .profile { grid-template-columns: 70px 1fr; }
+            .avatar { width: 70px; height: 70px; border-radius: 18px; font-size: 36px; }
+            .meta h1 { font-size: 20px; }
+            .grid { grid-template-columns: 1fr 1fr; }
+            .btn { width: 100%; }
+            .actions { width: 100%; }
+            .nav-links { display: none; }
+            .cards { grid-template-columns: 1fr; }
+            .chat-form { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="left">
+                    <a class="logo" href="index.html">
+                        <span class="logo-icon"><img src="iconca.jpg" alt="EcoBala Logo" /></span>
+                        EcoBala Kids
+                    </a>
+                    <div class="nav-links">
+                        <a class="link" href="index.html" data-lang-text="nav_home">Главная</a>
+                        <a class="link" href="register.html" data-lang-text="nav_switch">Сменить платформу</a>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <div class="language-switcher">
+                        <div class="lang-indicator"></div>
+                        <button class="lang-btn active" data-lang="ru">РУС</button>
+                        <button class="lang-btn" data-lang="kz">ҚАЗ</button>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn" data-lang-text="logout">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <div class="card profile">
+                    <div class="role-ring"></div>
+                    <div class="avatar" aria-hidden="true">👶</div>
+                    <div class="meta">
+                        <h1 id="fullName">—</h1>
+                        <p id="schoolClass">—</p>
+                        <div class="row">
+                            <div class="pill"><span aria-hidden="true">⭐</span><span data-lang-text="points">Баллы</span>: <span id="points">0</span></div>
+                            <div class="pill"><span aria-hidden="true">📈</span><span data-lang-text="level">Уровень</span>: <span id="level">1</span></div>
+                            <div class="pill"><span aria-hidden="true">🎮</span><span data-lang-text="games">Игры</span>: <span id="gamesTotal">0</span></div>
+                            <div class="pill"><span aria-hidden="true">📚</span><span data-lang-text="lessons">Уроки</span>: <span id="lessonsTotal">0</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card stats">
+                    <h2 data-lang-text="stats_title">Статистика</h2>
+                    <div class="grid">
+                        <div class="stat">
+                            <div class="num" id="rank">—</div>
+                            <div class="label" data-lang-text="rank">Место в рейтинге</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num" id="badgesCount">0</div>
+                            <div class="label" data-lang-text="badges">Значки</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num" id="age">—</div>
+                            <div class="label" data-lang-text="age">Возраст</div>
+                        </div>
+                    </div>
+                    <div class="hint" data-lang-text="kids_rules">Kids: только игры, уроки и онлайн-квесты. Реальные городские задания недоступны.</div>
+                </div>
+            </div>
+
+            <div class="dashboard">
+                <div class="card">
+                    <h2 class="dash-title" data-lang-text="dash_quick">Быстрые действия</h2>
+                    <div class="quick-actions">
+                        <div class="qa">
+                            <div class="top">
+                                <div class="icon" aria-hidden="true">🎮</div>
+                                <div style="font-weight:900;" data-lang-text="dash_games">Игры</div>
+                            </div>
+                            <div class="desc" data-lang-text="dash_games_desc">Сыграйте 3 минуты и получите виртуальные баллы.</div>
+                            <button class="btn btn-primary" type="button" id="qaKidsGamesBtn" data-lang-text="dash_open">Открыть</button>
+                        </div>
+                        <div class="qa">
+                            <div class="top">
+                                <div class="icon" aria-hidden="true">📚</div>
+                                <div style="font-weight:900;" data-lang-text="dash_lessons">Уроки</div>
+                            </div>
+                            <div class="desc" data-lang-text="dash_lessons_desc">Прочитайте конспект и пройдите мини‑тест.</div>
+                            <button class="btn btn-primary" type="button" id="qaKidsLessonsBtn" data-lang-text="dash_open">Открыть</button>
+                        </div>
+                        <div class="qa">
+                            <div class="top">
+                                <div class="icon" aria-hidden="true">🧩</div>
+                                <div style="font-weight:900;" data-lang-text="dash_quests">Онлайн‑квесты</div>
+                            </div>
+                            <div class="desc" data-lang-text="dash_quests_desc">Мини‑квесты про экологию: шаги и выбор.</div>
+                            <button class="btn btn-primary" type="button" id="qaKidsQuestsBtn" data-lang-text="dash_open">Открыть</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="dash-title" data-lang-text="dash_progress">Прогресс</h2>
+                    <div class="progress">
+                        <div class="progress-row">
+                            <span data-lang-text="dash_level">Уровень</span>
+                            <span id="levelProgressText">0/0</span>
+                        </div>
+                        <div class="bar"><div id="levelProgressBar"></div></div>
+                        <div class="hint" data-lang-text="dash_tip">Совет: проходите уроки — так быстрее растёт уровень.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app">
+                <aside class="card sidebar">
+                    <h2 data-lang-text="menu_title">Разделы</h2>
+                    <div class="menu">
+                        <button class="menu-btn active" data-panel="games"><span data-lang-text="menu_games">🎮 Игры</span><span class="menu-badge" id="gamesDailyBadge">0/5</span></button>
+                        <button class="menu-btn" data-panel="lessons"><span data-lang-text="menu_lessons">📚 Уроки</span><span class="menu-badge" id="lessonsBadge">0</span></button>
+                        <button class="menu-btn" data-panel="quests"><span data-lang-text="menu_quests">🧩 Онлайн‑квесты</span><span class="menu-badge" id="questsBadge">0</span></button>
+                        <button class="menu-btn" data-panel="rating"><span data-lang-text="menu_rating">🏆 Рейтинг</span><span class="menu-badge">Top 10</span></button>
+                        <button class="menu-btn" data-panel="badges"><span data-lang-text="menu_badges">🏅 Значки</span><span class="menu-badge" id="badgesBadge">0</span></button>
+                        <button class="menu-btn" data-panel="bot"><span data-lang-text="menu_bot">🤖 AI‑бот</span><span class="menu-badge" data-lang-text="menu_bot_badge">Помощь</span></button>
+                    </div>
+                </aside>
+
+                <section class="content">
+                    <div class="card panel active" id="panel-games">
+                        <h2 data-lang-text="games_title">Игры</h2>
+                        <div class="notice" id="gamesNotice"></div>
+                        <div class="cards" id="gamesList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-lessons">
+                        <h2 data-lang-text="lessons_title">Уроки</h2>
+                        <div class="notice" id="lessonsNotice"></div>
+                        <div class="cards" id="lessonsList"></div>
+                        <div class="quiz" id="lessonQuiz" style="display:none;"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-quests">
+                        <h2 data-lang-text="quests_title">Онлайн‑квесты</h2>
+                        <div class="notice" id="questsNotice"></div>
+                        <div class="cards" id="questsList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-rating">
+                        <h2 data-lang-text="rating_title">Рейтинг Kids</h2>
+                        <div class="notice" data-lang-text="rating_hint">Фильтруйте по школе и классу (данные сохраняются на этом устройстве).</div>
+                        <div class="mini-row" style="margin-bottom:12px;">
+                            <div class="mini-actions" style="flex:1;">
+                                <select class="input" id="ratingSchool">
+                                    <option value="" data-lang-text="rating_all_schools">Все школы</option>
+                                </select>
+                                <select class="input" id="ratingClass">
+                                    <option value="" data-lang-text="rating_all_classes">Все классы</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-outline" id="resetRatingBtn" data-lang-text="rating_reset">Сбросить</button>
+                        </div>
+                        <div class="list" id="ratingList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-badges">
+                        <h2 data-lang-text="badges_title">Значки</h2>
+                        <div class="notice" data-lang-text="badges_hint">Значки выдаются автоматически за достижения.</div>
+                        <div class="badges" id="badgesList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-bot">
+                        <h2 data-lang-text="bot_title">AI‑бот Kids</h2>
+                        <div class="notice" data-lang-text="bot_hint">Задавайте вопросы про экологию простыми словами.</div>
+                        <div class="bot-topics" id="botTopics"></div>
+                        <div class="chat">
+                            <div class="chat-box" id="chatBox"></div>
+                            <form class="chat-form" id="chatForm">
+                                <input class="input" id="chatInput" type="text" autocomplete="off" data-lang-placeholder="bot_placeholder" placeholder="Напишите вопрос..." />
+                                <button class="btn btn-primary" type="submit" data-lang-text="bot_send">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const translations = {
+            ru: {
+                nav_home: 'Главная',
+                nav_switch: 'Сменить платформу',
+                logout: 'Выйти',
+                points: 'Баллы',
+                level: 'Уровень',
+                games: 'Игры',
+                lessons: 'Уроки',
+                stats_title: 'Статистика',
+                rank: 'Место в рейтинге',
+                badges: 'Значки',
+                age: 'Возраст',
+                badges_title: 'Значки',
+                kids_rules: 'Kids: только игры, уроки и онлайн-квесты. Реальные городские задания недоступны.',
+                menu_title: 'Разделы',
+                menu_games: '🎮 Игры',
+                menu_lessons: '📚 Уроки',
+                menu_quests: '🧩 Онлайн‑квесты',
+                menu_rating: '🏆 Рейтинг',
+                menu_badges: '🏅 Значки',
+                menu_bot: '🤖 AI‑бот',
+                menu_bot_badge: 'Помощь',
+                games_title: 'Игры',
+                lessons_title: 'Уроки',
+                quests_title: 'Онлайн‑квесты',
+                rating_title: 'Рейтинг Kids',
+                rating_hint: 'Фильтруйте по школе и классу (данные сохраняются на этом устройстве).',
+                rating_all_schools: 'Все школы',
+                rating_all_classes: 'Все классы',
+                rating_reset: 'Сбросить',
+                badges_hint: 'Значки выдаются автоматически за достижения.',
+                bot_title: 'AI‑бот Kids',
+                bot_hint: 'Задавайте вопросы про экологию простыми словами.',
+                bot_send: 'Отправить',
+                bot_placeholder: 'Напишите вопрос...',
+                school_class: 'Школа: {school} • Класс: {class}',
+                games_notice: 'Сегодня доступно игр: {left} из 5. Каждая игра длится 3 минуты.',
+                lessons_notice: 'Проходите уроки и получайте +10–20 виртуальных баллов.',
+                quests_notice: 'Онлайн‑квесты без реальных городских заданий. Выполнили — получили баллы.',
+                start: 'Начать',
+                complete: 'Завершить',
+                open: 'Открыть',
+                done: 'Выполнено',
+                daily_limit: 'Лимит игр на сегодня исчерпан (5/5). Возвращайтесь завтра!',
+                timer_title: 'Игра идёт...',
+                timer_left: 'Осталось: {time}',
+                timer_finish: 'Завершить и получить баллы',
+                game_reward: 'Игра завершена! +{points} баллов (счёт: {score})',
+                lesson_reward: 'Урок пройден! +{points} баллов',
+                quest_reward: 'Квест выполнен! +{points} баллов',
+                game_score: 'Счёт: {score}',
+                g_trash_sort_title: 'Сортировка мусора',
+                g_save_forest_title: 'Спаси лес',
+                g_find_recycle_title: 'Найди перерабатываемое',
+                g_eco_quiz_title: 'Эко-викторина',
+                g_clean_river_title: 'Чистая река',
+                trash_sort_instruction: 'Перетащите предметы в правильные бакі: синий — перерабатываемое, зелёный — органика, серый — общий мусор.',
+                save_forest_instruction: 'Кликайте по угрозам (огонь, дым, насекомые), чтобы спасти лес. Не давайте им навредить деревьям!',
+                find_recycle_instruction: 'Нажимайте только на предметы, которые можно переработать. За ошибку снимаются очки!',
+                bin_recycle: 'Переработка',
+                bin_organic: 'Органика',
+                bin_general: 'Общий',
+                game_placeholder: 'Эта игра пока в разработке. Попробуйте другую!',
+                quiz_title: 'Мини‑тест',
+                quiz_submit: 'Проверить',
+                quiz_pass: 'Отлично! Вы прошли тест.',
+                quiz_fail: 'Почти! Попробуйте ещё раз.',
+                lesson_video_soon: '🎥 Видео будет добавлено позже.',
+                quiz_need_answer: 'Выберите вариант ответа.',
+                quiz_correct: 'Правильно!',
+                quiz_wrong: 'Неправильно.',
+                quiz_result: 'Результат: {score}/{total}. Нужно минимум {min} правильных.',
+                badge_first_lesson: '🏅 Первый урок',
+                badge_10_games: '🎮 10 игр',
+                badge_100_points: '💎 100 баллов',
+                badge_best_class: '🏆 Лучший в классе',
+                rating_me: 'Это вы',
+                bot_greet: 'Привет! Я эко‑помощник EcoBala. Спроси меня про экологию!',
+                bot_unknown: 'Я объясню проще: попробуй спросить про переработку, воду, лес или мусор.',
+                bot_topic_khromtau: '🌿 Природа Хромтау',
+                bot_topic_better: '✨ Как улучшить природу',
+                bot_topic_kids_teen: '🧒 Kids и Teen',
+                bot_topic_recycle: '♻️ Переработка'
+                ,dash_quick: 'Быстрые действия'
+                ,dash_games: 'Игры'
+                ,dash_games_desc: 'Сыграйте 3 минуты и получите виртуальные баллы.'
+                ,dash_lessons: 'Уроки'
+                ,dash_lessons_desc: 'Прочитайте конспект и пройдите мини‑тест.'
+                ,dash_quests: 'Онлайн‑квесты'
+                ,dash_quests_desc: 'Мини‑квесты про экологию: шаги и выбор.'
+                ,dash_open: 'Открыть'
+                ,dash_progress: 'Прогресс'
+                ,dash_level: 'Уровень'
+                ,dash_tip: 'Совет: проходите уроки — так быстрее растёт уровень.'
+            },
+            kz: {
+                nav_home: 'Басты бет',
+                nav_switch: 'Платформаны ауыстыру',
+                logout: 'Шығу',
+                points: 'Ұпай',
+                level: 'Деңгей',
+                games: 'Ойын',
+                lessons: 'Сабақ',
+                stats_title: 'Статистика',
+                rank: 'Рейтингтегі орны',
+                badges: 'Белгілер',
+                age: 'Жасы',
+                badges_title: 'Белгілер',
+                kids_rules: 'Kids: тек ойындар, сабақтар және онлайн‑квесттер. Нақты қалалық тапсырмалар қолжетімсіз.',
+                menu_title: 'Бөлімдер',
+                menu_games: '🎮 Ойындар',
+                menu_lessons: '📚 Сабақтар',
+                menu_quests: '🧩 Онлайн‑квесттер',
+                menu_rating: '🏆 Рейтинг',
+                menu_badges: '🏅 Белгілер',
+                menu_bot: '🤖 AI‑бот',
+                menu_bot_badge: 'Көмек',
+                games_title: 'Ойындар',
+                lessons_title: 'Сабақтар',
+                quests_title: 'Онлайн‑квесттер',
+                rating_title: 'Kids рейтингі',
+                rating_hint: 'Мектеп және сынып бойынша сүзгілей аласыз (деректер осы құрылғыда сақталады).',
+                rating_all_schools: 'Барлық мектеп',
+                rating_all_classes: 'Барлық сынып',
+                rating_reset: 'Тазарту',
+                badges_hint: 'Белгілер жетістіктер үшін автоматты түрде беріледі.',
+                bot_title: 'Kids AI‑бот',
+                bot_hint: 'Экология туралы қарапайым сөздермен сұраңыз.',
+                bot_send: 'Жіберу',
+                bot_placeholder: 'Сұрағыңызды жазыңыз...',
+                school_class: 'Мектеп: {school} • Сынып: {class}',
+                games_notice: 'Бүгін қолжетімді ойын: {left} / 5. Әр ойын 3 минутқа созылады.',
+                lessons_notice: 'Сабақ оқып, +10–20 виртуалды ұпай алыңыз.',
+                quests_notice: 'Онлайн‑квесттер нақты қалалық тапсырмаларсыз. Орындасаңыз — ұпай аласыз.',
+                start: 'Бастау',
+                complete: 'Аяқтау',
+                open: 'Ашу',
+                done: 'Орындалды',
+                daily_limit: 'Бүгінгі ойын лимиті бітті (5/5). Ертең қайта келіңіз!',
+                timer_title: 'Ойын жүріп жатыр...',
+                timer_left: 'Қалды: {time}',
+                timer_finish: 'Аяқтап, ұпай алу',
+                game_reward: 'Ойын аяқталды! +{points} ұпай (счёт: {score})',
+                lesson_reward: 'Сабақ аяқталды! +{points} ұпай',
+                quest_reward: 'Квест орындалды! +{points} ұпай',
+                game_score: 'Есеп: {score}',
+                g_trash_sort_title: 'Қоқыс сұрыптау',
+                g_save_forest_title: 'Орманды құтқар',
+                g_find_recycle_title: 'Қайта өңделетінді таб',
+                g_eco_quiz_title: 'Эко-викторина',
+                g_clean_river_title: 'Таза өзен',
+                trash_sort_instruction: 'Заттарды дұрыс контейлерге сүйреңіз: көк — қайта өңделетін, жасыл — органикалық, сұр — жалпы қоқыс.',
+                save_forest_instruction: 'Қатерлерді (от, түтін, жәндіктер) басып, орманды құтқарыңыз. Ағаштарға зиян келтірмеңіз!',
+                find_recycle_instruction: 'Тек қайта өңделетін заттарды басыңыз. Қате үшін ұпай алынады!',
+                bin_recycle: 'Қайта өңдеу',
+                bin_organic: 'Органикалық',
+                bin_general: 'Жалпы',
+                game_placeholder: 'Бұл ойын әзірленуде. Басқасын көріңіз!',
+                quiz_title: 'Мини‑тест',
+                quiz_submit: 'Тексеру',
+                quiz_pass: 'Өте жақсы! Тесттен өттіңіз.',
+                quiz_fail: 'Аз қалды! Қайта көріңіз.',
+                lesson_video_soon: '🎥 Бейне кейінірек қосылады.',
+                quiz_need_answer: 'Жауап нұсқасын таңдаңыз.',
+                quiz_correct: 'Дұрыс!',
+                quiz_wrong: 'Дұрыс емес.',
+                quiz_result: 'Нәтиже: {score}/{total}. Кемінде {min} дұрыс жауап керек.',
+                badge_first_lesson: '🏅 Алғашқы сабақ',
+                badge_10_games: '🎮 10 ойын',
+                badge_100_points: '💎 100 ұпай',
+                badge_best_class: '🏆 Сыныптағы үздік',
+                rating_me: 'Бұл сіз',
+                bot_greet: 'Сәлем! Мен EcoBala эко‑көмекшісімін. Экология туралы сұраңыз!',
+                bot_unknown: 'Қарапайым айтайын: қайта өңдеу, су, орман немесе қоқыс туралы сұрап көріңіз.',
+                bot_topic_khromtau: '🌿 Хромтау табиғаты',
+                bot_topic_better: '✨ Табиғатты жақсарту',
+                bot_topic_kids_teen: '🧒 Kids және Teen',
+                bot_topic_recycle: '♻️ Қайта өңдеу'
+                ,dash_quick: 'Жылдам әрекеттер'
+                ,dash_games: 'Ойындар'
+                ,dash_games_desc: '3 минут ойнап, виртуалды ұпай алыңыз.'
+                ,dash_lessons: 'Сабақтар'
+                ,dash_lessons_desc: 'Конспект оқып, мини‑тесттен өтіңіз.'
+                ,dash_quests: 'Онлайн‑квесттер'
+                ,dash_quests_desc: 'Экология туралы мини‑квесттер: қадамдар және таңдау.'
+                ,dash_open: 'Ашу'
+                ,dash_progress: 'Прогресс'
+                ,dash_level: 'Деңгей'
+                ,dash_tip: 'Кеңес: сабақ оқысаңыз — деңгей тез өседі.'
+            }
+        };
+
+        const schoolNameById = {
+            '2': { ru: '№2 Хромтауская гимназия', kz: '№2 Хромтау гимназиясы' },
+            '5': { ru: '№5 Хромтауская гимназия', kz: '№5 Хромтау гимназиясы' },
+            '6': { ru: '№6 Хромтауская гимназия', kz: '№6 Хромтау гимназиясы' },
+            '1': { ru: '№1 Средняя школа', kz: '№1 Орта мектеп' },
+            '3': { ru: '№3 Средняя школа', kz: '№3 Орта мектеп' },
+            '4': { ru: '№4 Средняя школа', kz: '№4 Орта мектеп' },
+            '7': { ru: '№7 Средняя школа', kz: '№7 Орта мектеп' }
+        };
+
+        function applyLangToUI(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            document.querySelectorAll('.lang-indicator').forEach(ind => {
+                ind.classList.toggle('kazakh', lang === 'kz');
+            });
+        }
+
+        function t(lang, key, vars) {
+            let s = (translations[lang] && translations[lang][key]) || '';
+            if (vars) {
+                Object.keys(vars).forEach(k => {
+                    s = s.replaceAll(`{${k}}`, String(vars[k]));
+                });
+            }
+            return s;
+        }
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang-text]').forEach(el => {
+                const key = el.getAttribute('data-lang-text');
+                const val = translations[lang] && translations[lang][key];
+                if (val) el.textContent = val;
+            });
+
+            document.querySelectorAll('[data-lang-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-lang-placeholder');
+                const val = translations[lang] && translations[lang][key];
+                if (val) el.setAttribute('placeholder', val);
+            });
+
+            const user = getUser();
+            if (!user) return;
+
+            const schoolObj = schoolNameById[String(user.school)] || null;
+            const schoolName = schoolObj ? schoolObj[lang] : (user.school || '—');
+            document.getElementById('schoolClass').textContent = t(lang, 'school_class', { school: schoolName, class: user.class || '—' });
+
+            renderGames(lang);
+            renderLessons(lang);
+            renderQuests(lang);
+            renderBadges(user, lang);
+            renderRating(lang);
+            ensureBotGreeting(lang);
+            renderBotTopics(lang);
+        }
+
+        function setLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            applyLangToUI(lang);
+            updateLanguage(lang);
+        }
+
+        function getUser() {
+            try {
+                const raw = localStorage.getItem('ecobalaUser');
+                if (!raw) return null;
+                return JSON.parse(raw);
+            } catch {
+                return null;
+            }
+        }
+
+        function normalizeKidsUser(user) {
+            const u = { ...user };
+            if (u.role !== 'kids') return u;
+            u.points = Number(u.points ?? 0);
+            u.level = Number(u.level ?? 1);
+            u.tasks_completed = Number(u.tasks_completed ?? 0);
+            u.kids_games_total = Number(u.kids_games_total ?? 0);
+            u.kids_lessons_done = Array.isArray(u.kids_lessons_done) ? u.kids_lessons_done : [];
+            u.kids_quests_done = Array.isArray(u.kids_quests_done) ? u.kids_quests_done : [];
+            u.kids_points_history = Array.isArray(u.kids_points_history) ? u.kids_points_history : [];
+            return u;
+        }
+
+        function saveUser(user) {
+            localStorage.setItem('ecobalaUser', JSON.stringify(user));
+        }
+
+        function todayKey() {
+            const d = new Date();
+            const yyyy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function getDailyGameState() {
+            const key = `ecobalaKidsGamesDaily:${todayKey()}`;
+            try {
+                const raw = localStorage.getItem(key);
+                if (!raw) return { key, count: 0 };
+                const obj = JSON.parse(raw);
+                return { key, count: Number(obj.count ?? 0) };
+            } catch {
+                return { key, count: 0 };
+            }
+        }
+
+        function setDailyGameCount(key, count) {
+            localStorage.setItem(key, JSON.stringify({ count }));
+        }
+
+        function addPoints(user, points, reason) {
+            const p = Number(points);
+            user.points = Number(user.points ?? 0) + p;
+            user.level = Math.max(1, Math.floor(user.points / 100) + 1);
+            user.kids_points_history = user.kids_points_history || [];
+            user.kids_points_history.unshift({ date: todayKey(), points: p, reason });
+            saveUser(user);
+            updateHeaderStats(user);
+            updateLeaderboard(user);
+        }
+
+        function updateHeaderStats(user) {
+            document.getElementById('points').textContent = String(user.points ?? 0);
+            document.getElementById('level').textContent = String(user.level ?? 1);
+            document.getElementById('gamesTotal').textContent = String(user.kids_games_total ?? 0);
+            document.getElementById('lessonsTotal').textContent = String((user.kids_lessons_done || []).length);
+
+            const lvl = Number(user.level ?? 1);
+            const pts = Number(user.points ?? 0);
+            const base = (lvl - 1) * 100;
+            const next = lvl * 100;
+            const cur = Math.max(0, pts - base);
+            const need = Math.max(1, next - base);
+            const pct = Math.max(0, Math.min(100, Math.round((cur / need) * 100)));
+            const bar = document.getElementById('levelProgressBar');
+            const text = document.getElementById('levelProgressText');
+            if (bar) bar.style.width = `${pct}%`;
+            if (text) text.textContent = `${cur}/${need}`;
+
+            document.getElementById('badgesCount').textContent = String(getEarnedBadges(user).length);
+            document.getElementById('badgesBadge').textContent = String(getEarnedBadges(user).length);
+            document.getElementById('age').textContent = String(user.age ?? '—');
+        }
+
+        const kidsGames = [
+            { id: 'trash_sort', icon: '🗑️', titleKey: 'g1_t', descKey: 'g1_d' },
+            { id: 'save_forest', icon: '🌲', titleKey: 'g2_t', descKey: 'g2_d' },
+            { id: 'eco_quiz', icon: '❓', titleKey: 'g3_t', descKey: 'g3_d' },
+            { id: 'find_recycle', icon: '♻️', titleKey: 'g4_t', descKey: 'g4_d' },
+            { id: 'clean_river', icon: '🌊', titleKey: 'g5_t', descKey: 'g5_d' }
+        ];
+
+        const kidsLessons = [
+            { id: 'eco_intro', icon: '🌍', titleKey: 'l1_t', descKey: 'l1_d' },
+            { id: 'sorting', icon: '♻️', titleKey: 'l2_t', descKey: 'l2_d' },
+            { id: 'water', icon: '💧', titleKey: 'l3_t', descKey: 'l3_d' },
+            { id: 'forest', icon: '🌳', titleKey: 'l4_t', descKey: 'l4_d' },
+            { id: 'recycling', icon: '🏭', titleKey: 'l5_t', descKey: 'l5_d' },
+            { id: 'red_book_kz', icon: '📕', titleKey: 'l6_t', descKey: 'l6_d' },
+            { id: 'animals_kz', icon: '🦌', titleKey: 'l7_t', descKey: 'l7_d' },
+            { id: 'city_litter_birds', icon: '🐦', titleKey: 'l8_t', descKey: 'l8_d' }
+        ];
+
+        const kidsQuests = [
+            { id: 'save_animal', icon: '🦊', titleKey: 'q1_t', descKey: 'q1_d' },
+            { id: 'plant_tree', icon: '🌱', titleKey: 'q2_t', descKey: 'q2_d' },
+            { id: 'eco_rescue', icon: '🧩', titleKey: 'q3_t', descKey: 'q3_d' }
+        ];
+
+        function extendTranslations() {
+            Object.assign(translations.ru, {
+                g1_t: 'Сортировка мусора', g1_d: 'Разложи отходы по правильным контейнерам (3 минуты).',
+                g2_t: 'Спаси лес', g2_d: 'Помоги лесу: выбирай правильные действия (3 минуты).',
+                g3_t: 'Эко‑викторина', g3_d: 'Быстрые вопросы про природу и экологию (3 минуты).',
+                g4_t: 'Найди переработку', g4_d: 'Найди, что можно переработать, а что нет (3 минуты).',
+                g5_t: 'Очисти реку', g5_d: 'Убери мусор из воды и спаси животных (3 минуты).',
+                l1_t: 'Что такое экология', l1_d: 'Узнай основы экологии и почему это важно.',
+                l2_t: 'Сортировка мусора', l2_d: 'Как сортировать отходы и зачем это нужно.',
+                l3_t: 'Вода и природа', l3_d: 'Как беречь воду и защищать природу.',
+                l4_t: 'Лес и деревья', l4_d: 'Почему лес важен и как его сохранить.',
+                l5_t: 'Переработка', l5_d: 'Что происходит с мусором после переработки.',
+                l6_t: 'Красная книга Казахстана', l6_d: 'Почему редких животных нужно беречь и как это делать.',
+                l7_t: 'Животные Казахстана', l7_d: 'Познакомься с животными нашей страны и их средой обитания.',
+                l8_t: 'Мусор в городе и птицы', l8_d: 'Как мусор на улицах влияет на птиц, дворы и дома.',
+                q1_t: 'Спаси животное', q1_d: 'Онлайн‑квест: помоги животному выбрать правильные действия (5 шагов).',
+                q2_t: 'Посади дерево', q2_d: 'Онлайн‑квест: выбери правильные шаги посадки и ухода (5 шагов).',
+                q3_t: 'Эко‑спасение', q3_d: 'Мини‑квест: реши ситуацию и сохрани природу (5 шагов).',
+                quest_step: 'Шаг {n} из {total}',
+                quest_choose: 'Выбери вариант:',
+                quest_next: 'Дальше',
+                quest_finish: 'Завершить квест',
+                quest_already_done: 'Квест уже выполнен. Молодец!',
+                quest_need_choice: 'Выберите вариант ответа.',
+                quest_result_pass: 'Отлично! Квест пройден.',
+                quest_result_fail: 'Почти! Попробуй ещё раз.'
+            });
+
+            Object.assign(translations.kz, {
+                g1_t: 'Қоқысты сұрыптау', g1_d: 'Қалдықтарды дұрыс жәшіктерге бөліп сал (3 минут).',
+                g2_t: 'Орманды құтқар', g2_d: 'Орманға көмектес: дұрыс әрекетті таңда (3 минут).',
+                g3_t: 'Эко‑викторина', g3_d: 'Табиғат пен экология туралы жылдам сұрақтар (3 минут).',
+                g4_t: 'Қайта өңдеуді тап', g4_d: 'Нені қайта өңдеуге болады, нені болмайды анықта (3 минут).',
+                g5_t: 'Өзенді тазала', g5_d: 'Судан қоқысты алып, жануарларды құтқар (3 минут).',
+                l1_t: 'Экология деген не', l1_d: 'Экологияның негізін және маңызын біл.',
+                l2_t: 'Қоқысты сұрыптау', l2_d: 'Қалдықтарды қалай сұрыптауға болады және не үшін.',
+                l3_t: 'Су және табиғат', l3_d: 'Суды үнемдеу және табиғатты қорғау.',
+                l4_t: 'Орман және ағаштар', l4_d: 'Орман неге маңызды және қалай сақтаймыз.',
+                l5_t: 'Қайта өңдеу', l5_d: 'Қоқыс қайта өңделген соң не болады.',
+                l6_t: 'Қазақстанның Қызыл кітабы', l6_d: 'Сирек жануарларды неге қорғау керек және қалай қорғаймыз.',
+                l7_t: 'Қазақстан жануарлары', l7_d: 'Еліміздегі жануарлармен және мекенімен таныс.',
+                l8_t: 'Қаладағы қоқыс және құстар', l8_d: 'Көшедегі қоқыс құстарға, аула мен үйлерге қалай әсер етеді.',
+                q1_t: 'Жануарды құтқар', q1_d: 'Онлайн‑квест: жануарға дұрыс әрекетті таңдауға көмектес (5 қадам).',
+                q2_t: 'Ағаш отырғыз', q2_d: 'Онлайн‑квест: отырғызу және күтім қадамдарын дұрыс таңда (5 қадам).',
+                q3_t: 'Эко‑құтқару', q3_d: 'Мини‑квест: жағдайды шешіп, табиғатты сақта (5 қадам).',
+                quest_step: '{n} / {total} қадам',
+                quest_choose: 'Нұсқаны таңда:',
+                quest_next: 'Келесі',
+                quest_finish: 'Квестті аяқтау',
+                quest_already_done: 'Квест орындалған. Жарайсың!',
+                quest_need_choice: 'Жауап нұсқасын таңдаңыз.',
+                quest_result_pass: 'Өте жақсы! Квесттен өттіңіз.',
+                quest_result_fail: 'Аз қалды! Қайта көріңіз.'
+            });
+        }
+
+        function renderGames(lang) {
+            const user = normalizeKidsUser(getUser());
+            saveUser(user);
+
+            const daily = getDailyGameState();
+            const left = Math.max(0, 5 - daily.count);
+            document.getElementById('gamesNotice').textContent = t(lang, 'games_notice', { left });
+            document.getElementById('gamesDailyBadge').textContent = `${daily.count}/5`;
+
+            const list = document.getElementById('gamesList');
+            list.innerHTML = '';
+
+            kidsGames.forEach(g => {
+                const card = document.createElement('div');
+                card.className = 'mini-card';
+
+                const h3 = document.createElement('h3');
+                h3.textContent = `${g.icon} ${t(lang, g.titleKey)}`;
+
+                const p = document.createElement('p');
+                p.textContent = t(lang, g.descKey);
+
+                const row = document.createElement('div');
+                row.className = 'mini-row';
+
+                const hint = document.createElement('div');
+                hint.className = 'hint';
+                hint.textContent = `${daily.count}/5`;
+
+                const actions = document.createElement('div');
+                actions.className = 'mini-actions';
+
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-primary';
+                btn.textContent = t(lang, 'start');
+                const feedback = document.createElement('div');
+                feedback.className = 'feedback';
+                btn.addEventListener('click', () => startGame(lang, g.id, feedback));
+
+                actions.appendChild(btn);
+                row.appendChild(hint);
+                row.appendChild(actions);
+
+                card.appendChild(h3);
+                card.appendChild(p);
+                card.appendChild(row);
+                card.appendChild(feedback);
+                list.appendChild(card);
+            });
+        }
+
+        let gameTimer = null;
+        function startGame(lang, gameId, feedbackEl) {
+            const daily = getDailyGameState();
+            if (daily.count >= 5) {
+                showFeedback(feedbackEl, 'error', t(lang, 'daily_limit'));
+                return;
+            }
+
+            const user = normalizeKidsUser(getUser());
+
+            let seconds = 300; // 5 минут
+            let score = 0;
+            let gameActive = true;
+
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.inset = '0';
+            overlay.style.background = 'rgba(0,0,0,0.45)';
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.padding = '16px';
+            overlay.style.zIndex = '9999';
+
+            const modal = document.createElement('div');
+            modal.className = 'card';
+            modal.style.maxWidth = 'min(900px, 95vw)';
+            modal.style.width = '100%';
+            modal.style.maxHeight = '90vh';
+            modal.style.overflowY = 'auto';
+            modal.style.padding = '20px';
+            modal.style.borderRadius = '22px';
+            modal.style.background = 'rgba(255,255,255,0.96)';
+            modal.style.backdropFilter = 'blur(14px)';
+            modal.style.boxShadow = '0 20px 60px rgba(0,0,0,0.3)';
+
+            // Header с таймером, счётом и переключателем языка
+            const header = document.createElement('div');
+            header.style.display = 'flex';
+            header.style.justifyContent = 'space-between';
+            header.style.alignItems = 'center';
+            header.style.marginBottom = '16px';
+            header.style.flexWrap = 'wrap';
+            header.style.gap = '10px';
+
+            const h2 = document.createElement('h2');
+            h2.textContent = t(lang, 'g_' + gameId + '_title');
+            h2.style.color = 'var(--kids-dark)';
+            h2.style.margin = '0';
+            h2.style.fontSize = 'clamp(1.2rem, 4vw, 1.6rem)';
+
+            const info = document.createElement('div');
+            info.style.display = 'flex';
+            info.style.alignItems = 'center';
+            info.style.gap = '12px';
+            info.style.flexWrap = 'wrap';
+
+            const timeEl = document.createElement('div');
+            timeEl.className = 'notice';
+            timeEl.style.margin = '0';
+            timeEl.style.fontWeight = '600';
+
+            const scoreEl = document.createElement('div');
+            scoreEl.className = 'notice';
+            scoreEl.style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+            scoreEl.style.color = '#fff';
+            scoreEl.style.margin = '0';
+            scoreEl.style.fontWeight = '600';
+
+            // Переключатель языка
+            const langSwitch = document.createElement('div');
+            langSwitch.style.display = 'flex';
+            langSwitch.style.background = '#e5e7eb';
+            langSwitch.style.borderRadius = '20px';
+            langSwitch.style.padding = '2px';
+            langSwitch.style.gap = '2px';
+
+            const btnRU = document.createElement('button');
+            btnRU.textContent = 'RU';
+            btnRU.style.padding = '6px 12px';
+            btnRU.style.border = 'none';
+            btnRU.style.borderRadius = '18px';
+            btnRU.style.background = lang === 'ru' ? '#fff' : 'transparent';
+            btnRU.style.cursor = 'pointer';
+            btnRU.style.fontWeight = '600';
+            btnRU.style.transition = 'all 0.2s';
+
+            const btnKZ = document.createElement('button');
+            btnKZ.textContent = 'KZ';
+            btnKZ.style.padding = '6px 12px';
+            btnKZ.style.border = 'none';
+            btnKZ.style.borderRadius = '18px';
+            btnKZ.style.background = lang === 'kz' ? '#fff' : 'transparent';
+            btnKZ.style.cursor = 'pointer';
+            btnKZ.style.fontWeight = '600';
+            btnKZ.style.transition = 'all 0.2s';
+
+            langSwitch.appendChild(btnRU);
+            langSwitch.appendChild(btnKZ);
+
+            info.appendChild(timeEl);
+            info.appendChild(scoreEl);
+            info.appendChild(langSwitch);
+
+            header.appendChild(h2);
+            header.appendChild(info);
+
+            // Игровая область
+            const gameArea = document.createElement('div');
+            gameArea.style.marginBottom = '16px';
+            gameArea.style.minHeight = '280px';
+
+            // Кнопка завершения
+            const finishBtn = document.createElement('button');
+            finishBtn.className = 'btn btn-primary';
+            finishBtn.style.width = '100%';
+            finishBtn.textContent = t(lang, 'timer_finish');
+
+            function renderTime() {
+                const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+                const s = String(seconds % 60).padStart(2, '0');
+                timeEl.textContent = t(lang, 'timer_left', { time: `${m}:${s}` });
+            }
+
+            function updateScore(delta) {
+                score += delta;
+                scoreEl.textContent = t(lang, 'game_score', { score });
+                // Анимация изменения счёта
+                scoreEl.style.transform = 'scale(1.2)';
+                setTimeout(() => { scoreEl.style.transform = 'scale(1)'; }, 200);
+            }
+
+            function finish() {
+                gameActive = false;
+                if (gameTimer) {
+                    clearInterval(gameTimer);
+                    gameTimer = null;
+                }
+                overlay.remove();
+
+                const reward = 10 + Math.floor(Math.random() * 11);
+                user.kids_games_total = Number(user.kids_games_total ?? 0) + 1;
+                user.tasks_completed = Number(user.tasks_completed ?? 0) + 1;
+                saveUser(user);
+
+                setDailyGameCount(daily.key, daily.count + 1);
+                addPoints(user, reward, `game:${gameId}`);
+
+                showFeedback(feedbackEl, 'success', t(lang, 'game_reward', { points: reward, score }));
+                updateLanguage(lang);
+            }
+
+            // Игровая логика для каждой игры
+            function initGame() {
+                gameArea.innerHTML = '';
+                if (gameId === 'trash_sort') {
+                    // Сортировка мусора
+                    const instruction = document.createElement('p');
+                    instruction.textContent = t(lang, 'trash_sort_instruction');
+                    instruction.style.marginBottom = '12px';
+                    instruction.style.fontWeight = '600';
+                    gameArea.appendChild(instruction);
+
+                    const containers = document.createElement('div');
+                    containers.style.display = 'flex';
+                    containers.style.justifyContent = 'space-around';
+                    containers.style.marginBottom = '20px';
+                    containers.style.flexWrap = 'wrap';
+                    containers.style.gap = '10px';
+
+                    const bins = [
+                        { id: 'recycle', label: t(lang, 'bin_recycle'), color: '#3b82f6' },
+                        { id: 'organic', label: t(lang, 'bin_organic'), color: '#22c55e' },
+                        { id: 'general', label: t(lang, 'bin_general'), color: '#6b7280' }
+                    ];
+
+                    bins.forEach(bin => {
+                        const binEl = document.createElement('div');
+                        binEl.className = 'trash-bin';
+                        binEl.dataset.type = bin.id;
+                        binEl.textContent = bin.label;
+                        binEl.style.padding = '12px 16px';
+                        binEl.style.borderRadius = '12px';
+                        binEl.style.background = bin.color;
+                        binEl.style.color = '#fff';
+                        binEl.style.fontWeight = '600';
+                        binEl.style.textAlign = 'center';
+                        binEl.style.minWidth = '100px';
+                        binEl.style.transition = 'transform 0.2s, box-shadow 0.2s';
+                        binEl.style.cursor = 'pointer';
+                        binEl.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        binEl.addEventListener('mouseenter', () => {
+                            binEl.style.transform = 'scale(1.05)';
+                            binEl.style.boxShadow = '0 4px 16px rgba(0,0,0,0.25)';
+                        });
+                        binEl.addEventListener('mouseleave', () => {
+                            binEl.style.transform = 'scale(1)';
+                            binEl.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+                        });
+                        containers.appendChild(binEl);
+                    });
+
+                    gameArea.appendChild(containers);
+
+                    const itemsArea = document.createElement('div');
+                    itemsArea.style.display = 'flex';
+                    itemsArea.style.flexWrap = 'wrap';
+                    itemsArea.style.gap = '12px';
+                    itemsArea.style.justifyContent = 'center';
+
+                    const items = [
+                        { id: 'plastic', type: 'recycle', emoji: '🍶' },
+                        { id: 'apple', type: 'organic', emoji: '🍎' },
+                        { id: 'paper', type: 'recycle', emoji: '📄' },
+                        { id: 'banana', type: 'organic', emoji: '🍌' },
+                        { id: 'glass', type: 'recycle', emoji: '🍾' },
+                        { id: 'wrapper', type: 'general', emoji: '📦' },
+                        { id: 'orange', type: 'organic', emoji: '🍊' },
+                        { id: 'can', type: 'recycle', emoji: '🥫' }
+                    ];
+
+                    items.forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'trash-item';
+                        itemEl.draggable = true;
+                        itemEl.dataset.type = item.type;
+                        itemEl.textContent = item.emoji;
+                        itemEl.style.fontSize = '2.5rem';
+                        itemEl.style.padding = '8px';
+                        itemEl.style.background = '#f3f4f6';
+                        itemEl.style.borderRadius = '12px';
+                        itemEl.style.cursor = 'grab';
+                        itemEl.style.transition = 'transform 0.2s';
+                        itemEl.style.userSelect = 'none';
+                        itemEl.addEventListener('dragstart', e => {
+                            e.dataTransfer.setData('type', item.type);
+                            itemEl.style.opacity = '0.5';
+                        });
+                        itemEl.addEventListener('dragend', () => {
+                            itemEl.style.opacity = '1';
+                        });
+                        itemEl.addEventListener('mouseenter', () => {
+                            itemEl.style.transform = 'scale(1.15)';
+                        });
+                        itemEl.addEventListener('mouseleave', () => {
+                            itemEl.style.transform = 'scale(1)';
+                        });
+                        itemsArea.appendChild(itemEl);
+                    });
+
+                    gameArea.appendChild(itemsArea);
+
+                    // Drag-and-drop логика
+                    document.querySelectorAll('.trash-bin').forEach(bin => {
+                        bin.addEventListener('dragover', e => e.preventDefault());
+                        bin.addEventListener('drop', e => {
+                            e.preventDefault();
+                            const type = e.dataTransfer.getData('type');
+                            if (type === bin.dataset.type) {
+                                updateScore(10);
+                                bin.style.background = '#10b981';
+                                setTimeout(() => {
+                                    bin.style.background = bins.find(b => b.id === bin.dataset.type).color;
+                                }, 400);
+                                // Удаляем первый предмет такого типа
+                                const item = document.querySelector(`.trash-item[data-type="${type}"]`);
+                                if (item) {
+                                    item.style.transform = 'scale(0)';
+                                    item.style.opacity = '0';
+                                    setTimeout(() => item.remove(), 300);
+                                }
+                            } else {
+                                updateScore(-5);
+                                bin.style.background = '#ef4444';
+                                setTimeout(() => {
+                                    bin.style.background = bins.find(b => b.id === bin.dataset.type).color;
+                                }, 400);
+                            }
+                        });
+                    });
+
+                } else if (gameId === 'save_forest') {
+                    // Спаси лес
+                    const instruction = document.createElement('p');
+                    instruction.textContent = t(lang, 'save_forest_instruction');
+                    instruction.style.marginBottom = '12px';
+                    instruction.style.fontWeight = '600';
+                    gameArea.appendChild(instruction);
+
+                    const forest = document.createElement('div');
+                    forest.style.position = 'relative';
+                    forest.style.width = '100%';
+                    forest.style.height = '300px';
+                    forest.style.background = 'linear-gradient(to bottom, #87ceeb, #98fb98)';
+                    forest.style.borderRadius = '16px';
+                    forest.style.overflow = 'hidden';
+                    forest.style.cursor = 'crosshair';
+
+                    // Добавим деревья
+                    for (let i = 0; i < 6; i++) {
+                        const tree = document.createElement('div');
+                        tree.textContent = '🌳';
+                        tree.style.position = 'absolute';
+                        tree.style.fontSize = '3rem';
+                        tree.style.left = Math.random() * 80 + 10 + '%';
+                        tree.style.top = Math.random() * 60 + 20 + '%';
+                        forest.appendChild(tree);
+                    }
+
+                    gameArea.appendChild(forest);
+
+                    let spawnInterval;
+                    function spawnThreat() {
+                        if (!gameActive) return;
+                        const threats = ['🔥', '💨', '🦟', '🚬'];
+                        const threat = document.createElement('div');
+                        threat.textContent = threats[Math.floor(Math.random() * threats.length)];
+                        threat.style.position = 'absolute';
+                        threat.style.fontSize = '2rem';
+                        threat.style.left = Math.random() * 90 + '%';
+                        threat.style.top = Math.random() * 80 + '%';
+                        threat.style.cursor = 'pointer';
+                        threat.style.transition = 'transform 0.2s';
+                        threat.style.animation = 'pulse 1s infinite';
+                        threat.addEventListener('click', () => {
+                            updateScore(5);
+                            threat.style.transform = 'scale(1.5) rotate(20deg)';
+                            threat.style.opacity = '0';
+                            setTimeout(() => threat.remove(), 200);
+                        });
+                        threat.addEventListener('mouseenter', () => {
+                            threat.style.transform = 'scale(1.2)';
+                        });
+                        threat.addEventListener('mouseleave', () => {
+                            threat.style.transform = 'scale(1)';
+                        });
+                        forest.appendChild(threat);
+                        // Удаляем угрозу через 3 секунды, если не кликнули
+                        setTimeout(() => {
+                            if (threat.parentNode) {
+                                threat.style.opacity = '0';
+                                setTimeout(() => threat.remove(), 300);
+                            }
+                        }, 3000);
+                    }
+                    spawnThreat();
+                    spawnInterval = setInterval(spawnThreat, 1500);
+
+                    // Очистка при завершении
+                    const originalFinish = finish;
+                    finish = () => {
+                        clearInterval(spawnInterval);
+                        originalFinish();
+                    };
+
+                } else if (gameId === 'find_recycle') {
+                    // Найди перерабатываемое
+                    const instruction = document.createElement('p');
+                    instruction.textContent = t(lang, 'find_recycle_instruction');
+                    instruction.style.marginBottom = '12px';
+                    instruction.style.fontWeight = '600';
+                    gameArea.appendChild(instruction);
+
+                    const field = document.createElement('div');
+                    field.style.display = 'grid';
+                    field.style.gridTemplateColumns = 'repeat(auto-fit, minmax(80px, 1fr))';
+                    field.style.gap = '12px';
+                    field.style.maxWidth = '500px';
+                    field.style.margin = '0 auto';
+
+                    const allItems = [
+                        { emoji: '📰', recyclable: true },
+                        { emoji: '🍌', recyclable: false },
+                        { emoji: '🥤', recyclable: true },
+                        { emoji: '🍎', recyclable: false },
+                        { emoji: '📦', recyclable: false },
+                        { emoji: '🍶', recyclable: true },
+                        { emoji: '🍊', recyclable: false },
+                        { emoji: '🥫', recyclable: true },
+                        { emoji: '🍞', recyclable: false },
+                        { emoji: '📄', recyclable: true },
+                        { emoji: '🥚', recyclable: false },
+                        { emoji: '🍾', recyclable: true }
+                    ];
+
+                    allItems.forEach((item, idx) => {
+                        const cell = document.createElement('div');
+                        cell.textContent = item.emoji;
+                        cell.style.fontSize = '2.5rem';
+                        cell.style.padding = '12px';
+                        cell.style.background = '#f3f4f6';
+                        cell.style.borderRadius = '12px';
+                        cell.style.cursor = 'pointer';
+                        cell.style.textAlign = 'center';
+                        cell.style.transition = 'transform 0.2s, background 0.3s';
+                        cell.dataset.recyclable = item.recyclable;
+                        cell.dataset.idx = idx;
+                        cell.addEventListener('click', () => {
+                            if (cell.dataset.clicked === '1') return;
+                            cell.dataset.clicked = '1';
+                            if (item.recyclable) {
+                                updateScore(8);
+                                cell.style.background = '#86efac';
+                                cell.style.transform = 'scale(1.1)';
+                            } else {
+                                updateScore(-3);
+                                cell.style.background = '#fca5a5';
+                                cell.style.transform = 'scale(0.9)';
+                            }
+                        });
+                        cell.addEventListener('mouseenter', () => {
+                            if (cell.dataset.clicked !== '1') {
+                                cell.style.transform = 'scale(1.15)';
+                                cell.style.background = '#e5e7eb';
+                            }
+                        });
+                        cell.addEventListener('mouseleave', () => {
+                            if (cell.dataset.clicked !== '1') {
+                                cell.style.transform = 'scale(1)';
+                                cell.style.background = '#f3f4f6';
+                            }
+                        });
+                        field.appendChild(cell);
+                    });
+
+                    gameArea.appendChild(field);
+
+                } else {
+                    // Заглушка для остальных игр
+                    const placeholder = document.createElement('p');
+                    placeholder.textContent = t(lang, 'game_placeholder');
+                    placeholder.style.textAlign = 'center';
+                    placeholder.style.color = '#6b7280';
+                    gameArea.appendChild(placeholder);
+                }
+            }
+
+            // Переключение языка
+            function switchLang(newLang) {
+                lang = newLang;
+                h2.textContent = t(lang, 'g_' + gameId + '_title');
+                renderTime();
+                updateScore(0);
+                btnRU.style.background = lang === 'ru' ? '#fff' : 'transparent';
+                btnKZ.style.background = lang === 'kz' ? '#fff' : 'transparent';
+                initGame();
+            }
+            btnRU.addEventListener('click', () => switchLang('ru'));
+            btnKZ.addEventListener('click', () => switchLang('kz'));
+
+            finishBtn.addEventListener('click', finish);
+
+            modal.appendChild(header);
+            modal.appendChild(gameArea);
+            modal.appendChild(finishBtn);
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+
+            renderTime();
+            updateScore(0);
+            initGame();
+
+            gameTimer = setInterval(() => {
+                seconds -= 1;
+                renderTime();
+                if (seconds <= 0) finish();
+            }, 1000);
+        }
+
+        function renderLessons(lang) {
+            const user = normalizeKidsUser(getUser());
+            const done = new Set(user.kids_lessons_done || []);
+
+            document.getElementById('lessonsNotice').textContent = t(lang, 'lessons_notice');
+            document.getElementById('lessonsBadge').textContent = String(done.size);
+
+            const list = document.getElementById('lessonsList');
+            list.innerHTML = '';
+            document.getElementById('lessonQuiz').style.display = 'none';
+            document.getElementById('lessonQuiz').innerHTML = '';
+
+            kidsLessons.forEach(l => {
+                const card = document.createElement('div');
+                card.className = 'mini-card';
+
+                const h3 = document.createElement('h3');
+                h3.textContent = `${l.icon} ${t(lang, l.titleKey)}`;
+
+                const p = document.createElement('p');
+                p.textContent = t(lang, l.descKey);
+
+                const row = document.createElement('div');
+                row.className = 'mini-row';
+
+                const hint = document.createElement('div');
+                hint.className = 'hint';
+                hint.textContent = done.has(l.id) ? t(lang, 'done') : '';
+
+                const actions = document.createElement('div');
+                actions.className = 'mini-actions';
+
+                const btn = document.createElement('button');
+                btn.className = done.has(l.id) ? 'btn btn-outline' : 'btn btn-primary';
+                btn.textContent = done.has(l.id) ? t(lang, 'open') : t(lang, 'start');
+                btn.addEventListener('click', () => openLesson(lang, l.id));
+
+                actions.appendChild(btn);
+                row.appendChild(hint);
+                row.appendChild(actions);
+
+                card.appendChild(h3);
+                card.appendChild(p);
+                card.appendChild(row);
+                list.appendChild(card);
+            });
+        }
+
+        function openLesson(lang, lessonId) {
+            const quiz = document.getElementById('lessonQuiz');
+            quiz.style.display = 'grid';
+            quiz.innerHTML = '';
+
+            const lesson = getLessonData(lang, lessonId);
+
+            const note = document.createElement('div');
+            note.className = 'lesson-note';
+            const h3 = document.createElement('h3');
+            h3.textContent = lesson.noteTitle;
+            const p = document.createElement('p');
+            p.textContent = lesson.noteText;
+            note.appendChild(h3);
+            note.appendChild(p);
+
+            const videoSoon = document.createElement('p');
+            videoSoon.style.marginTop = '10px';
+            videoSoon.textContent = t(lang, 'lesson_video_soon');
+            note.appendChild(videoSoon);
+            quiz.appendChild(note);
+
+            const title = document.createElement('div');
+            title.className = 'notice';
+            title.textContent = t(lang, 'quiz_title');
+            quiz.appendChild(title);
+
+            const questions = lesson.questions;
+
+            questions.forEach((q, idx) => {
+                const wrap = document.createElement('div');
+                wrap.className = 'q';
+
+                const strong = document.createElement('strong');
+                strong.textContent = `${idx + 1}. ${q.text}`;
+                wrap.appendChild(strong);
+
+                q.options.forEach((opt, i) => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = q.id;
+                    input.value = String(i);
+                    input.style.marginRight = '8px';
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(opt));
+                    wrap.appendChild(label);
+                });
+
+                const qfb = document.createElement('div');
+                qfb.className = 'q-feedback';
+                qfb.setAttribute('data-qfb', q.id);
+                wrap.appendChild(qfb);
+
+                quiz.appendChild(wrap);
+            });
+
+            const submit = document.createElement('button');
+            submit.className = 'btn btn-primary';
+            submit.textContent = t(lang, 'quiz_submit');
+            submit.addEventListener('click', () => submitLessonQuiz(lang, lessonId, lesson));
+            quiz.appendChild(submit);
+
+            const overall = document.createElement('div');
+            overall.className = 'feedback';
+            overall.id = 'lessonOverallFeedback';
+            quiz.appendChild(overall);
+
+            quiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function submitLessonQuiz(lang, lessonId, lesson) {
+            const user = normalizeKidsUser(getUser());
+            const done = new Set(user.kids_lessons_done || []);
+            if (done.has(lessonId)) {
+                const overall = document.getElementById('lessonOverallFeedback');
+                showFeedback(overall, 'success', t(lang, 'quiz_pass'));
+                return;
+            }
+
+            const total = lesson.questions.length;
+            const minScore = lesson.minScore;
+            let score = 0;
+            let missing = false;
+
+            lesson.questions.forEach(q => {
+                const checked = document.querySelector(`input[name="${q.id}"]:checked`)?.value;
+                const fb = document.querySelector(`[data-qfb="${q.id}"]`);
+                if (checked == null) {
+                    missing = true;
+                    if (fb) showFeedback(fb, 'error', t(lang, 'quiz_need_answer'));
+                    return;
+                }
+
+                const ok = String(q.correct) === String(checked);
+                if (ok) score += 1;
+                if (fb) showFeedback(fb, ok ? 'success' : 'error', ok ? t(lang, 'quiz_correct') : t(lang, 'quiz_wrong'));
+            });
+
+            const overall = document.getElementById('lessonOverallFeedback');
+            if (missing) {
+                showFeedback(overall, 'error', t(lang, 'quiz_need_answer'));
+                return;
+            }
+
+            const resultText = t(lang, 'quiz_result', { score, total, min: minScore });
+            showFeedback(overall, score >= minScore ? 'success' : 'error', resultText);
+
+            if (score >= minScore) {
+                done.add(lessonId);
+                user.kids_lessons_done = Array.from(done);
+                user.tasks_completed = Number(user.tasks_completed ?? 0) + 1;
+                saveUser(user);
+
+                const reward = 10 + Math.floor(Math.random() * 11);
+                addPoints(user, reward, `lesson:${lessonId}`);
+                showFeedback(overall, 'success', `${t(lang, 'quiz_pass')} ${t(lang, 'lesson_reward', { points: reward })}`);
+                updateLanguage(lang);
+            }
+        }
+
+        function renderQuests(lang) {
+            const user = normalizeKidsUser(getUser());
+            const done = new Set(user.kids_quests_done || []);
+
+            document.getElementById('questsNotice').textContent = t(lang, 'quests_notice');
+            document.getElementById('questsBadge').textContent = String(done.size);
+
+            const list = document.getElementById('questsList');
+            list.innerHTML = '';
+
+            kidsQuests.forEach(q => {
+                const card = document.createElement('div');
+                card.className = 'mini-card';
+
+                const h3 = document.createElement('h3');
+                h3.textContent = `${q.icon} ${t(lang, q.titleKey)}`;
+
+                const p = document.createElement('p');
+                p.textContent = t(lang, q.descKey);
+
+                const row = document.createElement('div');
+                row.className = 'mini-row';
+
+                const hint = document.createElement('div');
+                hint.className = 'hint';
+                hint.textContent = done.has(q.id) ? t(lang, 'done') : '';
+
+                const actions = document.createElement('div');
+                actions.className = 'mini-actions';
+
+                const btn = document.createElement('button');
+                btn.className = done.has(q.id) ? 'btn btn-outline' : 'btn btn-primary';
+                btn.textContent = done.has(q.id) ? t(lang, 'open') : t(lang, 'start');
+                const feedback = document.createElement('div');
+                feedback.className = 'feedback';
+                btn.addEventListener('click', () => startQuestMiniGame(lang, q.id, feedback));
+
+                actions.appendChild(btn);
+                row.appendChild(hint);
+                row.appendChild(actions);
+
+                card.appendChild(h3);
+                card.appendChild(p);
+                card.appendChild(row);
+                card.appendChild(feedback);
+                list.appendChild(card);
+            });
+        }
+
+        function getQuestGame(lang, questId) {
+            const ru = {
+                save_animal: {
+                    title: '🦊 Спаси животное',
+                    steps: [
+                        { q: 'Лиса запуталась в пакете. Что делать?', a: ['Смеяться', 'Аккуратно снять пакет и выбросить в урну', 'Оставить так'], c: 1 },
+                        { q: 'Где безопаснее для животных?', a: ['В лесу без мусора', 'На свалке', 'В грязной реке'], c: 0 },
+                        { q: 'Если видишь мусор в парке, ты…', a: ['Проходишь мимо', 'Собираешь и выбрасываешь', 'Разбрасываешь'], c: 1 },
+                        { q: 'Что нельзя бросать в природу?', a: ['Листья', 'Пластик и стекло', 'Семечки'], c: 1 },
+                        { q: 'Как помочь животным зимой?', a: ['Ломать их домики', 'Не шуметь и не мусорить', 'Бросать пакеты'], c: 1 }
+                    ]
+                },
+                plant_tree: {
+                    title: '🌱 Посади дерево',
+                    steps: [
+                        { q: 'С чего начать посадку?', a: ['Выбрать место и лунку', 'Сразу уехать', 'Бросить семена на асфальт'], c: 0 },
+                        { q: 'Что нужно дереву после посадки?', a: ['Вода', 'Мусор', 'Ничего'], c: 0 },
+                        { q: 'Как лучше поливать?', a: ['Немного и регулярно', 'Один раз в год', 'Только газировкой'], c: 0 },
+                        { q: 'Чем можно защитить саженец?', a: ['Огородить и не ломать', 'Тянуть ветки', 'Сжечь траву рядом'], c: 0 },
+                        { q: 'Что полезно вокруг дерева?', a: ['Чистота и мульча', 'Пластик и бутылки', 'Костёр'], c: 0 }
+                    ]
+                },
+                eco_rescue: {
+                    title: '🧩 Эко‑спасение',
+                    steps: [
+                        { q: 'В классе много бумаги. Что лучше?', a: ['Сжечь', 'Сдать на переработку', 'Выбросить на улицу'], c: 1 },
+                        { q: 'Батарейка — куда?', a: ['В обычный мусор', 'В спец. контейнер', 'В реку'], c: 1 },
+                        { q: 'Как уменьшить пластик?', a: ['Одноразовые стаканы', 'Многоразовая бутылка', 'Пакеты каждый день'], c: 1 },
+                        { q: 'Что делать с бутылкой?', a: ['Смять и в пластик', 'Выбросить в лесу', 'Спрятать'], c: 0 },
+                        { q: 'Как сделать воздух чище?', a: ['Сажать деревья', 'Жечь мусор', 'Больше машин'], c: 0 }
+                    ]
+                }
+            };
+
+            const kz = {
+                save_animal: {
+                    title: '🦊 Жануарды құтқар',
+                    steps: [
+                        { q: 'Түлкі пакетке оралып қалды. Не істейсің?', a: ['Күлу', 'Пакетті абайлап шешіп, қоқысқа тастау', 'Олай қалдыру'], c: 1 },
+                        { q: 'Жануарларға қай жер қауіпсіз?', a: ['Қоқыссыз орман', 'Қоқыс полигоны', 'Лас өзен'], c: 0 },
+                        { q: 'Саябақта қоқыс көрсең…', a: ['Кете бересің', 'Жинап, қоқысқа тастайсың', 'Шашасың'], c: 1 },
+                        { q: 'Табиғатқа нені тастауға болмайды?', a: ['Жапырақ', 'Пластик пен әйнек', 'Дән'], c: 1 },
+                        { q: 'Қыста жануарларға қалай көмектесеміз?', a: ['Үйін бұзу', 'Шулы болмау, қоқыс тастамау', 'Пакет тастау'], c: 1 }
+                    ]
+                },
+                plant_tree: {
+                    title: '🌱 Ағаш отырғыз',
+                    steps: [
+                        { q: 'Отырғызуды неден бастаймыз?', a: ['Орын таңдап, шұңқыр қазу', 'Бірден кету', 'Асфальтқа дән тастау'], c: 0 },
+                        { q: 'Отырғызғаннан кейін ағашқа не керек?', a: ['Су', 'Қоқыс', 'Ештеңе'], c: 0 },
+                        { q: 'Қалай суарған дұрыс?', a: ['Аздап, бірақ жиі', 'Жылына бір рет', 'Тек газдалған сусынмен'], c: 0 },
+                        { q: 'Көшетті қалай қорғаймыз?', a: ['Қоршап, сындырмау', 'Бұтағын тарту', 'Жанында шөп жағу'], c: 0 },
+                        { q: 'Ағаштың айналасында не пайдалы?', a: ['Тазалық және мульча', 'Бөтелке мен пластик', 'От жағу'], c: 0 }
+                    ]
+                },
+                eco_rescue: {
+                    title: '🧩 Эко‑құтқару',
+                    steps: [
+                        { q: 'Сыныпта көп қағаз бар. Қайсысы дұрыс?', a: ['Өртеп жіберу', 'Қайта өңдеуге тапсыру', 'Көшеге тастау'], c: 1 },
+                        { q: 'Батарейканы қайда тастаймыз?', a: ['Жалпы қоқысқа', 'Арнайы контейнерге', 'Өзенге'], c: 1 },
+                        { q: 'Пластикті қалай азайтамыз?', a: ['Бір реттік стақан', 'Көп рет қолданылатын бөтелке', 'Күнде пакет'], c: 1 },
+                        { q: 'Бөтелкені не істейміз?', a: ['Мыжып, пластикке тастау', 'Орманға тастау', 'Жасыру'], c: 0 },
+                        { q: 'Ауаны қалай тазарта аламыз?', a: ['Ағаш отырғызу', 'Қоқыс жағу', 'Көлік көбейту'], c: 0 }
+                    ]
+                }
+            };
+
+            const bank = lang === 'kz' ? kz : ru;
+            return bank[questId] || bank.eco_rescue;
+        }
+
+        function startQuestMiniGame(lang, questId, feedbackEl) {
+            const user = normalizeKidsUser(getUser());
+            const done = new Set(user.kids_quests_done || []);
+            if (done.has(questId)) {
+                showFeedback(feedbackEl, 'success', t(lang, 'quest_already_done'));
+                return;
+            }
+
+            const data = getQuestGame(lang, questId);
+            const total = data.steps.length;
+            let step = 0;
+            let score = 0;
+
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.inset = '0';
+            overlay.style.background = 'rgba(15,30,50,0.45)';
+            overlay.style.backdropFilter = 'blur(10px)';
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.padding = '16px';
+            overlay.style.zIndex = '9999';
+
+            const modal = document.createElement('div');
+            modal.className = 'card';
+            modal.style.maxWidth = '560px';
+            modal.style.width = '100%';
+            modal.style.padding = '18px';
+            modal.style.borderRadius = '22px';
+            modal.style.background = 'rgba(255,255,255,0.88)';
+            modal.style.backdropFilter = 'blur(14px)';
+
+            const h2 = document.createElement('h2');
+            h2.textContent = data.title;
+            h2.style.color = 'var(--kids-dark)';
+            h2.style.marginBottom = '10px';
+
+            const stepBadge = document.createElement('div');
+            stepBadge.className = 'notice';
+            stepBadge.style.marginBottom = '10px';
+
+            const qWrap = document.createElement('div');
+            qWrap.className = 'q';
+
+            const qText = document.createElement('strong');
+            qWrap.appendChild(qText);
+
+            const answersWrap = document.createElement('div');
+            answersWrap.style.display = 'grid';
+            answersWrap.style.gap = '8px';
+            qWrap.appendChild(answersWrap);
+
+            const qFb = document.createElement('div');
+            qFb.className = 'q-feedback';
+            qWrap.appendChild(qFb);
+
+            const overall = document.createElement('div');
+            overall.className = 'feedback';
+            overall.style.marginTop = '12px';
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'btn btn-primary';
+            nextBtn.style.width = '100%';
+
+            function renderStep() {
+                const current = data.steps[step];
+                stepBadge.textContent = t(lang, 'quest_step', { n: step + 1, total });
+                qText.textContent = current.q;
+                answersWrap.innerHTML = '';
+                qFb.style.display = 'none';
+                qFb.classList.remove('success', 'error');
+                overall.style.display = 'none';
+                overall.classList.remove('success', 'error');
+
+                current.a.forEach((ans, idx) => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'quest_step';
+                    input.value = String(idx);
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(ans));
+                    answersWrap.appendChild(label);
+                });
+
+                nextBtn.textContent = step === total - 1 ? t(lang, 'quest_finish') : t(lang, 'quest_next');
+            }
+
+            nextBtn.addEventListener('click', () => {
+                const selected = modal.querySelector('input[name="quest_step"]:checked')?.value;
+                if (selected == null) {
+                    showFeedback(qFb, 'error', t(lang, 'quest_need_choice'));
+                    return;
+                }
+
+                const current = data.steps[step];
+                const ok = String(current.c) === String(selected);
+                if (ok) {
+                    score += 1;
+                    showFeedback(qFb, 'success', t(lang, 'quiz_correct'));
+                } else {
+                    showFeedback(qFb, 'error', t(lang, 'quiz_wrong'));
+                }
+
+                if (step < total - 1) {
+                    step += 1;
+                    setTimeout(renderStep, 220);
+                    return;
+                }
+
+                const pass = score >= 4;
+                showFeedback(overall, pass ? 'success' : 'error', pass ? t(lang, 'quest_result_pass') : t(lang, 'quest_result_fail'));
+
+                if (pass) {
+                    done.add(questId);
+                    user.kids_quests_done = Array.from(done);
+                    user.tasks_completed = Number(user.tasks_completed ?? 0) + 1;
+                    saveUser(user);
+
+                    const reward = 15;
+                    addPoints(user, reward, `quest:${questId}`);
+                    showFeedback(feedbackEl, 'success', t(lang, 'quest_reward', { points: reward }));
+                    updateLanguage(lang);
+
+                    setTimeout(() => overlay.remove(), 650);
+                }
+            });
+
+            modal.appendChild(h2);
+            modal.appendChild(stepBadge);
+            modal.appendChild(qWrap);
+            modal.appendChild(nextBtn);
+            modal.appendChild(overall);
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+
+            renderStep();
+        }
+
+        function showFeedback(el, type, text) {
+            if (!el) return;
+            el.classList.remove('success', 'error');
+            el.classList.add(type);
+            el.textContent = text;
+            el.style.display = 'block';
+        }
+
+        function getLessonData(lang, lessonId) {
+            const bank = {
+                eco_intro: {
+                    noteTitle: { ru: 'Конспект: экология', kz: 'Конспект: экология' },
+                    noteText: {
+                        ru: 'Экология — это наука о природе и о том, как живые существа связаны между собой. Если мы не мусорим, бережём воду и сортируем отходы — природе становится легче.',
+                        kz: 'Экология — табиғатты және тірі ағзалардың бір-бірімен байланысын зерттейтін ғылым. Қоқыс тастамасақ, суды үнемдесек және қалдықты сұрыптасақ — табиғатқа көмектесеміз.'
+                    }
+                },
+                sorting: {
+                    noteTitle: { ru: 'Конспект: сортировка', kz: 'Конспект: сұрыптау' },
+                    noteText: {
+                        ru: 'Сортировка — это когда мы кладём бумагу, пластик, стекло и металл отдельно. Так отходы можно переработать и сделать новые вещи.',
+                        kz: 'Сұрыптау — қағазды, пластикті, әйнекті және металды бөлек жинау. Сонда қалдықты қайта өңдеп, жаңа зат жасауға болады.'
+                    }
+                },
+                water: {
+                    noteTitle: { ru: 'Конспект: вода', kz: 'Конспект: су' },
+                    noteText: {
+                        ru: 'Чистая вода нужна людям, животным и растениям. Закрывайте кран, когда чистите зубы, и не загрязняйте реки и озёра.',
+                        kz: 'Таза су адамдарға, жануарларға және өсімдіктерге керек. Тіс жуғанда кранды жауып, өзен-көлді ластамаңыз.'
+                    }
+                },
+                forest: {
+                    noteTitle: { ru: 'Конспект: лес', kz: 'Конспект: орман' },
+                    noteText: {
+                        ru: 'Лес даёт кислород и защищает почву. Берегите деревья, не ломайте ветки и убирайте мусор после прогулки.',
+                        kz: 'Орман оттегі береді және топырақты қорғайды. Ағаштарды аялап, бұтақ сындырмай, серуеннен кейін қоқысты жинаңыз.'
+                    }
+                },
+                recycling: {
+                    noteTitle: { ru: 'Конспект: переработка', kz: 'Конспект: қайта өңдеу' },
+                    noteText: {
+                        ru: 'Переработка помогает уменьшить количество мусора. Из пластика можно сделать новые предметы, а из бумаги — новую бумагу.',
+                        kz: 'Қайта өңдеу қоқысты азайтады. Пластиктен жаңа зат, қағаздан жаңа қағаз жасауға болады.'
+                    }
+                },
+                red_book_kz: {
+                    noteTitle: { ru: 'Конспект: Красная книга Казахстана', kz: 'Конспект: Қазақстанның Қызыл кітабы' },
+                    noteText: {
+                        ru: 'Красная книга — это список редких растений и животных, которым нужна защита. Если исчезает один вид, может измениться вся природа. Помогают: не мусорить, не разрушать места обитания, беречь воду и лес.',
+                        kz: 'Қызыл кітап — қорғауды қажет ететін сирек өсімдіктер мен жануарлардың тізімі. Бір түр жоғалса, табиғаттың тепе-теңдігі бұзылуы мүмкін. Көмек: қоқыс тастамау, мекенін бұзбау, су мен орманды қорғау.'
+                    }
+                },
+                animals_kz: {
+                    noteTitle: { ru: 'Конспект: животные Казахстана', kz: 'Конспект: Қазақстан жануарлары' },
+                    noteText: {
+                        ru: 'В Казахстане живут сайгаки, снежные барсы, степные орлы и многие другие животные. Им нужны чистые степи, горы и водоёмы. Когда мы оставляем мусор и загрязняем воду, животным становится трудно жить.',
+                        kz: 'Қазақстанда киік, қар барысы, дала бүркіті сияқты көптеген жануарлар бар. Оларға таза дала, таулар мен су көздері керек. Қоқыс пен лас су жануарларға зиян келтіреді.'
+                    }
+                },
+                city_litter_birds: {
+                    noteTitle: { ru: 'Конспект: мусор и птицы', kz: 'Конспект: қоқыс және құстар' },
+                    noteText: {
+                        ru: 'Мусор на улицах опасен: птицы могут запутаться в пакетах, проглотить пластик, пораниться стеклом. Во дворах мусор привлекает крыс и создаёт запах. Решение: урны, сортировка, уборка и многоразовые вещи.',
+                        kz: 'Көшедегі қоқыс қауіпті: құстар пакетке шырмалып, пластик жұтып, әйнекке жарақат алуы мүмкін. Ауладағы қоқыс егеуқұйрықты тартып, жағымсыз иіс шығарады. Шешім: қоқыс жәшігі, сұрыптау, тазалық, көп рет қолданылатын заттар.'
+                    }
+                }
+            };
+
+            const base = bank[lessonId] || bank.eco_intro;
+            const questions = getLessonQuestions(lang, lessonId);
+            const minScore = Math.max(6, Math.floor(questions.length * 0.7));
+            return {
+                noteTitle: base.noteTitle[lang],
+                noteText: base.noteText[lang],
+                questions,
+                minScore
+            };
+        }
+
+        function getLessonQuestions(lang, lessonId) {
+            const ru = [
+                { id: 'q1', text: 'Что лучше всего помогает природе?', options: ['Бросать мусор', 'Сортировать отходы', 'Ломать деревья'], correct: 1 },
+                { id: 'q2', text: 'Почему важно экономить воду?', options: ['Вода бесконечна', 'Чистая вода нужна всем', 'Чтобы было больше мусора'], correct: 1 },
+                { id: 'q3', text: 'Что такое переработка?', options: ['Сжечь всё', 'Сделать из отходов новые вещи', 'Спрятать мусор'], correct: 1 },
+                { id: 'q4', text: 'Куда правильно выбросить бумагу?', options: ['В контейнер для бумаги', 'В реку', 'На землю'], correct: 0 },
+                { id: 'q5', text: 'Что можно сделать, чтобы воздух был чище?', options: ['Сажать деревья', 'Жечь мусор', 'Больше ездить на машине'], correct: 0 },
+                { id: 'q6', text: 'Что делать после пикника в парке?', options: ['Оставить мусор', 'Собрать мусор с собой', 'Закопать пластик'], correct: 1 },
+                { id: 'q7', text: 'Что лучше выбрать в магазине?', options: ['Много одноразовых пакетов', 'Многоразовую сумку', 'Бутылки и мусор'], correct: 1 },
+                { id: 'q8', text: 'Почему нельзя бросать батарейки в общий мусор?', options: ['Они безопасны', 'Они загрязняют почву и воду', 'Потому что они тяжёлые'], correct: 1 },
+                { id: 'q9', text: 'Что помогает животным зимой?', options: ['Пугать их', 'Не ломать их дом', 'Бросать пластик'], correct: 1 },
+                { id: 'q10', text: 'Как можно экономить электричество?', options: ['Выключать свет, когда не нужен', 'Держать всё включённым', 'Ломать лампы'], correct: 0 },
+                { id: 'q11', text: 'Что такое "чистый двор"?', options: ['Где много мусора', 'Где нет мусора и всё убрано', 'Где ломают деревья'], correct: 1 },
+                { id: 'q12', text: 'Что можно переработать?', options: ['Пластик и бумагу', 'Землю', 'Дым'], correct: 0 },
+                { id: 'q13', text: 'Почему деревья важны?', options: ['Они мешают', 'Они дают кислород', 'Они делают мусор'], correct: 1 },
+                { id: 'q14', text: 'Что лучше для воды?', options: ['Лить масло в раковину', 'Не выливать вредное в воду', 'Бросать мусор в реку'], correct: 1 },
+                { id: 'q15', text: 'Как можно помочь городу стать чище?', options: ['Участвовать в уборке', 'Разбрасывать мусор', 'Рвать цветы'], correct: 0 }
+            ];
+
+            const kz = [
+                { id: 'q1', text: 'Табиғатқа ең жақсы көмектесетін не?', options: ['Қоқыс тастау', 'Қалдықты сұрыптау', 'Ағаш сындыру'], correct: 1 },
+                { id: 'q2', text: 'Суды үнемдеу не үшін маңызды?', options: ['Су шексіз', 'Таза су бәріне керек', 'Қоқыс көп болу үшін'], correct: 1 },
+                { id: 'q3', text: 'Қайта өңдеу деген не?', options: ['Бәрін жағу', 'Қалдықтан жаңа зат жасау', 'Қоқысты жасыру'], correct: 1 },
+                { id: 'q4', text: 'Қағазды қайда тастау дұрыс?', options: ['Қағазға арналған жәшікке', 'Өзенге', 'Жерге'], correct: 0 },
+                { id: 'q5', text: 'Ауаны қалай тазарта аламыз?', options: ['Ағаш отырғызу', 'Қоқыс жағу', 'Көлікпен көп жүру'], correct: 0 },
+                { id: 'q6', text: 'Саябақта пикниктен кейін не істейміз?', options: ['Қоқысты тастап кету', 'Қоқысты жинап алып кету', 'Пластикті көму'], correct: 1 },
+                { id: 'q7', text: 'Дүкенде нені таңдаған дұрыс?', options: ['Бір реттік пакет көп алу', 'Көп рет қолданылатын сөмке', 'Бөтелке мен қоқыс'], correct: 1 },
+                { id: 'q8', text: 'Неге батарейканы жалпы қоқысқа тастауға болмайды?', options: ['Ол қауіпсіз', 'Топырақ пен суды ластайды', 'Өйткені ауыр'], correct: 1 },
+                { id: 'q9', text: 'Қыста жануарларға не көмектеседі?', options: ['Қорқыту', 'Үйін бұзбау', 'Пластик тастау'], correct: 1 },
+                { id: 'q10', text: 'Электрді қалай үнемдейміз?', options: ['Қажет емес кезде жарықты өшіру', 'Бәрін қосулы ұстау', 'Шамды сындыру'], correct: 0 },
+                { id: 'q11', text: '"Таза аула" деген не?', options: ['Қоқыс көп жер', 'Қоқыс жоқ, жинақы жер', 'Ағаш сындыратын жер'], correct: 1 },
+                { id: 'q12', text: 'Нені қайта өңдеуге болады?', options: ['Пластик пен қағаз', 'Жер', 'Түтін'], correct: 0 },
+                { id: 'q13', text: 'Ағаш неге маңызды?', options: ['Кедергі', 'Оттегі береді', 'Қоқыс жасайды'], correct: 1 },
+                { id: 'q14', text: 'Суға қайсысы дұрыс?', options: ['Майды раковинаға құю', 'Зияндыны суға төкпеу', 'Өзенге қоқыс тастау'], correct: 1 },
+                { id: 'q15', text: 'Қаланы таза етуге қалай көмектесеміз?', options: ['Тазалыққа қатысу', 'Қоқыс шашу', 'Гүл жұлу'], correct: 0 }
+            ];
+
+            const redBookRu = [
+                { id: 'rb1', text: 'Что такое Красная книга?', options: ['Сборник сказок', 'Список редких видов, которым нужна защита', 'Учебник по математике'], correct: 1 },
+                { id: 'rb2', text: 'Почему важно беречь редких животных?', options: ['Чтобы нарушить природу', 'Чтобы сохранить баланс в природе', 'Потому что так скучнее'], correct: 1 },
+                { id: 'rb3', text: 'Что помогает животным жить?', options: ['Чистая вода и дом', 'Пластик и дым', 'Разрушение леса'], correct: 0 },
+                { id: 'rb4', text: 'Что нельзя делать в природе?', options: ['Убирать мусор', 'Разрушать гнёзда и норы', 'Сажать деревья'], correct: 1 },
+                { id: 'rb5', text: 'Как ты можешь помочь?', options: ['Мусорить', 'Сортировать и беречь природу', 'Ломать ветки'], correct: 1 },
+                { id: 'rb6', text: 'Если увидел мусор в лесу, ты…', options: ['Соберу и выброшу', 'Спрячу под куст', 'Добавлю ещё'], correct: 0 },
+                { id: 'rb7', text: 'Что лучше для животных?', options: ['Громкая музыка в лесу', 'Тихое поведение и чистота', 'Пакеты на ветках'], correct: 1 },
+                { id: 'rb8', text: 'Почему нельзя жечь мусор?', options: ['Дым загрязняет воздух', 'Так веселее', 'Это помогает птицам'], correct: 0 },
+                { id: 'rb9', text: 'Что нужно лесу?', options: ['Огонь и мусор', 'Защита и забота', 'Разрушение'], correct: 1 },
+                { id: 'rb10', text: 'Редкие животные — это…', options: ['Те, кого мало и нужно беречь', 'Те, кого очень много', 'Игрушки'], correct: 0 }
+            ];
+
+            const redBookKz = [
+                { id: 'rb1', text: 'Қызыл кітап деген не?', options: ['Ертегі жинағы', 'Қорғауды қажет ететін сирек түрлер тізімі', 'Математика оқулығы'], correct: 1 },
+                { id: 'rb2', text: 'Сирек жануарларды неге қорғау керек?', options: ['Табиғатты бұзу үшін', 'Табиғи тепе-теңдікті сақтау үшін', 'Өйткені қызық емес'], correct: 1 },
+                { id: 'rb3', text: 'Жануарларға не керек?', options: ['Таза су және мекен', 'Пластик пен түтін', 'Орманды кесу'], correct: 0 },
+                { id: 'rb4', text: 'Табиғатта нені жасауға болмайды?', options: ['Қоқыс жинау', 'Ұя мен інді бұзу', 'Ағаш отырғызу'], correct: 1 },
+                { id: 'rb5', text: 'Қалай көмектесе аласың?', options: ['Қоқыс шашу', 'Сұрыптау және табиғатты қорғау', 'Бұтақ сындыру'], correct: 1 },
+                { id: 'rb6', text: 'Орманда қоқыс көрсең…', options: ['Жинап, қоқысқа тастаймын', 'Бұтаның астына тығамын', 'Тағы қосамын'], correct: 0 },
+                { id: 'rb7', text: 'Жануарларға қайсысы жақсы?', options: ['Орманда қатты музыка', 'Тыныштық және тазалық', 'Бұтақтағы пакет'], correct: 1 },
+                { id: 'rb8', text: 'Неге қоқыс жағуға болмайды?', options: ['Түтін ауаны ластайды', 'Бұл қызық', 'Құстарға көмектеседі'], correct: 0 },
+                { id: 'rb9', text: 'Орманға не керек?', options: ['От пен қоқыс', 'Қорғау және күтім', 'Бұзу'], correct: 1 },
+                { id: 'rb10', text: 'Сирек жануарлар — бұл…', options: ['Саны аз, қорғау керек', 'Саны өте көп', 'Ойыншық'], correct: 0 }
+            ];
+
+            const animalsRu = [
+                { id: 'ak1', text: 'Кто живёт в степях Казахстана?', options: ['Киік (сайгак)', 'Пингвин', 'Тюлень'], correct: 0 },
+                { id: 'ak2', text: 'Кто живёт в горах?', options: ['Снежный барс', 'Крокодил', 'Акула'], correct: 0 },
+                { id: 'ak3', text: 'Почему животным нужна чистая вода?', options: ['Чтобы пить и жить', 'Чтобы мусорить', 'Чтобы ломать деревья'], correct: 0 },
+                { id: 'ak4', text: 'Что опасно для животных?', options: ['Пластик и стекло', 'Чистый лес', 'Уборка'], correct: 0 },
+                { id: 'ak5', text: 'Как помочь животным?', options: ['Оставлять мусор', 'Беречь природу', 'Разрушать гнёзда'], correct: 1 },
+                { id: 'ak6', text: 'Птицам в городе вредно, когда…', options: ['Есть кормушки', 'Есть пакеты и мусор', 'Есть деревья'], correct: 1 },
+                { id: 'ak7', text: 'Что такое среда обитания?', options: ['Дом и место, где живёт животное', 'Игрушка', 'Пакет'], correct: 0 },
+                { id: 'ak8', text: 'Кого лучше наблюдать, не пугая?', options: ['Животных и птиц', 'Мусор', 'Дым'], correct: 0 },
+                { id: 'ak9', text: 'Что важно в степи?', options: ['Чистота и трава', 'Пластик', 'Огонь'], correct: 0 },
+                { id: 'ak10', text: 'Если видишь раненую птицу, лучше…', options: ['Пугать', 'Позвать взрослого/специалистов', 'Бросить мусор рядом'], correct: 1 }
+            ];
+
+            const animalsKz = [
+                { id: 'ak1', text: 'Қазақстан даласында кімдер мекендейді?', options: ['Киік', 'Пингвин', 'Итбалық'], correct: 0 },
+                { id: 'ak2', text: 'Тауда қандай жануар бар?', options: ['Қар барысы', 'Крокодил', 'Акула'], correct: 0 },
+                { id: 'ak3', text: 'Жануарларға таза су не үшін керек?', options: ['Ішу және өмір сүру үшін', 'Қоқыс шашу үшін', 'Ағаш сындыру үшін'], correct: 0 },
+                { id: 'ak4', text: 'Жануарларға не қауіпті?', options: ['Пластик пен әйнек', 'Таза орман', 'Тазалық'], correct: 0 },
+                { id: 'ak5', text: 'Жануарларға қалай көмектесеміз?', options: ['Қоқыс тастау', 'Табиғатты қорғау', 'Ұяны бұзу'], correct: 1 },
+                { id: 'ak6', text: 'Қалада құстарға зиян, егер…', options: ['Астаулар бар', 'Пакет пен қоқыс көп', 'Ағаш бар'], correct: 1 },
+                { id: 'ak7', text: 'Мекен (орта) деген не?', options: ['Жануар тұратын орын', 'Ойыншық', 'Пакет'], correct: 0 },
+                { id: 'ak8', text: 'Нені қорқытпай бақылаған дұрыс?', options: ['Жануарлар мен құстарды', 'Қоқысты', 'Түтінді'], correct: 0 },
+                { id: 'ak9', text: 'Далада не маңызды?', options: ['Тазалық және шөп', 'Пластик', 'От'], correct: 0 },
+                { id: 'ak10', text: 'Жараланған құс көрсең, дұрыс әрекет…', options: ['Қорқыту', 'Ересек адамды/маманды шақыру', 'Жанына қоқыс тастау'], correct: 1 }
+            ];
+
+            const cityRu = [
+                { id: 'cl1', text: 'Чем опасен пакет для птицы?', options: ['Птица может запутаться', 'Пакет полезен', 'Птица станет сильнее'], correct: 0 },
+                { id: 'cl2', text: 'Что может случиться, если птица проглотит пластик?', options: ['Ничего', 'Она может заболеть', 'Она станет умнее'], correct: 1 },
+                { id: 'cl3', text: 'Почему стекло опасно во дворе?', options: ['Можно пораниться', 'Оно лечит', 'Оно превращается в дерево'], correct: 0 },
+                { id: 'cl4', text: 'Что привлекает мусор во дворе?', options: ['Крыс и насекомых', 'Радугу', 'Снежного барса'], correct: 0 },
+                { id: 'cl5', text: 'Что лучше делать с мусором?', options: ['Выкинуть в урну', 'Оставить на лавочке', 'Бросить в кусты'], correct: 0 },
+                { id: 'cl6', text: 'Что можно использовать вместо пакета?', options: ['Многоразовую сумку', 'Ещё один пакет', 'Стекло'], correct: 0 },
+                { id: 'cl7', text: 'Почему важно убирать на улице?', options: ['Чтобы было чище и безопаснее', 'Чтобы было больше мусора', 'Чтобы ломать деревья'], correct: 0 },
+                { id: 'cl8', text: 'Если увидел мусор у дома, ты…', options: ['Соберу и выброшу', 'Разбросаю', 'Спрячу'], correct: 0 },
+                { id: 'cl9', text: 'Что делать с бутылкой?', options: ['Смять и в контейнер', 'Бросить в реку', 'Оставить на дороге'], correct: 0 },
+                { id: 'cl10', text: 'Чистый двор — это…', options: ['Где нет мусора', 'Где мусор везде', 'Где опасно ходить'], correct: 0 }
+            ];
+
+            const cityKz = [
+                { id: 'cl1', text: 'Пакет құсқа несімен қауіпті?', options: ['Құс шырмалып қалуы мүмкін', 'Пакет пайдалы', 'Құс күшті болады'], correct: 0 },
+                { id: 'cl2', text: 'Құс пластик жұтса не болады?', options: ['Ештеңе', 'Ауырып қалуы мүмкін', 'Ақылды болады'], correct: 1 },
+                { id: 'cl3', text: 'Аулада әйнек неге қауіпті?', options: ['Жарақат алуға болады', 'Емдейді', 'Ағашқа айналады'], correct: 0 },
+                { id: 'cl4', text: 'Ауладағы қоқыс нені тартады?', options: ['Егеуқұйрық пен жәндік', 'Кемпірқосақ', 'Қар барысы'], correct: 0 },
+                { id: 'cl5', text: 'Қоқысты не істеген дұрыс?', options: ['Жәшікке тастау', 'Орындықта қалдыру', 'Бұтаға тастау'], correct: 0 },
+                { id: 'cl6', text: 'Пакеттің орнына не қолдануға болады?', options: ['Көп рет қолданылатын сөмке', 'Тағы пакет', 'Әйнек'], correct: 0 },
+                { id: 'cl7', text: 'Неге көшені таза ұстау маңызды?', options: ['Таза және қауіпсіз болу үшін', 'Қоқыс көп болу үшін', 'Ағаш сындыру үшін'], correct: 0 },
+                { id: 'cl8', text: 'Үйдің жанында қоқыс көрсең…', options: ['Жинап, қоқысқа тастаймын', 'Шашамын', 'Жасырамын'], correct: 0 },
+                { id: 'cl9', text: 'Бөтелкені не істейміз?', options: ['Мыжып, контейнерге тастау', 'Өзенге тастау', 'Жолға қалдыру'], correct: 0 },
+                { id: 'cl10', text: 'Таза аула — бұл…', options: ['Қоқыс жоқ жер', 'Қоқыс көп жер', 'Жүру қауіпті жер'], correct: 0 }
+            ];
+
+            if (lessonId === 'red_book_kz') return lang === 'kz' ? redBookKz : redBookRu;
+            if (lessonId === 'animals_kz') return lang === 'kz' ? animalsKz : animalsRu;
+            if (lessonId === 'city_litter_birds') return lang === 'kz' ? cityKz : cityRu;
+
+            return lang === 'kz' ? kz : ru;
+        }
+
+        function getLeaderboard() {
+            try {
+                const raw = localStorage.getItem('ecobalaKidsLeaderboard');
+                if (!raw) return [];
+                const arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveLeaderboard(arr) {
+            localStorage.setItem('ecobalaKidsLeaderboard', JSON.stringify(arr));
+        }
+
+        function updateLeaderboard(user) {
+            const id = String(user.email || `${user.child_name || ''}_${user.child_surname || ''}`);
+            if (!id) return;
+            const arr = getLeaderboard();
+            const idx = arr.findIndex(x => x.id === id);
+            const row = {
+                id,
+                role: 'kids',
+                name: `${user.child_name || ''} ${user.child_surname || ''}`.trim(),
+                school: String(user.school || ''),
+                class: String(user.class || ''),
+                points: Number(user.points ?? 0)
+            };
+            if (idx >= 0) arr[idx] = row;
+            else arr.push(row);
+            arr.sort((a, b) => (b.points || 0) - (a.points || 0));
+            saveLeaderboard(arr);
+        }
+
+        function populateRatingFilters(lang) {
+            const select = document.getElementById('ratingSchool');
+            if (!select) return;
+            const current = select.value;
+            select.innerHTML = '';
+
+            const optAll = document.createElement('option');
+            optAll.value = '';
+            optAll.textContent = t(lang, 'rating_all_schools');
+            select.appendChild(optAll);
+
+            Object.keys(schoolNameById).forEach(id => {
+                const opt = document.createElement('option');
+                opt.value = id;
+                opt.textContent = schoolNameById[id][lang];
+                select.appendChild(opt);
+            });
+
+            select.value = current;
+        }
+
+        function renderRating(lang) {
+            populateRatingFilters(lang);
+
+            const user = normalizeKidsUser(getUser());
+            const id = String(user.email || `${user.child_name || ''}_${user.child_surname || ''}`);
+
+            const school = document.getElementById('ratingSchool')?.value || '';
+            const cls = document.getElementById('ratingClass')?.value || '';
+
+            const arr = getLeaderboard().filter(x => x.role === 'kids');
+            const filtered = arr.filter(x => {
+                if (school && String(x.school) !== String(school)) return false;
+                if (cls && String(x.class) !== String(cls)) return false;
+                return true;
+            }).slice(0, 10);
+
+            const list = document.getElementById('ratingList');
+            list.innerHTML = '';
+
+            filtered.forEach((x, i) => {
+                const item = document.createElement('div');
+                item.className = 'item';
+
+                const top = document.createElement('div');
+                top.className = 'top';
+
+                const strong = document.createElement('strong');
+                const name = x.id === id ? `${x.name} (${t(lang, 'rating_me')})` : x.name;
+                strong.textContent = `${i + 1}. ${name || '—'}`;
+
+                const small = document.createElement('small');
+                small.textContent = `${x.points || 0} ${t(lang, 'points')}`;
+
+                top.appendChild(strong);
+                top.appendChild(small);
+
+                const p = document.createElement('p');
+                const schoolObj = schoolNameById[String(x.school)] || null;
+                const schoolName = schoolObj ? schoolObj[lang] : (x.school || '—');
+                p.textContent = t(lang, 'school_class', { school: schoolName, class: x.class || '—' });
+
+                item.appendChild(top);
+                item.appendChild(p);
+                list.appendChild(item);
+            });
+
+            const pos = arr.findIndex(x => x.id === id);
+            document.getElementById('rank').textContent = pos >= 0 ? String(pos + 1) : '—';
+        }
+
+        function getEarnedBadges(user) {
+            const badges = [];
+
+            if ((user.kids_lessons_done || []).length >= 1) badges.push('badge_first_lesson');
+            if ((user.kids_games_total || 0) >= 10) badges.push('badge_10_games');
+            if ((user.points || 0) >= 100) badges.push('badge_100_points');
+
+            const arr = getLeaderboard().filter(x => x.role === 'kids');
+            const school = String(user.school || '');
+            const cls = String(user.class || '');
+            const filtered = arr.filter(x => String(x.school) === school && String(x.class) === cls);
+            filtered.sort((a, b) => (b.points || 0) - (a.points || 0));
+            if (filtered.length && filtered[0].id === String(user.email || '')) badges.push('badge_best_class');
+
+            return badges;
+        }
+
+        function renderBadges(user, lang) {
+            const list = document.getElementById('badgesList');
+            list.innerHTML = '';
+
+            const earned = getEarnedBadges(user);
+            earned.forEach(k => {
+                const div = document.createElement('div');
+                div.className = 'badge';
+                const icon = document.createElement('span');
+                icon.textContent = '🏅';
+                const text = document.createElement('div');
+                text.textContent = t(lang, k);
+                div.appendChild(icon);
+                div.appendChild(text);
+                list.appendChild(div);
+            });
+
+            document.getElementById('badgesCount').textContent = String(earned.length);
+            document.getElementById('badgesBadge').textContent = String(earned.length);
+        }
+
+        function ensureBotGreeting(lang) {
+            const chat = document.getElementById('chatBox');
+            if (!chat) return;
+            if (chat.childElementCount > 0) return;
+            pushMsg('bot', t(lang, 'bot_greet'));
+        }
+
+        function pushMsg(type, text) {
+            const chat = document.getElementById('chatBox');
+            const msg = document.createElement('div');
+            msg.className = `msg ${type}`;
+            msg.textContent = text;
+            chat.appendChild(msg);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function botAnswer(lang, text) {
+            const s = String(text || '').toLowerCase();
+            if (s.includes('хромтау') || s.includes('chromtau')) {
+                return lang === 'kz'
+                    ? 'Хромтауда дала, шағын орман-тоғайлар және өзен-көлдер бар. Ең бастысы — қоқыс тастамау және табиғатты таза ұстау.'
+                    : 'В Хромтау есть степь, небольшие лесные зоны и водоёмы. Главное — не мусорить и сохранять природу чистой.';
+            }
+            if (s.includes('как улучш') || s.includes('қалай жақс') || s.includes('жақсарту')) {
+                return lang === 'kz'
+                    ? '3 қадам: 1) қоқысты сұрыпта 2) суды үнемде 3) достарыңмен бірге аула/саябақты тазала. Кішкентай қадам да маңызды!'
+                    : '3 шага: 1) сортируй отходы 2) экономь воду 3) убирай двор/парк с друзьями. Даже маленькие шаги важны!';
+            }
+            if (s.includes('kids') || s.includes('кидс') || s.includes('teen') || s.includes('тин')) {
+                return lang === 'kz'
+                    ? 'EcoKids — 6–12 жас: ойындар, сабақтар, онлайн-квесттер. EcoTeens — 13–17 жас: нақты квесттер және жобалар.'
+                    : 'EcoKids — 6–12 лет: игры, уроки, онлайн-квесты. EcoTeens — 13–17 лет: реальные квесты и проекты.';
+            }
+            if (s.includes('бот') || s.includes('bot')) {
+                return lang === 'kz'
+                    ? 'Менен сұрай аласыз: “Хромтау табиғаты қандай?”, “Табиғатты қалай жақсартамыз?”, “Қайта өңдеу деген не?”'
+                    : 'Спроси меня: “Какая природа Хромтау?”, “Как улучшить природу?”, “Что такое переработка?”';
+            }
+            if (s.includes('вода') || s.includes('су')) {
+                return lang === 'kz'
+                    ? 'Суды үнемде: кранды жап, тіс жуғанда суды ағызба. Таза су — бәріне керек!'
+                    : 'Экономь воду: закрывай кран и не лей зря воду. Чистая вода нужна всем!';
+            }
+            if (s.includes('лес') || s.includes('орман') || s.includes('дерев')) {
+                return lang === 'kz'
+                    ? 'Орман ауа береді және жануарларға үй. Ағаштарды сындырма және қоқыс тастама.'
+                    : 'Лес даёт чистый воздух и дом животным. Не ломай деревья и не оставляй мусор.';
+            }
+            if (s.includes('мусор') || s.includes('қоқыс')) {
+                return lang === 'kz'
+                    ? 'Қоқысты бөлек жина: пластик, қағаз, әйнек. Бұл табиғатты қорғайды.'
+                    : 'Сортируй мусор: пластик, бумага, стекло. Это помогает природе.';
+            }
+            return t(lang, 'bot_unknown');
+        }
+
+        function renderBotTopics(lang) {
+            const wrap = document.getElementById('botTopics');
+            if (!wrap) return;
+            wrap.innerHTML = '';
+
+            const topics = [
+                { key: 'bot_topic_khromtau', q: lang === 'kz' ? 'Хромтау табиғаты қандай?' : 'Какая природа Хромтау?' },
+                { key: 'bot_topic_better', q: lang === 'kz' ? 'Табиғатты қалай жақсартамыз?' : 'Как сделать природу лучше?' },
+                { key: 'bot_topic_kids_teen', q: lang === 'kz' ? 'Kids және Teen деген не?' : 'Что такое Kids и что такое Teen?' },
+                { key: 'bot_topic_recycle', q: lang === 'kz' ? 'Қайта өңдеу деген не?' : 'Что такое переработка?' }
+            ];
+
+            topics.forEach(tpc => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'topic-btn';
+                b.textContent = t(lang, tpc.key);
+                b.addEventListener('click', () => {
+                    const input = document.getElementById('chatInput');
+                    if (!input) return;
+                    input.value = tpc.q;
+                    input.focus();
+                });
+                wrap.appendChild(b);
+            });
+        }
+
+        function init() {
+            const user = getUser();
+            if (!user || user.role !== 'kids') {
+                window.location.href = 'register.html';
+                return;
+            }
+
+            extendTranslations();
+
+            const normalized = normalizeKidsUser(user);
+            saveUser(normalized);
+            updateLeaderboard(normalized);
+
+            const fullName = `${normalized.child_name || ''} ${normalized.child_surname || ''}`.trim() || '—';
+            document.getElementById('fullName').textContent = fullName;
+            updateHeaderStats(normalized);
+
+            document.querySelectorAll('.menu-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const panel = btn.getAttribute('data-panel');
+                    localStorage.setItem('ecobalaKidsLastPanel', panel);
+                    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                    const el = document.getElementById(`panel-${panel}`);
+                    if (el) el.classList.add('active');
+
+                    const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                    if (panel === 'rating') renderRating(lang);
+                    if (panel === 'bot') ensureBotGreeting(lang);
+                    if (panel === 'bot') renderBotTopics(lang);
+                });
+            });
+
+            document.getElementById('ratingSchool').addEventListener('change', () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                renderRating(lang);
+            });
+
+            document.getElementById('ratingClass').addEventListener('change', () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                renderRating(lang);
+            });
+
+            document.getElementById('resetRatingBtn').addEventListener('click', () => {
+                document.getElementById('ratingSchool').value = '';
+                document.getElementById('ratingClass').value = '';
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                renderRating(lang);
+            });
+
+            document.getElementById('chatForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = document.getElementById('chatInput');
+                const text = input.value.trim();
+                if (!text) return;
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                pushMsg('user', text);
+                input.value = '';
+                const ans = botAnswer(lang, text);
+                setTimeout(() => pushMsg('bot', ans), 250);
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const selected = btn.getAttribute('data-lang');
+                    setLanguage(selected);
+                });
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('ecobalaUser');
+                window.location.href = 'index.html';
+            });
+
+            document.getElementById('qaKidsGamesBtn')?.addEventListener('click', () => {
+                document.querySelector('.menu-btn[data-panel="games"]')?.click();
+            });
+            document.getElementById('qaKidsLessonsBtn')?.addEventListener('click', () => {
+                document.querySelector('.menu-btn[data-panel="lessons"]')?.click();
+            });
+            document.getElementById('qaKidsQuestsBtn')?.addEventListener('click', () => {
+                document.querySelector('.menu-btn[data-panel="quests"]')?.click();
+            });
+
+            const lang = localStorage.getItem('selectedLanguage') || 'ru';
+            applyLangToUI(lang);
+            updateLanguage(lang);
+            renderBotTopics(lang);
+
+            setLanguage(lang);
+
+            const lastPanel = localStorage.getItem('ecobalaKidsLastPanel');
+            if (lastPanel) {
+                const btn = document.querySelector(`.menu-btn[data-panel="${lastPanel}"]`);
+                if (btn) btn.click();
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

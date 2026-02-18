@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoBala Teen - Профиль</title>
+    <link rel="icon" href="iconca.jpg" type="image/jpeg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --teen: #27AE60;
+            --teen-dark: #14532D;
+            --bg1: #D1FAE5;
+            --bg2: #E6F7EA;
+            --text: #052013;
+            --muted: rgba(5, 32, 19, 0.72);
+            --card: rgba(255, 255, 255, 0.68);
+            --border: rgba(255, 255, 255, 0.55);
+            --shadow: 0 12px 34px rgba(39, 174, 96, 0.18);
+            --radius: 22px;
+            --transition: all 0.25s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: radial-gradient(900px 400px at 20% 10%, rgba(39,174,96,0.28), transparent 60%),
+                        radial-gradient(900px 500px at 80% 0%, rgba(20,83,45,0.22), transparent 55%),
+                        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 0;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: var(--teen-dark);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.25);
+        }
+
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .link {
+            color: var(--teen-dark);
+            text-decoration: none;
+            font-weight: 700;
+            opacity: 0.85;
+            transition: var(--transition);
+        }
+
+        .link:hover { opacity: 1; }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .language-switcher {
+            display: flex;
+            background: rgba(39, 174, 96, 0.12);
+            border-radius: 999px;
+            padding: 3px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .lang-indicator {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(50% - 3px);
+            height: calc(100% - 6px);
+            background: var(--teen);
+            border-radius: 999px;
+            transition: transform 0.25s ease;
+            z-index: 1;
+        }
+
+        .lang-indicator.kazakh { transform: translateX(calc(100% - 6px)); }
+
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 800;
+            color: var(--teen-dark);
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active { color: #fff; }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-weight: 800;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn-outline {
+            background: rgba(255,255,255,0.6);
+            color: var(--teen-dark);
+            border: 2px solid rgba(39, 174, 96, 0.35);
+        }
+
+        .btn-outline:hover { transform: translateY(-1px); border-color: rgba(39, 174, 96, 0.7); }
+
+        .btn-primary {
+            background: var(--teen);
+            color: white;
+            box-shadow: 0 10px 22px rgba(39, 174, 96, 0.28);
+        }
+
+        .btn-primary:hover { transform: translateY(-1px); background: #1f9a53; }
+
+        .dashboard {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .dash-title {
+            font-size: 16px;
+            color: var(--teen-dark);
+            margin-bottom: 10px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .qa {
+            padding: 12px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.62);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 10px 22px rgba(39, 174, 96, 0.12);
+            text-align: left;
+        }
+
+        .qa .top {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .qa .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: rgba(39, 174, 96, 0.14);
+            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.18);
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+
+        .qa .desc {
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            display: grid;
+            gap: 10px;
+        }
+
+        .bar {
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(39, 174, 96, 0.14);
+            border: 1px solid rgba(39, 174, 96, 0.18);
+            overflow: hidden;
+        }
+
+        .bar > div {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #27AE60 0%, #14532D 100%);
+            transition: width 0.35s ease;
+        }
+
+        .progress-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--muted);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        @media (max-width: 980px) {
+            .dashboard { grid-template-columns: 1fr; }
+            .quick-actions { grid-template-columns: 1fr; }
+        }
+
+        main { padding: 28px 0 70px; }
+
+        .app {
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 18px;
+            align-items: start;
+            margin-top: 18px;
+        }
+
+        .sidebar {
+            padding: 16px;
+        }
+
+        .sidebar h2 {
+            font-size: 16px;
+            color: var(--teen-dark);
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            display: grid;
+            gap: 10px;
+        }
+
+        .menu-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.55);
+            background: rgba(255,255,255,0.55);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 900;
+            color: var(--teen-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(39, 174, 96, 0.7);
+        }
+
+        .menu-btn.active {
+            background: rgba(39, 174, 96, 0.10);
+            border-color: rgba(39, 174, 96, 0.7);
+        }
+
+        .menu-badge {
+            font-size: 12px;
+            font-weight: 900;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(39, 174, 96, 0.14);
+            color: var(--teen-dark);
+        }
+
+        .content {
+            display: grid;
+            gap: 18px;
+        }
+
+        .panel {
+            padding: 18px;
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .panel h2 {
+            font-size: 18px;
+            color: var(--teen-dark);
+            margin-bottom: 12px;
+        }
+
+        .notice {
+            padding: 12px;
+            border-radius: 18px;
+            background: rgba(39, 174, 96, 0.10);
+            border: 1px solid rgba(39, 174, 96, 0.22);
+            color: var(--teen-dark);
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .mini-card {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 14px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .mini-card h3 {
+            font-size: 16px;
+            color: var(--teen-dark);
+        }
+
+        .mini-card p {
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .mini-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mini-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hint {
+            color: var(--muted);
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.72);
+            font-weight: 800;
+            color: var(--teen-dark);
+            outline: none;
+        }
+
+        .form {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .form .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 12px;
+            border: 1px solid rgba(255,255,255,0.55);
+            background: rgba(255,255,255,0.55);
+            color: var(--teen-dark);
+        }
+
+        .status.pending {
+            border-color: rgba(245, 158, 11, 0.35);
+            background: rgba(245, 158, 11, 0.12);
+        }
+
+        .status.approved {
+            border-color: rgba(39, 174, 96, 0.35);
+            background: rgba(39, 174, 96, 0.12);
+        }
+
+        .status.rejected {
+            border-color: rgba(239, 68, 68, 0.35);
+            background: rgba(239, 68, 68, 0.12);
+        }
+
+        .map-box {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 14px;
+            min-height: 260px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .pin {
+            padding: 10px 12px;
+            border-radius: 16px;
+            background: rgba(39, 174, 96, 0.10);
+            border: 1px solid rgba(39, 174, 96, 0.18);
+            color: var(--teen-dark);
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .chat {
+            display: grid;
+            gap: 12px;
+        }
+
+        .chat-box {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 12px;
+            min-height: 240px;
+            max-height: 360px;
+            overflow: auto;
+            display: grid;
+            gap: 10px;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 10px 12px;
+            border-radius: 16px;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+
+        .msg.user {
+            justify-self: end;
+            background: rgba(39, 174, 96, 0.14);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+            color: var(--teen-dark);
+        }
+
+        .msg.bot {
+            justify-self: start;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.65);
+            color: var(--teen-dark);
+        }
+
+        .chat-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            backdrop-filter: blur(14px);
+        }
+
+        .profile {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 84px 1fr;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            border: 2px solid rgba(39, 174, 96, 0.55);
+            pointer-events: none;
+        }
+
+        .avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(39,174,96,0.25), rgba(20,83,45,0.18));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+        }
+
+        .meta h1 {
+            font-size: 24px;
+            line-height: 1.15;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+
+        .meta p {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .meta .row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            font-weight: 800;
+            color: var(--teen-dark);
+        }
+
+        .stats {
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .stats h2 { font-size: 18px; color: var(--teen-dark); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat .num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: var(--teen-dark);
+            font-size: 22px;
+            line-height: 1.1;
+        }
+
+        .stat .label {
+            color: var(--muted);
+            font-weight: 800;
+            margin-top: 6px;
+            font-size: 12px;
+        }
+
+        .sections {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .section {
+            padding: 18px;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            color: var(--teen-dark);
+            margin-bottom: 12px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 10px 12px;
+            font-weight: 900;
+            color: var(--teen-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 140px;
+        }
+
+        .badge span { font-size: 18px; }
+
+        .list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .item {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            border-radius: 18px;
+            padding: 12px;
+        }
+
+        .item .top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .item .top strong { color: var(--teen-dark); }
+        .item .top small { color: var(--muted); font-weight: 800; }
+        .item p { margin-top: 8px; color: var(--muted); font-weight: 700; }
+
+        @media (max-width: 980px) {
+            .hero { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: repeat(3, 1fr); }
+            .sections { grid-template-columns: 1fr; }
+            .app { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 560px) {
+            .container { padding: 0 14px; }
+            .profile { grid-template-columns: 70px 1fr; }
+            .avatar { width: 70px; height: 70px; border-radius: 18px; font-size: 36px; }
+            .meta h1 { font-size: 20px; }
+            .grid { grid-template-columns: 1fr 1fr; }
+            .btn { width: 100%; }
+            .actions { width: 100%; }
+            .nav-links { display: none; }
+            .cards { grid-template-columns: 1fr; }
+            .form .row { grid-template-columns: 1fr; }
+            .map-grid { grid-template-columns: 1fr; }
+            .chat-form { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="left">
+                    <a class="logo" href="index.html">
+                        <span class="logo-icon"><img src="iconca.jpg" alt="EcoBala Logo" /></span>
+                        EcoBala Teen
+                    </a>
+                    <div class="nav-links">
+                        <a class="link" href="index.html" data-lang-text="nav_home">Главная</a>
+                        <a class="link" href="register.html" data-lang-text="nav_switch">Сменить платформу</a>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <div class="language-switcher">
+                        <div class="lang-indicator"></div>
+                        <button class="lang-btn active" data-lang="ru">РУС</button>
+                        <button class="lang-btn" data-lang="kz">ҚАЗ</button>
+                    </div>
+                    <button class="btn btn-outline" id="logoutBtn" data-lang-text="logout">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <div class="card profile">
+                    <div class="role-ring"></div>
+                    <div class="avatar" aria-hidden="true">👦</div>
+                    <div class="meta">
+                        <h1 id="fullName">—</h1>
+                        <p id="schoolClass">—</p>
+                        <div class="row">
+                            <div class="pill"><span aria-hidden="true">⭐</span><span data-lang-text="points">Баллы</span>: <span id="points">0</span></div>
+                            <div class="pill"><span aria-hidden="true">📈</span><span data-lang-text="level">Уровень</span>: <span id="level">1</span></div>
+                            <div class="pill"><span aria-hidden="true">🧩</span><span data-lang-text="quests">Квестов</span>: <span id="questsTotal">0</span></div>
+                            <div class="pill"><span aria-hidden="true">🧾</span><span data-lang-text="reports">Отчётов</span>: <span id="reportsTotal">0</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card stats">
+                    <h2 data-lang-text="stats_title">Статистика</h2>
+                    <div class="grid">
+                        <div class="stat">
+                            <div class="num" id="rank">—</div>
+                            <div class="label" data-lang-text="rank">Место в рейтинге</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num" id="badgesCount">0</div>
+                            <div class="label" data-lang-text="badges">Значки</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num" id="age">—</div>
+                            <div class="label" data-lang-text="age">Возраст</div>
+                        </div>
+                    </div>
+                    <div class="hint" data-lang-text="teen_rules">Teen: реальные квесты с отчётом (фото/описание/гео/дата). Модерация в MVP — демонстрационная.</div>
+                </div>
+            </div>
+
+            <div class="dashboard">
+                <div class="card">
+                    <h2 class="dash-title" data-lang-text="dash_quick">Быстрые действия</h2>
+                    <div class="quick-actions">
+                        <div class="qa">
+                            <div class="top">
+                                <div class="icon" aria-hidden="true">🧩</div>
+                                <div style="font-weight:900;" data-lang-text="dash_quests">Квесты</div>
+                            </div>
+                            <div class="desc" data-lang-text="dash_quests_desc">Выберите квест и выполните его в реальности.</div>
+                            <button class="btn btn-primary" type="button" id="qaTeenQuestsBtn" data-lang-text="dash_open">Открыть</button>
+                        </div>
+                        <div class="qa">
+                            <div class="top">
+                                <div class="icon" aria-hidden="true">🧾</div>
+                                <div style="font-weight:900;" data-lang-text="dash_reports">Отчёты</div>
+                            </div>
+                            <div class="desc" data-lang-text="dash_reports_desc">Отправьте отчёт: фото, описание и геолокация.</div>
+                            <button class="btn btn-primary" type="button" id="qaTeenReportsBtn" data-lang-text="dash_open">Открыть</button>
+                        </div>
+                        <div class="qa">
+                            <div class="top">
+                                <div class="icon" aria-hidden="true">🗺️</div>
+                                <div style="font-weight:900;" data-lang-text="dash_map">Карта</div>
+                            </div>
+                            <div class="desc" data-lang-text="dash_map_desc">Отметьте место проблемы или полезного действия.</div>
+                            <button class="btn btn-primary" type="button" id="qaTeenMapBtn" data-lang-text="dash_open">Открыть</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="dash-title" data-lang-text="dash_progress">Прогресс</h2>
+                    <div class="progress">
+                        <div class="progress-row">
+                            <span data-lang-text="dash_level">Уровень</span>
+                            <span id="levelProgressText">0/0</span>
+                        </div>
+                        <div class="bar"><div id="levelProgressBar"></div></div>
+                        <div class="hint" data-lang-text="dash_tip">Совет: принимайте участие в квестах — это даёт много баллов.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app">
+                <aside class="card sidebar">
+                    <h2 data-lang-text="menu_title">Разделы</h2>
+                    <div class="menu">
+                        <button class="menu-btn active" data-panel="quests"><span data-lang-text="menu_quests">🧩 Реальные квесты</span><span class="menu-badge" id="questsBadge">0</span></button>
+                        <button class="menu-btn" data-panel="reports"><span data-lang-text="menu_reports">🧾 Мои отчёты</span><span class="menu-badge" id="reportsBadge">0</span></button>
+                        <button class="menu-btn" data-panel="map"><span data-lang-text="menu_map">🗺️ Карта (MVP)</span><span class="menu-badge" data-lang-text="menu_map_badge">Заглушка</span></button>
+                        <button class="menu-btn" data-panel="rating"><span data-lang-text="menu_rating">🏆 Рейтинг</span><span class="menu-badge">Top 10</span></button>
+                        <button class="menu-btn" data-panel="badges"><span data-lang-text="menu_badges">🏅 Значки</span><span class="menu-badge" id="badgesBadge">0</span></button>
+                        <button class="menu-btn" data-panel="bot"><span data-lang-text="menu_bot">🤖 AI‑бот</span><span class="menu-badge" data-lang-text="menu_bot_badge">Помощь</span></button>
+                    </div>
+                </aside>
+
+                <section class="content">
+                    <div class="card panel active" id="panel-quests">
+                        <h2 data-lang-text="quests_title">Реальные квесты</h2>
+                        <div class="notice" data-lang-text="quests_hint">Выберите квест, выполните его в реальности и отправьте отчёт.</div>
+                        <div class="cards" id="questsList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-reports">
+                        <h2 data-lang-text="reports_title">Мои отчёты</h2>
+                        <div class="notice" data-lang-text="reports_hint">Отчёты сохраняются на этом устройстве. В MVP вы можете “проверить” отчёт вручную.</div>
+
+                        <div class="mini-card" style="margin-bottom:12px;">
+                            <h3 data-lang-text="report_create">Создать отчёт</h3>
+                            <div class="form" id="reportForm">
+                                <div class="row">
+                                    <select class="input" id="reportQuest"></select>
+                                    <input class="input" id="reportDate" type="date" />
+                                </div>
+                                <textarea class="input" id="reportText" rows="4" data-lang-placeholder="report_text_ph" placeholder="Коротко опишите, что сделали..."></textarea>
+                                <div class="row">
+                                    <input class="input" id="reportPhoto" type="file" accept="image/*" />
+                                    <button class="btn btn-outline" id="geoBtn" type="button" data-lang-text="geo_get">Получить геолокацию</button>
+                                </div>
+                                <div class="hint" id="geoStatus" data-lang-text="geo_empty">Геолокация не получена</div>
+                                <button class="btn btn-primary" id="submitReportBtn" type="button" data-lang-text="report_submit">Отправить отчёт</button>
+                            </div>
+                        </div>
+
+                        <div class="list" id="reportsList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-map">
+                        <h2 data-lang-text="map_title">Карта (MVP)</h2>
+                        <div class="notice" data-lang-text="map_hint">MVP: точки сохраняются локально. Можно отметить место загрязнения или полезного действия.</div>
+                        <div class="map-box">
+                            <div class="mini-row">
+                                <div class="hint" id="mapCoords" data-lang-text="map_no_coords">Координаты: —</div>
+                                <div class="mini-actions">
+                                    <button class="btn btn-outline" id="mapGetGeoBtn" type="button" data-lang-text="geo_get">Получить геолокацию</button>
+                                    <button class="btn btn-primary" id="mapAddPinBtn" type="button" data-lang-text="map_add_pin">Добавить точку</button>
+                                </div>
+                            </div>
+                            <div class="map-grid" id="pinsList"></div>
+                        </div>
+                    </div>
+
+                    <div class="card panel" id="panel-rating">
+                        <h2 data-lang-text="rating_title">Рейтинг Teen</h2>
+                        <div class="notice" data-lang-text="rating_hint">Фильтруйте по школе и классу (данные сохраняются на этом устройстве).</div>
+                        <div class="mini-row" style="margin-bottom:12px;">
+                            <div class="mini-actions" style="flex:1;">
+                                <select class="input" id="ratingSchool">
+                                    <option value="" data-lang-text="rating_all_schools">Все школы</option>
+                                </select>
+                                <select class="input" id="ratingClass">
+                                    <option value="" data-lang-text="rating_all_classes">Все классы</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-outline" id="resetRatingBtn" data-lang-text="rating_reset">Сбросить</button>
+                        </div>
+                        <div class="list" id="ratingList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-badges">
+                        <h2 data-lang-text="badges_title">Значки</h2>
+                        <div class="notice" data-lang-text="badges_hint">Значки выдаются автоматически за достижения.</div>
+                        <div class="badges" id="badgesList"></div>
+                    </div>
+
+                    <div class="card panel" id="panel-bot">
+                        <h2 data-lang-text="bot_title">AI‑бот Teen</h2>
+                        <div class="notice" data-lang-text="bot_hint">Опишите ситуацию или квест — я помогу составить план действий и отчёт.</div>
+                        <div class="chat">
+                            <div class="chat-box" id="chatBox"></div>
+                            <form class="chat-form" id="chatForm">
+                                <input class="input" id="chatInput" type="text" autocomplete="off" data-lang-placeholder="bot_placeholder" placeholder="Напишите вопрос..." />
+                                <button class="btn btn-primary" type="submit" data-lang-text="bot_send">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const translations = {
+            ru: {
+                nav_home: 'Главная',
+                nav_switch: 'Сменить платформу',
+                logout: 'Выйти',
+                points: 'Баллы',
+                level: 'Уровень',
+                quests: 'Квестов',
+                reports: 'Отчётов',
+                stats_title: 'Статистика',
+                rank: 'Место в рейтинге',
+                badges: 'Значки',
+                age: 'Возраст',
+                teen_rules: 'Teen: реальные квесты с отчётом (фото/описание/гео/дата). Модерация в MVP — демонстрационная.',
+                menu_title: 'Разделы',
+                menu_quests: '🧩 Реальные квесты',
+                menu_reports: '🧾 Мои отчёты',
+                menu_map: '🗺️ Карта (MVP)',
+                menu_map_badge: 'Заглушка',
+                menu_rating: '🏆 Рейтинг',
+                menu_badges: '🏅 Значки',
+                menu_bot: '🤖 AI‑бот',
+                menu_bot_badge: 'Помощь',
+                quests_title: 'Реальные квесты',
+                quests_hint: 'Выберите квест, выполните его в реальности и отправьте отчёт.',
+                reports_title: 'Мои отчёты',
+                reports_hint: 'Отчёты сохраняются на этом устройстве. В MVP вы можете “проверить” отчёт вручную.',
+                report_create: 'Создать отчёт',
+                report_text_ph: 'Коротко опишите, что сделали...',
+                report_submit: 'Отправить отчёт',
+                geo_get: 'Получить геолокацию',
+                geo_empty: 'Геолокация не получена',
+                geo_ok: 'Геолокация: {lat}, {lng}',
+                geo_error: 'Не удалось получить геолокацию',
+                map_title: 'Карта (MVP)',
+                map_hint: 'MVP: точки сохраняются локально. Можно отметить место загрязнения или полезного действия.',
+                map_no_coords: 'Координаты: —',
+                map_add_pin: 'Добавить точку',
+                map_pin_added: 'Точка добавлена',
+                rating_title: 'Рейтинг Teen',
+                rating_hint: 'Фильтруйте по школе и классу (данные сохраняются на этом устройстве).',
+                rating_all_schools: 'Все школы',
+                rating_all_classes: 'Все классы',
+                rating_reset: 'Сбросить',
+                badges_title: 'Значки',
+                badges_hint: 'Значки выдаются автоматически за достижения.',
+                bot_title: 'AI‑бот Teen',
+                bot_hint: 'Опишите ситуацию или квест — я помогу составить план действий и отчёт.',
+                bot_send: 'Отправить',
+                bot_placeholder: 'Напишите вопрос...',
+                school_class: 'Школа: {school} • Класс: {class}',
+                open: 'Открыть',
+                do_quest: 'Выполнить',
+                create_report: 'Создать отчёт',
+                report_sent: 'Отчёт отправлен. Статус: на проверке',
+                report_need_fields: 'Заполните квест, дату и описание',
+                report_need_photo: 'Добавьте фото (MVP)',
+                status_pending: 'На проверке',
+                status_approved: 'Принят',
+                status_rejected: 'Отклонён',
+                approve_demo: 'Принять (demo)',
+                reject_demo: 'Отклонить (demo)',
+                report_reward: 'Отчёт принят! +{points} баллов',
+                rating_me: 'Это вы',
+                badge_first_report: '🧾 Первый отчёт',
+                badge_3_approved: '✅ 3 принятых отчёта',
+                badge_500_points: '💎 500 баллов',
+                badge_top10: '🏆 Топ 10',
+                bot_greet: 'Здравствуйте. Я AI‑помощник EcoBala для Teen. Могу помочь с планом квеста и текстом отчёта.',
+                bot_unknown: 'Уточните: какой квест, где и что вы сделали? Я помогу сформулировать отчёт и следующий шаг.',
+                dash_quick: 'Быстрые действия',
+                dash_quests: 'Квесты',
+                dash_quests_desc: 'Выберите квест и выполните его в реальности.',
+                dash_reports: 'Отчёты',
+                dash_reports_desc: 'Отправьте отчёт: фото, описание и геолокация.',
+                dash_map: 'Карта',
+                dash_map_desc: 'Отметьте место проблемы или полезного действия.',
+                dash_open: 'Открыть',
+                dash_progress: 'Прогресс',
+                dash_level: 'Уровень',
+                dash_tip: 'Совет: принимайте участие в квестах — это даёт много баллов.'
+            },
+            kz: {
+                nav_home: 'Басты бет',
+                nav_switch: 'Платформаны ауыстыру',
+                logout: 'Шығу',
+                points: 'Ұпай',
+                level: 'Деңгей',
+                quests: 'Квест',
+                reports: 'Есеп',
+                stats_title: 'Статистика',
+                rank: 'Рейтингтегі орны',
+                badges: 'Белгілер',
+                age: 'Жасы',
+                teen_rules: 'Teen: фото/сипаттама/гео/күні бар нақты квесттер. MVP‑де модерация — демонстрациялық.',
+                menu_title: 'Бөлімдер',
+                menu_quests: '🧩 Нақты квесттер',
+                menu_reports: '🧾 Менің есептерім',
+                menu_map: '🗺️ Карта (MVP)',
+                menu_map_badge: 'Үлгі',
+                menu_rating: '🏆 Рейтинг',
+                menu_badges: '🏅 Белгілер',
+                menu_bot: '🤖 AI‑бот',
+                menu_bot_badge: 'Көмек',
+                quests_title: 'Нақты квесттер',
+                quests_hint: 'Квестті таңдаңыз, шынайы өмірде орындап, есеп жіберіңіз.',
+                reports_title: 'Менің есептерім',
+                reports_hint: 'Есептер осы құрылғыда сақталады. MVP‑де есепті қолмен “тексере” аласыз.',
+                report_create: 'Есеп жасау',
+                report_text_ph: 'Не істегеніңізді қысқаша жазыңыз...',
+                report_submit: 'Есеп жіберу',
+                geo_get: 'Геолокация алу',
+                geo_empty: 'Геолокация алынбады',
+                geo_ok: 'Геолокация: {lat}, {lng}',
+                geo_error: 'Геолокацияны алу мүмкін болмады',
+                map_title: 'Карта (MVP)',
+                map_hint: 'MVP: нүктелер жергілікті сақталады. Ластану орнын немесе пайдалы әрекетті белгілеуге болады.',
+                map_no_coords: 'Координаттар: —',
+                map_add_pin: 'Нүкте қосу',
+                map_pin_added: 'Нүкте қосылды',
+                rating_title: 'Teen рейтингі',
+                rating_hint: 'Мектеп және сынып бойынша сүзгілей аласыз (деректер осы құрылғыда сақталады).',
+                rating_all_schools: 'Барлық мектеп',
+                rating_all_classes: 'Барлық сынып',
+                rating_reset: 'Тазарту',
+                badges_title: 'Белгілер',
+                badges_hint: 'Белгілер жетістіктер үшін автоматты түрде беріледі.',
+                bot_title: 'Teen AI‑бот',
+                bot_hint: 'Жағдайды немесе квестті сипаттаңыз — жоспар және есеп мәтінін жасауға көмектесемін.',
+                bot_send: 'Жіберу',
+                bot_placeholder: 'Сұрағыңызды жазыңыз...',
+                school_class: 'Мектеп: {school} • Сынып: {class}',
+                open: 'Ашу',
+                do_quest: 'Орындау',
+                create_report: 'Есеп жасау',
+                report_sent: 'Есеп жіберілді. Күйі: тексеруде',
+                report_need_fields: 'Квест, күн және сипаттаманы толтырыңыз',
+                report_need_photo: 'Фото қосыңыз (MVP)',
+                status_pending: 'Тексеруде',
+                status_approved: 'Қабылданды',
+                status_rejected: 'Қайтарылды',
+                approve_demo: 'Қабылдау (demo)',
+                reject_demo: 'Қайтару (demo)',
+                report_reward: 'Есеп қабылданды! +{points} ұпай',
+                rating_me: 'Бұл сіз',
+                badge_first_report: '🧾 Алғашқы есеп',
+                badge_3_approved: '✅ 3 қабылданған есеп',
+                badge_500_points: '💎 500 ұпай',
+                badge_top10: '🏆 ТОП 10',
+                bot_greet: 'Сәлеметсіз бе. Мен Teen үшін EcoBala AI‑көмекшісімін. Квест жоспары мен есеп мәтінін жасауға көмектесемін.',
+                bot_unknown: 'Нақтылаңыз: қай квест, қай жерде және не істедіңіз? Есепті дұрыс құрастыруға көмектесемін.',
+                dash_quick: 'Жылдам әрекеттер',
+                dash_quests: 'Квесттер',
+                dash_quests_desc: 'Квестті таңдаңыз да, оны шынайы өмірде орындаңыз.',
+                dash_reports: 'Есептер',
+                dash_reports_desc: 'Есеп жіберіңіз: фото, сипаттама және геолокация.',
+                dash_map: 'Карта',
+                dash_map_desc: 'Мәселе немесе пайдалы әрекет орнын белгілеңіз.',
+                dash_open: 'Ашу',
+                dash_progress: 'Прогресс',
+                dash_level: 'Деңгей',
+                dash_tip: 'Кеңес: квесттерге қатысыңыз — көп ұпай береді.'
+            }
+        };
+
+        const schoolNameById = {
+            '2': { ru: '№2 Хромтауская гимназия', kz: '№2 Хромтау гимназиясы' },
+            '5': { ru: '№5 Хромтауская гимназия', kz: '№5 Хромтау гимназиясы' },
+            '6': { ru: '№6 Хромтауская гимназия', kz: '№6 Хромтау гимназиясы' },
+            '1': { ru: '№1 Средняя школа', kz: '№1 Орта мектеп' },
+            '3': { ru: '№3 Средняя школа', kz: '№3 Орта мектеп' },
+            '4': { ru: '№4 Средняя школа', kz: '№4 Орта мектеп' },
+            '7': { ru: '№7 Средняя школа', kz: '№7 Орта мектеп' }
+        };
+
+        function applyLangToUI(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            document.querySelectorAll('.lang-indicator').forEach(ind => {
+                ind.classList.toggle('kazakh', lang === 'kz');
+            });
+        }
+
+        function t(lang, key, vars) {
+            let s = (translations[lang] && translations[lang][key]) || '';
+            if (vars) {
+                Object.keys(vars).forEach(k => {
+                    s = s.replaceAll(`{${k}}`, String(vars[k]));
+                });
+            }
+            return s;
+        }
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang-text]').forEach(el => {
+                const key = el.getAttribute('data-lang-text');
+                const val = translations[lang] && translations[lang][key];
+                if (val) el.textContent = val;
+            });
+
+            document.querySelectorAll('[data-lang-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-lang-placeholder');
+                const val = translations[lang] && translations[lang][key];
+                if (val) el.setAttribute('placeholder', val);
+            });
+
+            const user = getUser();
+            if (!user) return;
+
+            const schoolObj = schoolNameById[String(user.school)] || null;
+            const schoolName = schoolObj ? schoolObj[lang] : (user.school || '—');
+            document.getElementById('schoolClass').textContent = t(lang, 'school_class', { school: schoolName, class: user.class || '—' });
+
+            renderQuests(lang);
+            renderReports(lang);
+            renderPins(lang);
+            renderBadges(user, lang);
+            renderRating(lang);
+            ensureBotGreeting(lang);
+        }
+
+        function setLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            applyLangToUI(lang);
+            updateLanguage(lang);
+        }
+
+        function getUser() {
+            try {
+                const raw = localStorage.getItem('ecobalaUser');
+                if (!raw) return null;
+                return JSON.parse(raw);
+            } catch {
+                return null;
+            }
+        }
+
+        function normalizeTeenUser(user) {
+            const u = { ...user };
+            if (u.role !== 'teen') return u;
+            u.points = Number(u.points ?? 0);
+            u.level = Number(u.level ?? 1);
+            u.tasks_completed = Number(u.tasks_completed ?? 0);
+            return u;
+        }
+
+        function saveUser(user) {
+            localStorage.setItem('ecobalaUser', JSON.stringify(user));
+        }
+
+        function todayKey() {
+            const d = new Date();
+            const yyyy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function uid() {
+            return `${Date.now()}_${Math.random().toString(16).slice(2)}`;
+        }
+
+        function addPoints(user, points, reason) {
+            const p = Number(points);
+            user.points = Number(user.points ?? 0) + p;
+            user.level = Math.max(1, Math.floor(user.points / 200) + 1);
+            user.tasks_completed = Number(user.tasks_completed ?? 0) + 1;
+            user.teen_points_history = Array.isArray(user.teen_points_history) ? user.teen_points_history : [];
+            user.teen_points_history.unshift({ date: todayKey(), points: p, reason });
+            saveUser(user);
+            updateHeaderStats(user);
+            updateLeaderboard(user);
+        }
+
+        function updateHeaderStats(user) {
+            document.getElementById('points').textContent = String(user.points ?? 0);
+            document.getElementById('level').textContent = String(user.level ?? 1);
+
+            const reports = getReportsForUser(user);
+            const approved = reports.filter(r => r.status === 'approved');
+            document.getElementById('questsTotal').textContent = String(approved.length);
+            document.getElementById('reportsTotal').textContent = String(reports.length);
+
+            const earned = getEarnedBadges(user);
+            document.getElementById('badgesCount').textContent = String(earned.length);
+            document.getElementById('badgesBadge').textContent = String(earned.length);
+
+            document.getElementById('age').textContent = String(user.age ?? '—');
+
+            const lvl = Number(user.level ?? 1);
+            const pts = Number(user.points ?? 0);
+            const base = (lvl - 1) * 200;
+            const next = lvl * 200;
+            const cur = Math.max(0, pts - base);
+            const need = Math.max(1, next - base);
+            const pct = Math.max(0, Math.min(100, Math.round((cur / need) * 100)));
+            const bar = document.getElementById('levelProgressBar');
+            const text = document.getElementById('levelProgressText');
+            if (bar) bar.style.width = `${pct}%`;
+            if (text) text.textContent = `${cur}/${need}`;
+        }
+
+        const teenQuests = [
+            { id: 'plant_tree', icon: '🌳', titleKey: 'tq1_t', descKey: 'tq1_d', points: 120 },
+            { id: 'clean_area', icon: '🧹', titleKey: 'tq2_t', descKey: 'tq2_d', points: 90 },
+            { id: 'separate_waste', icon: '♻️', titleKey: 'tq3_t', descKey: 'tq3_d', points: 70 },
+            { id: 'report_illegal_dump', icon: '📍', titleKey: 'tq4_t', descKey: 'tq4_d', points: 60 }
+        ];
+
+        function extendTranslations() {
+            Object.assign(translations.ru, {
+                tq1_t: 'Посади дерево', tq1_d: 'Посади дерево (или помоги посадить) и отправь фото + описание места.',
+                tq2_t: 'Убери территорию', tq2_d: 'Собери мусор в парке/дворе. Фото до/после приветствуются.',
+                tq3_t: 'Раздельный сбор', tq3_d: 'Собери пластик/бумагу и сдай в пункт приёма. Приложи фото.',
+                tq4_t: 'Сообщи о свалке', tq4_d: 'Отметь место загрязнения на карте и приложи фото.'
+            });
+            Object.assign(translations.kz, {
+                tq1_t: 'Ағаш отырғыз', tq1_d: 'Ағаш отырғыз (немесе көмектес) және фото + орын сипаттамасын жібер.',
+                tq2_t: 'Аумақты тазала', tq2_d: 'Парк/аулада қоқыс жина. Алдын/кейін фото болса жақсы.',
+                tq3_t: 'Бөлек жинау', tq3_d: 'Пластик/қағаз жинап, қабылдау орнына тапсыр. Фото қос.',
+                tq4_t: 'Қоқыс орнын хабарла', tq4_d: 'Ластану орнын картаға белгіле және фото қос.'
+            });
+        }
+
+        function getUserId(user) {
+            return String(user.email || `${user.name || ''}_${user.surname || ''}`);
+        }
+
+        function getReportsAll() {
+            try {
+                const raw = localStorage.getItem('ecobalaTeenReports');
+                if (!raw) return [];
+                const arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveReportsAll(arr) {
+            localStorage.setItem('ecobalaTeenReports', JSON.stringify(arr));
+        }
+
+        function getReportsForUser(user) {
+            const id = getUserId(user);
+            return getReportsAll().filter(r => r.userId === id);
+        }
+
+        function renderQuests(lang) {
+            const list = document.getElementById('questsList');
+            list.innerHTML = '';
+
+            const user = normalizeTeenUser(getUser());
+            saveUser(user);
+            updateHeaderStats(user);
+
+            document.getElementById('questsBadge').textContent = String(teenQuests.length);
+
+            teenQuests.forEach(q => {
+                const card = document.createElement('div');
+                card.className = 'mini-card';
+
+                const h3 = document.createElement('h3');
+                h3.textContent = `${q.icon} ${t(lang, q.titleKey)}`;
+
+                const p = document.createElement('p');
+                p.textContent = t(lang, q.descKey);
+
+                const row = document.createElement('div');
+                row.className = 'mini-row';
+
+                const hint = document.createElement('div');
+                hint.className = 'hint';
+                hint.textContent = `+${q.points} ${t(lang, 'points')}`;
+
+                const actions = document.createElement('div');
+                actions.className = 'mini-actions';
+
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-primary';
+                btn.textContent = t(lang, 'create_report');
+                btn.addEventListener('click', () => {
+                    document.querySelector('[data-panel="reports"]').click();
+                    const sel = document.getElementById('reportQuest');
+                    sel.value = q.id;
+                    sel.dispatchEvent(new Event('change'));
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+
+                actions.appendChild(btn);
+                row.appendChild(hint);
+                row.appendChild(actions);
+
+                card.appendChild(h3);
+                card.appendChild(p);
+                card.appendChild(row);
+                list.appendChild(card);
+            });
+
+            const sel = document.getElementById('reportQuest');
+            if (sel) {
+                const current = sel.value;
+                sel.innerHTML = '';
+                teenQuests.forEach(q => {
+                    const opt = document.createElement('option');
+                    opt.value = q.id;
+                    opt.textContent = `${q.icon} ${t(lang, q.titleKey)}`;
+                    sel.appendChild(opt);
+                });
+                if (current) sel.value = current;
+            }
+        }
+
+        let reportGeo = null;
+        function setGeoStatus(lang, lat, lng) {
+            const el = document.getElementById('geoStatus');
+            if (!el) return;
+            if (lat == null || lng == null) {
+                el.textContent = t(lang, 'geo_empty');
+            } else {
+                el.textContent = t(lang, 'geo_ok', { lat: lat.toFixed(5), lng: lng.toFixed(5) });
+            }
+        }
+
+        function getGeo(lang, cb) {
+            if (!navigator.geolocation) {
+                alert(t(lang, 'geo_error'));
+                cb(null);
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    cb({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+                },
+                () => {
+                    alert(t(lang, 'geo_error'));
+                    cb(null);
+                },
+                { enableHighAccuracy: true, timeout: 8000 }
+            );
+        }
+
+        async function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result || ''));
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function submitReport(lang) {
+            const user = normalizeTeenUser(getUser());
+            const questId = document.getElementById('reportQuest').value;
+            const date = document.getElementById('reportDate').value;
+            const text = document.getElementById('reportText').value.trim();
+            const photoFile = document.getElementById('reportPhoto').files?.[0] || null;
+
+            if (!questId || !date || !text) {
+                alert(t(lang, 'report_need_fields'));
+                return;
+            }
+
+            if (!photoFile) {
+                alert(t(lang, 'report_need_photo'));
+                return;
+            }
+
+            const photo = await fileToBase64(photoFile);
+            const all = getReportsAll();
+
+            all.unshift({
+                id: uid(),
+                userId: getUserId(user),
+                questId,
+                date,
+                text,
+                photo,
+                geo: reportGeo,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            });
+
+            saveReportsAll(all);
+            alert(t(lang, 'report_sent'));
+
+            document.getElementById('reportText').value = '';
+            document.getElementById('reportPhoto').value = '';
+            reportGeo = null;
+            setGeoStatus(lang, null, null);
+
+            renderReports(lang);
+            updateHeaderStats(user);
+        }
+
+        function statusLabel(lang, status) {
+            if (status === 'approved') return t(lang, 'status_approved');
+            if (status === 'rejected') return t(lang, 'status_rejected');
+            return t(lang, 'status_pending');
+        }
+
+        function renderReports(lang) {
+            const user = normalizeTeenUser(getUser());
+            saveUser(user);
+
+            const list = document.getElementById('reportsList');
+            list.innerHTML = '';
+
+            const reports = getReportsForUser(user);
+            document.getElementById('reportsBadge').textContent = String(reports.length);
+
+            reports.forEach(r => {
+                const quest = teenQuests.find(q => q.id === r.questId);
+
+                const item = document.createElement('div');
+                item.className = 'item';
+
+                const top = document.createElement('div');
+                top.className = 'top';
+
+                const strong = document.createElement('strong');
+                strong.textContent = quest ? `${quest.icon} ${t(lang, quest.titleKey)}` : r.questId;
+
+                const small = document.createElement('small');
+                small.textContent = r.date;
+
+                top.appendChild(strong);
+                top.appendChild(small);
+
+                const p = document.createElement('p');
+                p.textContent = r.text;
+
+                const row = document.createElement('div');
+                row.className = 'mini-row';
+                row.style.marginTop = '10px';
+
+                const st = document.createElement('div');
+                st.className = `status ${r.status}`;
+                st.textContent = statusLabel(lang, r.status);
+
+                const actions = document.createElement('div');
+                actions.className = 'mini-actions';
+
+                if (r.photo) {
+                    const a = document.createElement('a');
+                    a.className = 'btn btn-outline';
+                    a.href = r.photo;
+                    a.target = '_blank';
+                    a.rel = 'noreferrer';
+                    a.textContent = t(lang, 'open');
+                    actions.appendChild(a);
+                }
+
+                const approveBtn = document.createElement('button');
+                approveBtn.className = 'btn btn-primary';
+                approveBtn.textContent = t(lang, 'approve_demo');
+                approveBtn.disabled = r.status === 'approved';
+                approveBtn.addEventListener('click', () => setReportStatus(lang, r.id, 'approved'));
+
+                const rejectBtn = document.createElement('button');
+                rejectBtn.className = 'btn btn-outline';
+                rejectBtn.textContent = t(lang, 'reject_demo');
+                rejectBtn.disabled = r.status === 'rejected';
+                rejectBtn.addEventListener('click', () => setReportStatus(lang, r.id, 'rejected'));
+
+                actions.appendChild(approveBtn);
+                actions.appendChild(rejectBtn);
+
+                row.appendChild(st);
+                row.appendChild(actions);
+
+                if (r.geo && typeof r.geo.lat === 'number' && typeof r.geo.lng === 'number') {
+                    const geoP = document.createElement('p');
+                    geoP.className = 'hint';
+                    geoP.textContent = t(lang, 'geo_ok', { lat: r.geo.lat.toFixed(5), lng: r.geo.lng.toFixed(5) });
+                    item.appendChild(top);
+                    item.appendChild(p);
+                    item.appendChild(geoP);
+                    item.appendChild(row);
+                } else {
+                    item.appendChild(top);
+                    item.appendChild(p);
+                    item.appendChild(row);
+                }
+
+                list.appendChild(item);
+            });
+
+            updateHeaderStats(user);
+            renderBadges(user, lang);
+            renderRating(lang);
+        }
+
+        function setReportStatus(lang, reportId, status) {
+            const user = normalizeTeenUser(getUser());
+            const all = getReportsAll();
+            const idx = all.findIndex(r => r.id === reportId && r.userId === getUserId(user));
+            if (idx < 0) return;
+
+            const before = all[idx].status;
+            all[idx].status = status;
+            saveReportsAll(all);
+
+            const quest = teenQuests.find(q => q.id === all[idx].questId);
+            if (status === 'approved' && before !== 'approved' && quest) {
+                addPoints(user, quest.points, `quest:${quest.id}`);
+                alert(t(lang, 'report_reward', { points: quest.points }));
+            } else {
+                saveUser(user);
+                updateHeaderStats(user);
+                updateLeaderboard(user);
+            }
+
+            renderReports(lang);
+        }
+
+        function getPinsAll() {
+            try {
+                const raw = localStorage.getItem('ecobalaTeenPins');
+                if (!raw) return [];
+                const arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function savePinsAll(arr) {
+            localStorage.setItem('ecobalaTeenPins', JSON.stringify(arr));
+        }
+
+        let mapGeo = null;
+        function renderPins(lang) {
+            const el = document.getElementById('pinsList');
+            if (!el) return;
+            el.innerHTML = '';
+            const pins = getPinsAll();
+            pins.slice(0, 12).forEach(p => {
+                const div = document.createElement('div');
+                div.className = 'pin';
+                const left = document.createElement('div');
+                left.textContent = `${p.type} • ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}`;
+                const right = document.createElement('div');
+                right.className = 'hint';
+                right.textContent = p.date;
+                div.appendChild(left);
+                div.appendChild(right);
+                el.appendChild(div);
+            });
+
+            const coords = document.getElementById('mapCoords');
+            if (coords) {
+                if (!mapGeo) coords.textContent = t(lang, 'map_no_coords');
+                else coords.textContent = t(lang, 'geo_ok', { lat: mapGeo.lat.toFixed(5), lng: mapGeo.lng.toFixed(5) });
+            }
+        }
+
+        function addPin(lang) {
+            if (!mapGeo) {
+                alert(t(lang, 'geo_empty'));
+                return;
+            }
+            const pins = getPinsAll();
+            pins.unshift({ id: uid(), type: '📍', lat: mapGeo.lat, lng: mapGeo.lng, date: todayKey() });
+            savePinsAll(pins);
+            alert(t(lang, 'map_pin_added'));
+            renderPins(lang);
+        }
+
+        function getLeaderboard() {
+            try {
+                const raw = localStorage.getItem('ecobalaTeenLeaderboard');
+                if (!raw) return [];
+                const arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveLeaderboard(arr) {
+            localStorage.setItem('ecobalaTeenLeaderboard', JSON.stringify(arr));
+        }
+
+        function updateLeaderboard(user) {
+            const id = getUserId(user);
+            if (!id) return;
+            const arr = getLeaderboard();
+            const idx = arr.findIndex(x => x.id === id);
+            const row = {
+                id,
+                role: 'teen',
+                name: `${user.name || ''} ${user.surname || ''}`.trim(),
+                school: String(user.school || ''),
+                class: String(user.class || ''),
+                points: Number(user.points ?? 0)
+            };
+            if (idx >= 0) arr[idx] = row;
+            else arr.push(row);
+            arr.sort((a, b) => (b.points || 0) - (a.points || 0));
+            saveLeaderboard(arr);
+        }
+
+        function populateRatingFilters(lang) {
+            const select = document.getElementById('ratingSchool');
+            if (!select) return;
+            const current = select.value;
+            select.innerHTML = '';
+
+            const optAll = document.createElement('option');
+            optAll.value = '';
+            optAll.textContent = t(lang, 'rating_all_schools');
+            select.appendChild(optAll);
+
+            Object.keys(schoolNameById).forEach(id => {
+                const opt = document.createElement('option');
+                opt.value = id;
+                opt.textContent = schoolNameById[id][lang];
+                select.appendChild(opt);
+            });
+
+            select.value = current;
+        }
+
+        function renderRating(lang) {
+            populateRatingFilters(lang);
+
+            const user = normalizeTeenUser(getUser());
+            const id = getUserId(user);
+
+            const school = document.getElementById('ratingSchool')?.value || '';
+            const cls = document.getElementById('ratingClass')?.value || '';
+
+            const arr = getLeaderboard().filter(x => x.role === 'teen');
+            const filtered = arr.filter(x => {
+                if (school && String(x.school) !== String(school)) return false;
+                if (cls && String(x.class) !== String(cls)) return false;
+                return true;
+            }).slice(0, 10);
+
+            const list = document.getElementById('ratingList');
+            if (!list) return;
+            list.innerHTML = '';
+
+            filtered.forEach((x, i) => {
+                const item = document.createElement('div');
+                item.className = 'item';
+
+                const top = document.createElement('div');
+                top.className = 'top';
+
+                const strong = document.createElement('strong');
+                const name = x.id === id ? `${x.name} (${t(lang, 'rating_me')})` : x.name;
+                strong.textContent = `${i + 1}. ${name || '—'}`;
+
+                const small = document.createElement('small');
+                small.textContent = `${x.points || 0} ${t(lang, 'points')}`;
+
+                top.appendChild(strong);
+                top.appendChild(small);
+
+                const p = document.createElement('p');
+                const schoolObj = schoolNameById[String(x.school)] || null;
+                const schoolName = schoolObj ? schoolObj[lang] : (x.school || '—');
+                p.textContent = t(lang, 'school_class', { school: schoolName, class: x.class || '—' });
+
+                item.appendChild(top);
+                item.appendChild(p);
+                list.appendChild(item);
+            });
+
+            const pos = arr.findIndex(x => x.id === id);
+            document.getElementById('rank').textContent = pos >= 0 ? String(pos + 1) : '—';
+        }
+
+        function getEarnedBadges(user) {
+            const reports = getReportsForUser(user);
+            const approved = reports.filter(r => r.status === 'approved');
+
+            const badges = [];
+            if (reports.length >= 1) badges.push('badge_first_report');
+            if (approved.length >= 3) badges.push('badge_3_approved');
+            if ((user.points || 0) >= 500) badges.push('badge_500_points');
+
+            const arr = getLeaderboard().filter(x => x.role === 'teen');
+            const idx = arr.findIndex(x => x.id === getUserId(user));
+            if (idx >= 0 && idx < 10) badges.push('badge_top10');
+
+            return badges;
+        }
+
+        function renderBadges(user, lang) {
+            const list = document.getElementById('badgesList');
+            list.innerHTML = '';
+            const earned = getEarnedBadges(user);
+            earned.forEach(k => {
+                const div = document.createElement('div');
+                div.className = 'badge';
+                const icon = document.createElement('span');
+                icon.textContent = '🏅';
+                const text = document.createElement('div');
+                text.textContent = t(lang, k);
+                div.appendChild(icon);
+                div.appendChild(text);
+                list.appendChild(div);
+            });
+            document.getElementById('badgesCount').textContent = String(earned.length);
+            document.getElementById('badgesBadge').textContent = String(earned.length);
+        }
+
+        function ensureBotGreeting(lang) {
+            const chat = document.getElementById('chatBox');
+            if (!chat) return;
+            if (chat.childElementCount > 0) return;
+            pushMsg('bot', t(lang, 'bot_greet'));
+        }
+
+        function pushMsg(type, text) {
+            const chat = document.getElementById('chatBox');
+            const msg = document.createElement('div');
+            msg.className = `msg ${type}`;
+            msg.textContent = text;
+            chat.appendChild(msg);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function botAnswer(lang, q) {
+            const s = String(q || '').toLowerCase();
+            if (s.includes('отч') || s.includes('есеп')) {
+                return lang === 'kz'
+                    ? 'Есепте: 1) не істедіңіз 2) қайда 3) қашан 4) нәтиже 5) фото. Геолокация қоссаңыз жақсы.'
+                    : 'В отчёте укажите: 1) что сделали 2) где 3) когда 4) результат 5) фото. Геолокация — плюс.';
+            }
+            if (s.includes('дерево') || s.includes('ағаш')) {
+                return lang === 'kz'
+                    ? 'Ағаш отырғызу үшін: орын таңдаңыз, көшетті отырғызыңыз, су құйыңыз. Фото және орын сипаттамасын қосыңыз.'
+                    : 'Для посадки дерева: выберите место, посадите саженец, полейте. Добавьте фото и описание места.';
+            }
+            if (s.includes('мусор') || s.includes('қоқыс') || s.includes('убор')) {
+                return lang === 'kz'
+                    ? 'Тазалау квесті: қолғап/қап дайындаңыз, қоқысты жинап, сұрыптаңыз. Фото до/после — ең жақсы дәлел.'
+                    : 'Квест уборки: перчатки/пакеты, сбор, сортировка. Фото до/после — лучший вариант доказательства.';
+            }
+            return t(lang, 'bot_unknown');
+        }
+
+        function init() {
+            const user = getUser();
+            if (!user || user.role !== 'teen') {
+                window.location.href = 'register.html';
+                return;
+            }
+
+            extendTranslations();
+
+            const fullName = `${user.name || ''} ${user.surname || ''}`.trim() || '—';
+            document.getElementById('fullName').textContent = fullName;
+
+            const normalized = normalizeTeenUser(user);
+            saveUser(normalized);
+            updateLeaderboard(normalized);
+            updateHeaderStats(normalized);
+
+            document.querySelectorAll('.menu-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const panel = btn.getAttribute('data-panel');
+                    localStorage.setItem('ecobalaTeenLastPanel', panel);
+                    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                    const el = document.getElementById(`panel-${panel}`);
+                    if (el) el.classList.add('active');
+
+                    const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                    if (panel === 'rating') renderRating(lang);
+                    if (panel === 'badges') renderBadges(normalizeTeenUser(getUser()), lang);
+                    if (panel === 'bot') ensureBotGreeting(lang);
+                });
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+            });
+
+            document.getElementById('geoBtn').addEventListener('click', () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                getGeo(lang, (g) => {
+                    reportGeo = g;
+                    if (g) setGeoStatus(lang, g.lat, g.lng);
+                    else setGeoStatus(lang, null, null);
+                });
+            });
+
+            document.getElementById('submitReportBtn').addEventListener('click', async () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                await submitReport(lang);
+            });
+
+            document.getElementById('mapGetGeoBtn').addEventListener('click', () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                getGeo(lang, (g) => {
+                    mapGeo = g;
+                    renderPins(lang);
+                });
+            });
+
+            document.getElementById('mapAddPinBtn').addEventListener('click', () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                addPin(lang);
+            });
+
+            document.getElementById('ratingSchool').addEventListener('change', () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                renderRating(lang);
+            });
+
+            document.getElementById('ratingClass').addEventListener('change', () => {
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                renderRating(lang);
+            });
+
+            document.getElementById('resetRatingBtn').addEventListener('click', () => {
+                document.getElementById('ratingSchool').value = '';
+                document.getElementById('ratingClass').value = '';
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                renderRating(lang);
+            });
+
+            document.getElementById('chatForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = document.getElementById('chatInput');
+                const text = input.value.trim();
+                if (!text) return;
+                const lang = localStorage.getItem('selectedLanguage') || 'ru';
+                pushMsg('user', text);
+                input.value = '';
+                const ans = botAnswer(lang, text);
+                setTimeout(() => pushMsg('bot', ans), 250);
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('ecobalaUser');
+                window.location.href = 'index.html';
+            });
+
+            document.getElementById('qaTeenQuestsBtn')?.addEventListener('click', () => {
+                document.querySelector('.menu-btn[data-panel="quests"]')?.click();
+            });
+            document.getElementById('qaTeenReportsBtn')?.addEventListener('click', () => {
+                document.querySelector('.menu-btn[data-panel="reports"]')?.click();
+            });
+            document.getElementById('qaTeenMapBtn')?.addEventListener('click', () => {
+                document.querySelector('.menu-btn[data-panel="map"]')?.click();
+            });
+
+            setLanguage(localStorage.getItem('selectedLanguage') || 'ru');
+
+            const lastPanel = localStorage.getItem('ecobalaTeenLastPanel');
+            if (lastPanel) {
+                const btn = document.querySelector(`.menu-btn[data-panel="${lastPanel}"]`);
+                if (btn) btn.click();
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

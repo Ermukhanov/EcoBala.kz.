@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBala - Условия использования</title>
+    <link rel="icon" href="iconca.jpg" type="image/jpeg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>бю.ю
+        :root {
+            --primary-green: #2ECC71;
+            --secondary-blue: #4AA3DF;
+            --light-bg: #F4F8F6;    
+            --white: #FFFFFF;
+            --border-radius: 20px;
+            --shadow: 0 10px 30px rgba(46, 204, 113, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            gap: 12px;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        .back {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0.85;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .back:hover { opacity: 1; color: var(--primary-green); }
+
+        .language-switcher {
+            display: flex;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 25px;
+            padding: 3px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            z-index: 2;
+            position: relative;
+            color: var(--dark-text);
+        }
+
+        .lang-btn.active { color: white; }
+
+        .lang-indicator {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(50% - 3px);
+            height: calc(100% - 6px);
+            background: var(--primary-green);
+            border-radius: 22px;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .lang-indicator.kazakh { transform: translateX(calc(100% - 6px)); }
+
+        main { padding: 40px 0 70px; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 28px;
+        }
+
+        .title { font-size: 34px; margin-bottom: 10px; color: var(--primary-green); }
+        .subtitle { opacity: 0.85; margin-bottom: 22px; }
+
+        .section { margin-top: 22px; }
+        .section h2 { font-size: 22px; margin-bottom: 10px; }
+        .section p { opacity: 0.9; }
+
+        ul { padding-left: 18px; }
+        li { margin: 8px 0; }
+
+        footer {
+            margin-top: 40px;
+            padding: 25px 0;
+            color: white;
+            background: var(--primary-green);
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-row p { opacity: 0.95; }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 14px; }
+            .title { font-size: 26px; }
+            .card { padding: 20px; }
+            .header-content { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="left">
+                    <a class="back" href="index.html" data-lang-text="back">← Назад</a>
+                    <a class="logo" href="index.html">
+                        <span class="logo-icon"><img src="iconca.jpg" alt="EcoBala Logo"></span>
+                        EcoBala
+                    </a>
+                </div>
+
+                <div class="language-switcher">
+                    <div class="lang-indicator"></div>
+                    <button class="lang-btn active" data-lang="ru">РУС</button>
+                    <button class="lang-btn" data-lang="kz">ҚАЗ</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="card">
+                <h1 class="title" data-lang-text="title">Условия использования</h1>
+                <p class="subtitle" data-lang-text="updated">Последнее обновление: 16.02.2026</p>
+
+                <div class="section">
+                    <h2 data-lang-text="s1_title">1. Общие положения</h2>
+                    <p data-lang-text="s1_text">EcoBala — образовательная платформа. Используя сайт, вы соглашаетесь соблюдать эти правила. Если вы не согласны, пожалуйста, не используйте платформу.</p>
+                </div>
+
+                <div class="section">
+                    <h2 data-lang-text="s2_title">2. Аккаунты и роли</h2>
+                    <ul>
+                        <li data-lang-text="s2_li1">Kids: аккаунт создаётся через родителя или учителя.</li>
+                        <li data-lang-text="s2_li2">Teen: может отправлять отчёты по реальным квестам.</li>
+                        <li data-lang-text="s2_li3">Admin: модерация пользователей и проверка отчётов.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2 data-lang-text="s3_title">3. Контент и отчёты</h2>
+                    <p data-lang-text="s3_text">Отправляя фото-отчёты, вы подтверждаете, что у вас есть право загружать эти материалы. Запрещено публиковать чужие фото, персональные данные третьих лиц и любой запрещённый контент.</p>
+                </div>
+
+                <div class="section">
+                    <h2 data-lang-text="s4_title">4. Честная игра и анти-накрутка</h2>
+                    <p data-lang-text="s4_text">Запрещены попытки накрутки баллов и повторные отчёты по одному и тому же заданию. Администрация может отклонять отчёты и ограничивать доступ при нарушениях.</p>
+                </div>
+
+                <div class="section">
+                    <h2 data-lang-text="s5_title">5. Контакты</h2>
+                    <p data-lang-text="s5_text">Вопросы по условиям использования: ecobalakz@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <p data-lang-text="footer_phone">📞 +7 771 451 4717</p>
+                <p data-lang-text="footer_email">📧 ecobalakz@gmail.com</p>
+                <p data-lang-text="footer_instagram">📷 Instagram: @ecobala.kz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                back: '← Назад',
+                title: 'Условия использования',
+                updated: 'Последнее обновление: 16.02.2026',
+                s1_title: '1. Общие положения',
+                s1_text: 'EcoBala — образовательная платформа. Используя сайт, вы соглашаетесь соблюдать эти правила. Если вы не согласны, пожалуйста, не используйте платформу.',
+                s2_title: '2. Аккаунты и роли',
+                s2_li1: 'Kids: аккаунт создаётся через родителя или учителя.',
+                s2_li2: 'Teen: может отправлять отчёты по реальным квестам.',
+                s2_li3: 'Admin: модерация пользователей и проверка отчётов.',
+                s3_title: '3. Контент и отчёты',
+                s3_text: 'Отправляя фото-отчёты, вы подтверждаете, что у вас есть право загружать эти материалы. Запрещено публиковать чужие фото, персональные данные третьих лиц и любой запрещённый контент.',
+                s4_title: '4. Честная игра и анти-накрутка',
+                s4_text: 'Запрещены попытки накрутки баллов и повторные отчёты по одному и тому же заданию. Администрация может отклонять отчёты и ограничивать доступ при нарушениях.',
+                s5_title: '5. Контакты',
+                s5_text: 'Вопросы по условиям использования: ecobalakz@gmail.com',
+                footer_phone: '📞 +7 771 451 4717',
+                footer_email: '📧 ecobalakz@gmail.com',
+                footer_instagram: '📷 Instagram: @ecobala.kz'
+            },
+            kz: {
+                back: '← Артқа',
+                title: 'Пайдалану шарттары',
+                updated: 'Соңғы жаңарту: 16.02.2026',
+                s1_title: '1. Жалпы ережелер',
+                s1_text: 'EcoBala — білім беру платформасы. Сайтты қолдана отырып, сіз осы ережелерді сақтауға келісесіз. Егер келіспесеңіз, платформаны қолданбаңыз.',
+                s2_title: '2. Аккаунттар және рөлдер',
+                s2_li1: 'Kids: аккаунт ата-ана немесе мұғалім арқылы жасалады.',
+                s2_li2: 'Teen: нақты квесттер бойынша есеп жібере алады.',
+                s2_li3: 'Admin: қолданушыларды модерациялау және есептерді тексеру.',
+                s3_title: '3. Контент және есептер',
+                s3_text: 'Фото-есеп жібергенде, сіз бұл материалдарды жүктеуге құқығыңыз бар екенін растайсыз. Өзгенің фотосын, үшінші тұлғалардың жеке деректерін және тыйым салынған контентті жариялауға болмайды.',
+                s4_title: '4. Әділ ойын және накруткаға қарсы',
+                s4_text: 'Ұпайды жасанды көбейтуге және бір тапсырмаға қайталап есеп жіберуге тыйым салынады. Әкімшілік бұзушылық кезінде есепті қабылдамай, қолжетімділікті шектеуі мүмкін.',
+                s5_title: '5. Байланыс',
+                s5_text: 'Пайдалану шарттары бойынша сұрақтар: ecobalakz@gmail.com',
+                footer_phone: '📞 +7 771 451 4717',
+                footer_email: '📧 ecobalakz@gmail.com',
+                footer_instagram: '📷 Instagram: @ecobala.kz'
+            }
+        };
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang-text]').forEach(el => {
+                const key = el.getAttribute('data-lang-text');
+                const val = translations[lang] && translations[lang][key];
+                if (val) {
+                    el.textContent = val;
+                }
+            });
+        }
+
+        function applyLangToUI(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const isActive = btn.getAttribute('data-lang') === lang;
+                btn.classList.toggle('active', isActive);
+            });
+
+            document.querySelectorAll('.lang-indicator').forEach(indicator => {
+                indicator.classList.toggle('kazakh', lang === 'kz');
+            });
+        }
+
+        function setLanguage(lang) {
+            applyLangToUI(lang);
+            updateLanguage(lang);
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+        });
+
+        setLanguage(localStorage.getItem('selectedLanguage') || 'ru');
+    </script>
+</body>
+</html>
