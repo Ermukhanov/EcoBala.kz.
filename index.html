@@ -161,6 +161,16 @@
             gap: 15px;
             align-items: center;
         }
+
+        .nav-extra {
+            display: none;
+        }
+
+        .nav-auth {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
         
         .language-switcher {
             display: flex;
@@ -742,6 +752,8 @@
                 right: 0;
                 background: white;
                 box-shadow: var(--shadow);
+                max-height: calc(100vh - 70px);
+                overflow: auto;
             }
             
             nav.active {
@@ -755,6 +767,26 @@
             
             .header-actions {
                 display: none;
+            }
+
+            .nav-extra {
+                display: block;
+                padding: 0 20px 20px;
+            }
+
+            .nav-extra .language-switcher {
+                width: fit-content;
+                margin-top: 10px;
+            }
+
+            .nav-auth {
+                flex-direction: column;
+            }
+
+            .nav-auth .btn {
+                width: 100%;
+                max-width: none;
+                text-align: center;
             }
             
             .hero {
@@ -778,7 +810,7 @@
                 gap: 15px;
             }
             
-            .btn {
+            .hero-buttons .btn {
                 width: 100%;
                 max-width: 280px;
                 text-align: center;
@@ -924,6 +956,18 @@
                         <li><a href="#how" data-lang-text="nav_how">Как работает</a></li>
                         <li><a href="#faq" data-lang-text="nav_faq">FAQ</a></li>
                     </ul>
+
+                    <div class="nav-extra">
+                        <div class="language-switcher">
+                            <div class="lang-indicator"></div>
+                            <button class="lang-btn active" data-lang="ru">РУС</button>
+                            <button class="lang-btn" data-lang="kz">ҚАЗ</button>
+                        </div>
+                        <div class="nav-auth">
+                            <a href="register.html" class="btn btn-outline" data-lang-text="login">Войти</a>
+                            <a href="register.html" class="btn btn-primary" data-lang-text="register">Регистрация</a>
+                        </div>
+                    </div>
                 </nav>
                 
                 <div class="header-actions">
@@ -1224,22 +1268,22 @@
                 <div class="footer-section">
                     <h3 data-lang-text="footer_contacts">Контакты</h3>
                     <ul>
-                        <li>📞 +7 771 451 4717</li>
-                        <li>📧 ecobalakz@gmail.com</li>
-                        <li>📷 Instagram: @ecobala.kz</li>
+                        <li data-lang-text="footer_phone">📞 +7 771 451 4717</li>
+                        <li data-lang-text="footer_email">📧 ecobalakz@gmail.com</li>
+                        <li data-lang-text="footer_instagram">📷 Instagram: @ecobala.kz</li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3 data-lang-text="footer_legal">Правовая информация</h3>
                     <ul>
-                        <li><a href="#" data-lang-text="footer_privacy">Политика конфиденциальности</a></li>
-                        <li><a href="#" data-lang-text="footer_terms">Условия использования</a></li>
+                        <li><a href="privacy.html" data-lang-text="footer_privacy">Политика конфиденциальности</a></li>
+                        <li><a href="terms.html" data-lang-text="footer_terms">Условия использования</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p data-lang-text="footer_copyright">&copy; 2026 EcoBala. Все права защищены.</p>
-                <p>Made by Ermukhanov.M, Amirtay.E </p>
+                <p data-lang-text="footer_made_by">Made by Ermukhanov.M, Amirtay.E</p>
             </div>
         </div>
     </footer>
@@ -1253,8 +1297,21 @@
                 setTimeout(function() {
                     splashScreen.style.display = 'none';
                 }, 500);
-            }, 3000);
+            }, 2000);
         });
+
+        (function autoRedirectIfLoggedIn() {
+            try {
+                const raw = localStorage.getItem('ecobalaUser');
+                if (!raw) return;
+                const user = JSON.parse(raw);
+                if (!user || !user.role) return;
+                if (user.role === 'kids') window.location.replace('kids.html');
+                if (user.role === 'teen') window.location.replace('teen.html');
+            } catch {
+                // ignore
+            }
+        })();
 
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1397,12 +1454,12 @@
                 hero_more: 'Узнать больше',
                 about_title: 'Для кого наша платформа?',
                 kids_title: 'EcoKids',
-                kids_desc: 'Для младших школьников (6-10 лет). Игровые квесты, веселые задания и знакомство с природой через игру.',
+                kids_desc: 'Для младших школьников (6-12 лет). Игровые квесты, веселые задания и знакомство с природой через игру.',
                 kids_btn: 'Перейти в Kids',
                 kids_login: 'Вход Kids',
                 kids_register: 'Регистрация Kids',
                 teens_title: 'EcoTeens',
-                teens_desc: 'Для подростков (11-16 лет). Более сложные проекты, исследование экологических проблем и создание собственных решений.',
+                teens_desc: 'Для подростков (13-17 лет). Более сложные проекты, исследование экологических проблем и создание собственных решений.',
                 teens_btn: 'Перейти в Teens',
                 teens_login: 'Вход Teen',
                 teens_register: 'Регистрация Teen',
@@ -1433,7 +1490,7 @@
                 how_step4_desc: 'Получайте сертификаты и участвуйте в конкурсе',
                 faq_title: 'Часто задаваемые вопросы',
                 faq_q1: 'Для какого возраста предназначена платформа?',
-                faq_a1: 'EcoBala предназначена для детей от 6 до 16 лет. У нас есть два раздела: EcoKids (6-10 лет) и EcoTeens (11-16 лет) с соответствующими заданиями.',
+                faq_a1: 'EcoBala предназначена для детей от 6 до 17 лет. У нас есть два раздела: EcoKids (6-12 лет) и EcoTeens (13-17 лет) с соответствующими заданиями.',
                 faq_q2: 'Как начать пользоваться платформой?',
                 faq_a2: 'Просто нажмите кнопку "Регистрация", создайте аккаунт, выберите возрастную категорию и начните выполнять первые квесты!',
                 faq_q3: 'Бесплатно ли пользоваться платформой?',
@@ -1457,7 +1514,11 @@
                 footer_legal: 'Правовая информация',
                 footer_privacy: 'Политика конфиденциальности',
                 footer_terms: 'Условия использования',
-                footer_copyright: '&copy; 2026 EcoBala. Все права защищены.'
+                footer_phone: '📞 +7 771 451 4717',
+                footer_email: '📧 ecobalakz@gmail.com',
+                footer_instagram: '📷 Instagram: @ecobala.kz',
+                footer_copyright: '&copy; 2026 EcoBala. Все права защищены.',
+                footer_made_by: 'Made by Ermukhanov.M, Amirtay.E'
             },
             kz: {
                 nav_home: 'Басты бет',
@@ -1473,12 +1534,12 @@
                 hero_more: 'Көбірек білу',
                 about_title: 'Біздің платформа кімдерге арналған?',
                 kids_title: 'EcoKids',
-                kids_desc: 'Кіші мектеп оқушыларына (6-10 жас). Ойын квесттері, қызықты тапсырмалар және табиғатпен ойын арқылы танысу.',
+                kids_desc: 'Кіші мектеп оқушыларына (6-12 жас). Ойын квесттері, қызықты тапсырмалар және табиғатпен ойын арқылы танысу.',
                 kids_btn: 'Kids-қа өту',
                 kids_login: 'Kids кіру',
                 kids_register: 'Kids тіркелу',
                 teens_title: 'EcoTeens',
-                teens_desc: 'Жасөспірімдерге (11-16 жас). Күрделірек жобалар, экологиялық мәселелерді зерттеу және өз шешімдерін жасау.',
+                teens_desc: 'Жасөспірімдерге (13-17 жас). Күрделірек жобалар, экологиялық мәселелерді зерттеу және өз шешімдерін жасау.',
                 teens_btn: 'Teens-қа өту',
                 teens_login: 'Teen кіру',
                 teens_register: 'Teen тіркелу',
@@ -1509,7 +1570,7 @@
                 how_step4_desc: 'Сертификаттар алыңыз және байқауға қатысыңыз',
                 faq_title: 'Жиі қойылатын сұрақтар',
                 faq_q1: 'Платформа қай жасқа арналған?',
-                faq_a1: 'EcoBala 6-дан 16 жасқа дейінгі балаларға арналған. Бізде екі бөлім бар: EcoKids (6-10 жас) және EcoTeens (11-16 жас) сәйкес тапсырмалармен.',
+                faq_a1: 'EcoBala 6-дан 17 жасқа дейінгі балаларға арналған. Бізде екі бөлім бар: EcoKids (6-12 жас) және EcoTeens (13-17 жас) сәйкес тапсырмалармен.',
                 faq_q2: 'Платформаны қалай қолдануға болады?',
                 faq_a2: 'Тек "Тіркелу" батырмасын басыңыз, аккаунт жасап, жас топтамасын таңдап, алғашқы квесттерді орындауды бастаңыз!',
                 faq_q3: 'Платформаны тегін пайдалануға бола ма?',
@@ -1533,7 +1594,11 @@
                 footer_legal: 'Заңды ақпарат',
                 footer_privacy: 'Құпиялылық саясаты',
                 footer_terms: 'Пайдалану шарттары',
-                footer_copyright: '&copy; 2026 EcoBala. Барлық құқықтар қорғалған.'
+                footer_phone: '📞 +7 771 451 4717',
+                footer_email: '📧 ecobalakz@gmail.com',
+                footer_instagram: '📷 Instagram: @ecobala.kz',
+                footer_copyright: '&copy; 2026 EcoBala. Барлық құқықтар қорғалған.',
+                footer_made_by: 'Made by Ermukhanov.M, Amirtay.E'
             }
         };
 
@@ -1542,7 +1607,12 @@
             elements.forEach(element => {
                 const key = element.getAttribute('data-lang-text');
                 if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
+                    const val = translations[lang][key];
+                    if (String(val).includes('&')) {
+                        element.innerHTML = val;
+                    } else {
+                        element.textContent = val;
+                    }
                 }
             });
             
@@ -1557,41 +1627,34 @@
             });
         }
 
-        // Language switcher functionality
-        const langButtons = document.querySelectorAll('.lang-btn');
-        const langIndicator = document.getElementById('langIndicator');
+        // Language switcher functionality (supports multiple switchers)
+        function applyLangToUI(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const isActive = btn.getAttribute('data-lang') === lang;
+                btn.classList.toggle('active', isActive);
+            });
 
-        langButtons.forEach(button => {
+            document.querySelectorAll('.lang-indicator').forEach(indicator => {
+                indicator.classList.toggle('kazakh', lang === 'kz');
+            });
+        }
+
+        function setLanguage(lang) {
+            applyLangToUI(lang);
+            updateLanguage(lang);
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const selectedLang = this.getAttribute('data-lang');
-                
-                // Update active states
-                langButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Move indicator
-                if (selectedLang === 'kz') {
-                    langIndicator.classList.add('kazakh');
-                } else {
-                    langIndicator.classList.remove('kazakh');
-                }
-                
-                // Update language
-                updateLanguage(selectedLang);
-                
-                // Save preference
-                localStorage.setItem('selectedLanguage', selectedLang);
+                setLanguage(selectedLang);
             });
         });
 
         // Load saved language preference
-        const savedLanguage = localStorage.getItem('selectedLanguage');
-        if (savedLanguage && savedLanguage !== 'ru') {
-            const kazakhBtn = document.querySelector('[data-lang="kz"]');
-            if (kazakhBtn) {
-                kazakhBtn.click();
-            }
-        }
+        const savedLanguage = localStorage.getItem('selectedLanguage') || 'ru';
+        setLanguage(savedLanguage);
     </script>
 </body>
 </html>
